@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Soliloquy.mp3-e4995f5758d50cee132762e52b332876.mp3str"
+
+[deps]
+
+source_file="res://sounds/Soliloquy.mp3"
+dest_files=[ "res://.import/Soliloquy.mp3-e4995f5758d50cee132762e52b332876.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

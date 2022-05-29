@@ -1,0 +1,71 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://materials/TitleWallBorderMaterial.tres" type="Material" id=1]
+
+[sub_resource type="BoxShape" id=16]
+extents = Vector3( 1, 1, 0.25 )
+
+[node name="TitleWall" type="CSGCombiner"]
+material_override = ExtResource( 1 )
+cast_shadow = 0
+
+[node name="CSGBox" type="CSGBox" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.125, 2.972 )
+depth = 0.5
+
+[node name="CSGSphere" type="CSGSphere" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.125, 3.18823 )
+cast_shadow = 0
+radius = 0.1
+
+[node name="CSGSphere2" type="CSGSphere" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.500406, 0.603236, 3.18823 )
+cast_shadow = 0
+radius = 0.1
+
+[node name="CSGSphere3" type="CSGSphere" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.54293, 1.80875, 3.18823 )
+cast_shadow = 0
+radius = 0.1
+
+[node name="CSGSphere9" type="CSGSphere" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.327406, 2.05584, 3.18823 )
+cast_shadow = 0
+radius = 0.1
+
+[node name="CSGSphere10" type="CSGSphere" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.251836, 2.04444, 3.18823 )
+cast_shadow = 0
+radius = 0.1
+
+[node name="CSGSphere11" type="CSGSphere" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.440066, 2.08747, 3.16818 )
+cast_shadow = 0
+radius = 0.1
+
+[node name="CSGSphere4" type="CSGSphere" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.487796, 1.4651, 3.18823 )
+cast_shadow = 0
+radius = 0.1
+
+[node name="CSGSphere5" type="CSGSphere" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.758874, 0.683163, 3.023 )
+radius = 0.3
+
+[node name="CSGSphere8" type="CSGSphere" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.227618, 1.93901, 3.023 )
+radius = 0.3
+
+[node name="CSGSphere7" type="CSGSphere" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.758874, 1.8974, 3.023 )
+radius = 0.3
+
+[node name="CSGSphere6" type="CSGSphere" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.714372, 1.24385, 3.023 )
+radius = 0.3
+
+[node name="StaticBody" type="StaticBody" parent="."]
+
+[node name="CollisionShape" type="CollisionShape" parent="StaticBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.12133, 2.97241 )
+shape = SubResource( 16 )
