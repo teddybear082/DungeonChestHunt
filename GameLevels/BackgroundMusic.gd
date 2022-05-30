@@ -1,4 +1,4 @@
-extends Spatial
+extends AudioStreamPlayer
 
 
 # Declare member variables here. Examples:
@@ -8,9 +8,13 @@ extends Spatial
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	PlayerMasterControls.connect("background_music_state", self, "on_music_state_changed") # Replace with function body.
 
-
+func on_music_state_changed(state):
+	if state == true:
+		play()
+	if state == false:
+		stop()
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass

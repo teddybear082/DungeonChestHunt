@@ -9,13 +9,15 @@ extends Node
 export var backgroundmusic = true
 
 
-onready var bgmusicaudiostream = get_owner().get_node("BackgroundMusic")
+
 onready var _left_controller = null
 onready var _right_controller = null
 
 var left_haptic = false
 var right_haptic = false
+var backgroundmusiclaststate = true
 
+signal background_music_state(state)
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
@@ -33,14 +35,14 @@ func _process(delta):
 	handle_haptics()
 
 func handle_background_music():
-	if backgroundmusic == true:
-		if bgmusicaudiostream.playing == true:
-			return
-		bgmusicaudiostream.play()
-	if backgroundmusic == false:
-		if bgmusicaudiostream.playing == false:
-			return
-		bgmusicaudiostream.stop()
+	if backgroundmusiclaststate != backgroundmusic:
+		if backgroundmusic == true:
+			emit_signal("background_music_state", true)
+			backgroundmusiclaststate = backgroundmusic
+		
+		if backgroundmusic == false:
+			emit_signal("background_music_state", false)
+			backgroundmusiclaststate = backgroundmusic
 
 func handle_player_controls():
 	pass
@@ -59,13 +61,13 @@ func handle_player_health():
 	
 func handle_haptics():
 	
-	if left_haptic = true:
+	if left_haptic == true:
 		_left_controller.set_rumble(.3) 
 		yield(get_tree().create_timer(.2), "timeout") 
 		_left_controller.set_rumble(0)
 		left_haptic = false
 		
-	if right_haptic = true:
+	if right_haptic == true:
 		_right_controller.set_rumble(.3) 
 		yield(get_tree().create_timer(.2), "timeout") 
 		_right_controller.set_rumble(0)

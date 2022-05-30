@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=2]
+[gd_scene load_steps=48 format=2]
 
 [ext_resource path="res://addons/godot-xr-tools/assets/LeftHand.tscn" type="PackedScene" id=1]
 [ext_resource path="res://addons/godot-xr-tools/misc/VR_Common_Shader_Cache.tscn" type="PackedScene" id=2]
@@ -24,7 +24,14 @@
 [ext_resource path="res://scenes/TitleTable.tscn" type="PackedScene" id=22]
 [ext_resource path="res://scenes/MusicLever.tscn" type="PackedScene" id=23]
 [ext_resource path="res://scenes/LeaderboardLever.tscn" type="PackedScene" id=24]
-[ext_resource path="res://scenes/LevelChooseLeverSnap.tscn" type="PackedScene" id=25]
+[ext_resource path="res://fonts/TitleFont.tres" type="DynamicFont" id=25]
+[ext_resource path="res://materials/leverhandlematerial.tres" type="Material" id=26]
+[ext_resource path="res://scenes/LevelSelectSliderSnap.tscn" type="PackedScene" id=27]
+[ext_resource path="res://GameLevels/LevelSelectTextMeshLn2.gd" type="Script" id=28]
+[ext_resource path="res://scenes/LevelSelectSnapZone.tscn" type="PackedScene" id=29]
+[ext_resource path="res://scenes/CoinPickable.tscn" type="PackedScene" id=30]
+[ext_resource path="res://GameLevels/BackgroundMusic.gd" type="Script" id=31]
+[ext_resource path="res://addons/godot-xr-tools/functions/Function_pointer.tscn" type="PackedScene" id=32]
 
 [sub_resource type="SpatialMaterial" id=8]
 flags_unshaded = true
@@ -64,6 +71,55 @@ background_color = Color( 0.454902, 0.768627, 0.8, 0 )
 ambient_light_color = Color( 0.952941, 0.909804, 0.909804, 1 )
 ambient_light_sky_contribution = 0.0
 
+[sub_resource type="TextMesh" id=15]
+material = ExtResource( 26 )
+text = "Music"
+font = ExtResource( 25 )
+pixel_size = 0.001
+depth = 0.01
+
+[sub_resource type="TextMesh" id=16]
+material = ExtResource( 26 )
+text = "On"
+font = ExtResource( 25 )
+pixel_size = 0.001
+depth = 0.01
+
+[sub_resource type="TextMesh" id=12]
+material = ExtResource( 26 )
+text = "Leaderboard"
+font = ExtResource( 25 )
+pixel_size = 0.001
+depth = 0.01
+
+[sub_resource type="TextMesh" id=13]
+material = ExtResource( 26 )
+text = "Level Select"
+font = ExtResource( 25 )
+pixel_size = 0.001
+depth = 0.001
+
+[sub_resource type="TextMesh" id=14]
+material = ExtResource( 26 )
+text = "Level"
+font = ExtResource( 25 )
+pixel_size = 0.001
+depth = 0.01
+
+[sub_resource type="SphereMesh" id=17]
+radius = 0.2
+height = 0.2
+is_hemisphere = true
+
+[sub_resource type="SpatialMaterial" id=18]
+flags_transparent = true
+albedo_color = Color( 0.807843, 0.6, 0.27451, 0.541176 )
+emission_enabled = true
+emission = Color( 0.941176, 0.905882, 0.843137, 1 )
+emission_energy = 2.0
+emission_operator = 0
+emission_on_uv2 = false
+
 [node name="GameLevel1" type="Spatial"]
 
 [node name="FPController" parent="." instance=ExtResource( 3 )]
@@ -82,12 +138,12 @@ material_override = SubResource( 8 )
 cast_shadow = 0
 
 [node name="Function_Direct_movement" parent="FPController/LeftHandController" index="1" instance=ExtResource( 5 )]
-max_speed = 4.0
 strafe = true
 
 [node name="Function_Pickup" parent="FPController/LeftHandController" index="2" instance=ExtResource( 11 )]
 
 [node name="Function_Grapple_movement" parent="FPController/LeftHandController" index="3" instance=ExtResource( 9 )]
+grapple_button_id = 7
 
 [node name="Grapple_Target" parent="FPController/LeftHandController/Function_Grapple_movement" index="1"]
 mesh = SubResource( 5 )
@@ -96,6 +152,7 @@ mesh = SubResource( 5 )
 material = ExtResource( 21 )
 
 [node name="Function_Jump_movement" parent="FPController/LeftHandController" index="4" instance=ExtResource( 14 )]
+enabled = false
 jump_button_id = 14
 
 [node name="Function_Turn_movement" parent="FPController/LeftHandController" index="5" instance=ExtResource( 7 )]
@@ -112,7 +169,6 @@ material_override = SubResource( 9 )
 cast_shadow = 0
 
 [node name="Function_Turn_movement" parent="FPController/RightHandController" index="1" instance=ExtResource( 7 )]
-smooth_rotation = true
 
 [node name="Function_Pickup" parent="FPController/RightHandController" index="2" instance=ExtResource( 11 )]
 
@@ -127,15 +183,16 @@ material = ExtResource( 21 )
 
 [node name="Function_BulletTime_movement" parent="FPController/RightHandController" index="4" instance=ExtResource( 17 )]
 order = 40
-bullet_time_button_id = 14
 
 [node name="Function_Jump_movement" parent="FPController/RightHandController" index="5" instance=ExtResource( 14 )]
-enabled = false
+jump_button_id = 14
 
 [node name="Function_Direct_movement" parent="FPController/RightHandController" index="6" instance=ExtResource( 5 )]
 enabled = false
-max_speed = 4.0
 strafe = true
+
+[node name="Function_pointer" parent="FPController/RightHandController" index="7" instance=ExtResource( 32 )]
+show_laser = false
 
 [node name="PlayerBody" parent="FPController" instance=ExtResource( 6 )]
 
@@ -170,19 +227,13 @@ environment = SubResource( 11 )
 [node name="BackgroundMusic" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 18 )
 autoplay = true
+script = ExtResource( 31 )
 
 [node name="ControlsViewport" parent="." instance=ExtResource( 19 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, -1 )
 
-[node name="MusicTextMeshLine1" type="MeshInstance" parent="."]
-
-[node name="MusicTextMeshLine2" type="MeshInstance" parent="."]
-skeleton = NodePath("../MusicTextMeshLine1")
-
 [node name="TutorialVideosViewport" parent="." instance=ExtResource( 20 )]
 transform = Transform( -0.0402364, 0, 0.99919, 0, 1, 0, -0.99919, 0, -0.0402364, -2.33406, 1.35042, 2.04112 )
-
-[node name="LevelSelectTextMesh" type="MeshInstance" parent="."]
 
 [node name="TutorialTextMesh" type="MeshInstance" parent="."]
 
@@ -195,13 +246,56 @@ transform = Transform( -1.31134e-08, 0, 0.3, 0, 0.3, 0, -0.3, 0, -1.31134e-08, 2
 [node name="MusicLever" parent="." instance=ExtResource( 23 )]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 2.43812, 0.933228, 1.89821 )
 
-[node name="LeaderboardTextMesh" type="MeshInstance" parent="."]
+[node name="MusicTextMeshLine1" type="MeshInstance" parent="MusicLever"]
+transform = Transform( -4.37114e-08, 0, -1, -1, -4.37114e-08, 4.37114e-08, -4.37114e-08, 1, 1.91069e-15, -0.0159583, -0.0154299, 0.416717 )
+cast_shadow = 0
+mesh = SubResource( 15 )
+skeleton = NodePath("../..")
+
+[node name="MusicTextMeshLine2" type="MeshInstance" parent="MusicLever"]
+transform = Transform( -4.37114e-08, 0, -1, -1, -4.37114e-08, 4.37114e-08, -4.37114e-08, 1, 1.91069e-15, 0.0028801, -0.00579, 0.316772 )
+cast_shadow = 0
+mesh = SubResource( 16 )
+skeleton = NodePath("../MusicTextMeshLine1")
 
 [node name="LeaderboardLever" parent="." instance=ExtResource( 24 )]
-transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -0.97101, 0.932264, 4.65693 )
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -0.97101, 0.95269, 4.65693 )
 
-[node name="LevelChooseLeverSnap" parent="." instance=ExtResource( 25 )]
-transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 1.01032, 0.932264, 4.65693 )
+[node name="LeaderboardTextMesh" type="MeshInstance" parent="LeaderboardLever"]
+transform = Transform( -1, 0, -8.74228e-08, -8.74228e-08, -4.37114e-08, 1, -3.82137e-15, 1, 4.37114e-08, 0.04501, -0.00453615, 0.317736 )
+cast_shadow = 0
+mesh = SubResource( 12 )
+skeleton = NodePath("../..")
+
+[node name="LevelSelectSliderSnap" parent="." instance=ExtResource( 27 )]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0.790721, 0.945828, 4.63122 )
+
+[node name="LevelSelectTextMesh" type="MeshInstance" parent="LevelSelectSliderSnap"]
+transform = Transform( -1, 0, -8.74228e-08, -8.74228e-08, -4.37114e-08, 1, -3.82137e-15, 1, 4.37114e-08, -0.00474399, 0.241222, 0.311152 )
+cast_shadow = 0
+mesh = SubResource( 13 )
+skeleton = NodePath("../..")
+
+[node name="LevelSelectTextMeshLn2" type="MeshInstance" parent="LevelSelectSliderSnap"]
+transform = Transform( -1, 0, -8.74228e-08, -8.74228e-08, -4.37114e-08, 1, -3.82137e-15, 1, 4.37114e-08, -0.438859, 0.313072, 0.187833 )
+cast_shadow = 0
+mesh = SubResource( 14 )
+script = ExtResource( 28 )
+
+[node name="LevelSelectButton" type="MeshInstance" parent="LevelSelectSliderSnap"]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -0.426924, 0.233731, -0.0216141 )
+mesh = SubResource( 17 )
+skeleton = NodePath("../..")
+material/0 = SubResource( 18 )
+
+[node name="LevelSelectSnapZone" parent="LevelSelectSliderSnap" instance=ExtResource( 29 )]
+transform = Transform( 1, 0, 0, 0, 0.999999, -1.42109e-14, 0, 1.42109e-14, 0.999999, -0.383744, 0.15119, 0.0538931 )
+grab_distance = 0.1
+
+[node name="CoinPickable" parent="." instance=ExtResource( 30 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.042195, 0.911442, 4.38421 )
+
+[connection signal="level_chosen" from="LevelSelectSliderSnap" to="LevelSelectSliderSnap/LevelSelectTextMeshLn2" method="_on_LevelSelectSliderSnap_level_chosen"]
 
 [editable path="FPController"]
 [editable path="FPController/LeftHandController/LeftHand"]

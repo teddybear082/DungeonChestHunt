@@ -19,6 +19,23 @@ extends MovementProvider
 ##
 
 enum SPRINT_TYPE { HOLD_TO_SPRINT, TOGGLE_SPRINT }
+enum Buttons {
+	VR_BUTTON_BY = 1,
+	VR_GRIP = 2,
+	VR_BUTTON_3 = 3,
+	VR_BUTTON_4 = 4,
+	VR_BUTTON_5 = 5,
+	VR_BUTTON_6 = 6,
+	VR_BUTTON_AX = 7,
+	VR_BUTTON_8 = 8,
+	VR_BUTTON_9 = 9,
+	VR_BUTTON_10 = 10,
+	VR_BUTTON_11 = 11,
+	VR_BUTTON_12 = 12,
+	VR_BUTTON_13 = 13,
+	VR_PAD = 14,
+	VR_TRIGGER = 15
+}
 
 ## Movement provider order
 export var order := 10
@@ -46,7 +63,8 @@ export (SPRINT_TYPE) var sprint_type = SPRINT_TYPE.TOGGLE_SPRINT
 # Controller node
 onready var _controller : ARVRController = get_parent()
 
-
+var is_sprinting = false
+var button_states = []
 # Perform direct movement
 func physics_movement(delta: float, player_body: PlayerBody, _disabled: bool):
 	# Skip if the controller isn't active

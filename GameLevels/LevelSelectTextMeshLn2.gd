@@ -1,4 +1,4 @@
-extends Spatial
+extends MeshInstance
 
 
 # Declare member variables here. Examples:
@@ -16,10 +16,9 @@ func _ready():
 #	pass
 
 
-func _on_InteractableHinge_hinge_moved(angle):
-	if angle == -45:
-		PlayerMasterControls.backgroundmusic = false
-		$MusicTextMeshLine2.mesh.text = "Off" # Replace with function body.
-	if angle >= 0:
-		PlayerMasterControls.backgroundmusic = true
-		$MusicTextMeshLine2.mesh.text = "On"
+func _on_LevelSelectSliderSnap_level_chosen(level):
+	if level == 0:
+		mesh.text = "Level" # Replace with function body.
+	if level > 0:
+		mesh.text = "Level " + str(level)
+	

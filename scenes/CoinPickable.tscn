@@ -1,0 +1,34 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://addons/godot-xr-tools/objects/Object_pickable.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scenes/Coin.tscn" type="PackedScene" id=2]
+
+[sub_resource type="ConvexPolygonShape" id=1]
+points = PoolVector3Array( 0, -0.105812, -1, -0.707126, -0.105812, -0.707126, 0, 0.105812, -1, 0.70693, -0.105812, -0.707126, -1, -0.105812, 0, -0.707126, 0.105812, -0.707126, 0.70693, 0.105812, -0.707126, 1, -0.105812, 0, -1, 0.105812, 0, -0.707126, -0.105812, 0.70693, 1, 0.105812, 0, 0.70693, -0.105812, 0.70693, -0.707126, 0.105812, 0.70693, 0, -0.105812, 1, 0.70693, 0.105812, 0.70693, 0, 0.105812, 1 )
+
+[node name="CoinPickable" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.035706, 0, 0.0127465 )
+press_to_hold = false
+
+[node name="PickupCenter" parent="." index="0"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0632594, 0, 0 )
+
+[node name="CollisionShape" parent="." index="1"]
+transform = Transform( 0.08, 0, 0, 0, 0.08, 0, 0, 0, 0.08, 0, 0, 0 )
+shape = SubResource( 1 )
+
+[node name="Coin" parent="." index="2" instance=ExtResource( 2 )]
+
+[node name="Sketchfab_model" parent="Coin" index="0"]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -0.00768447, -0.0029695, 0.00666523 )
+
+[node name="coin_0" parent="Coin/Sketchfab_model/root/GLTF_SceneRootNode" index="0"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+
+[node name="Object_4" parent="Coin/Sketchfab_model/root/GLTF_SceneRootNode/coin_0" index="0"]
+transform = Transform( 0.08, 0, 0, 0, 0.08, 0, 0, 0, 0.08, 0, 0, 0 )
+
+[node name="Object_5" parent="Coin/Sketchfab_model/root/GLTF_SceneRootNode/coin_0" index="1"]
+transform = Transform( 0.08, 0, 0, 0, 0.08, 0, 0, 0, 0.08, 0, 0, 0 )
+
+[editable path="Coin"]

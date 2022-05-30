@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=2]
+[gd_scene load_steps=30 format=2]
 
 [ext_resource path="res://addons/godot-xr-tools/misc/VR_Common_Shader_Cache.tscn" type="PackedScene" id=1]
 [ext_resource path="res://addons/godot-xr-tools/assets/LeftHand.tscn" type="PackedScene" id=2]
@@ -19,6 +19,7 @@
 [ext_resource path="res://fonts/TitleFont.tres" type="DynamicFont" id=17]
 [ext_resource path="res://materials/leverhandlematerial.tres" type="Material" id=18]
 [ext_resource path="res://scenes/TitleWall.tscn" type="PackedScene" id=19]
+[ext_resource path="res://GameLevels/BackgroundMusic.gd" type="Script" id=20]
 
 [sub_resource type="BoxShape" id=1]
 extents = Vector3( 10, 0.125, 10 )
@@ -77,7 +78,6 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.03, -0.05, 0.15 )
 [node name="Function_Pickup" parent="FPController/LeftHandController" index="1" instance=ExtResource( 6 )]
 
 [node name="Function_Direct_movement" parent="FPController/LeftHandController" index="2" instance=ExtResource( 15 )]
-max_speed = 4.0
 strafe = true
 
 [node name="RightHand" parent="FPController/RightHandController" index="0" instance=ExtResource( 3 )]
@@ -86,7 +86,6 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.03, -0.05, 0.15 )
 [node name="Function_pointer" parent="FPController/RightHandController" index="1" instance=ExtResource( 8 )]
 
 [node name="Function_Turn_movement" parent="FPController/RightHandController" index="2" instance=ExtResource( 7 )]
-smooth_rotation = true
 
 [node name="Function_Pickup" parent="FPController/RightHandController" index="3" instance=ExtResource( 6 )]
 
@@ -114,6 +113,7 @@ transform = Transform( -0.799452, -0.0295941, -2.18851e-07, 0, -5.91607e-06, 0.8
 [node name="BackgroundMusic" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 9 )
 autoplay = true
+script = ExtResource( 20 )
 
 [node name="TitleStaticBody" type="StaticBody" parent="."]
 

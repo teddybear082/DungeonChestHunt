@@ -89,6 +89,8 @@ func _ready():
 	sprint_assignment.selected = 2
 	left_holster_assignment.selected = 3
 	right_holster_assignment.selected = 3
+	l_turn_node.enabled = false
+	r_direct_move_node.enabled = false
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
