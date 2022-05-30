@@ -111,7 +111,7 @@ environment = SubResource( 10 )
 [node name="TitleLever" parent="." instance=ExtResource( 11 )]
 transform = Transform( -0.799452, -0.0295941, -2.18851e-07, 0, -5.91607e-06, 0.8, -0.0295941, 0.799452, 5.91202e-06, 0, 0.920904, -0.457867 )
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="BackgroundMusic" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 9 )
 autoplay = true
 

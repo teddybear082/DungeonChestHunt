@@ -258,6 +258,10 @@ config/name="DungeonChestHunt"
 run/main_scene="res://scenes/GodotSplash.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+PlayerMasterControls="*res://singletons/PlayerMasterControls.gd"
+
 [display]
 
 window/vsync/use_vsync=false

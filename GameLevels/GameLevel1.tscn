@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=2]
+[gd_scene load_steps=32 format=2]
 
 [ext_resource path="res://addons/godot-xr-tools/assets/LeftHand.tscn" type="PackedScene" id=1]
 [ext_resource path="res://addons/godot-xr-tools/misc/VR_Common_Shader_Cache.tscn" type="PackedScene" id=2]
@@ -13,10 +13,16 @@
 [ext_resource path="res://addons/godot-xr-tools/functions/Function_Pickup.tscn" type="PackedScene" id=11]
 [ext_resource path="res://addons/godot-xr-tools/functions/Function_JumpDetect_movement.tscn" type="PackedScene" id=12]
 [ext_resource path="res://addons/godot-xr-tools/functions/Locomotion_WalkInPlace.tscn" type="PackedScene" id=13]
+[ext_resource path="res://addons/godot-xr-tools/functions/Function_Jump_movement.tscn" type="PackedScene" id=14]
 [ext_resource path="res://addons/godot-xr-tools/functions/Function_Climb_movement.tscn" type="PackedScene" id=15]
 [ext_resource path="res://addons/godot-xr-tools/functions/Function_Glide_movement.tscn" type="PackedScene" id=16]
 [ext_resource path="res://addons/godot-xr-tools/functions/Function_BulletTime_movement.tscn" type="PackedScene" id=17]
 [ext_resource path="res://sounds/Soliloquy.mp3" type="AudioStream" id=18]
+[ext_resource path="res://scenes/ControlsViewport.tscn" type="PackedScene" id=19]
+[ext_resource path="res://scenes/TutorialVideosViewport.tscn" type="PackedScene" id=20]
+[ext_resource path="res://materials/ropematerial.tres" type="Material" id=21]
+[ext_resource path="res://scenes/TitleTable.tscn" type="PackedScene" id=22]
+[ext_resource path="res://scenes/MusicLever.tscn" type="PackedScene" id=23]
 
 [sub_resource type="SpatialMaterial" id=8]
 flags_unshaded = true
@@ -59,6 +65,7 @@ ambient_light_sky_contribution = 0.0
 [node name="GameLevel1" type="Spatial"]
 
 [node name="FPController" parent="." instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.40654 )
 
 [node name="ARVRCamera" parent="FPController" index="1"]
 far = 1000.0
@@ -73,6 +80,7 @@ material_override = SubResource( 8 )
 cast_shadow = 0
 
 [node name="Function_Direct_movement" parent="FPController/LeftHandController" index="1" instance=ExtResource( 5 )]
+max_speed = 4.0
 strafe = true
 
 [node name="Function_Pickup" parent="FPController/LeftHandController" index="2" instance=ExtResource( 11 )]
@@ -81,6 +89,18 @@ strafe = true
 
 [node name="Grapple_Target" parent="FPController/LeftHandController/Function_Grapple_movement" index="1"]
 mesh = SubResource( 5 )
+
+[node name="Line" parent="FPController/LeftHandController/Function_Grapple_movement/LineHelper" index="0"]
+material = ExtResource( 21 )
+
+[node name="Function_Jump_movement" parent="FPController/LeftHandController" index="4" instance=ExtResource( 14 )]
+jump_button_id = 14
+
+[node name="Function_Turn_movement" parent="FPController/LeftHandController" index="5" instance=ExtResource( 7 )]
+enabled = false
+
+[node name="Function_BulletTime_movement" parent="FPController/LeftHandController" index="6" instance=ExtResource( 17 )]
+enabled = false
 
 [node name="RightHand" parent="FPController/RightHandController" index="0" instance=ExtResource( 4 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.03, -0.05, 0.15 )
@@ -100,9 +120,20 @@ grapple_button_id = 7
 [node name="Grapple_Target" parent="FPController/RightHandController/Function_Grapple_movement" index="1"]
 mesh = SubResource( 6 )
 
+[node name="Line" parent="FPController/RightHandController/Function_Grapple_movement/LineHelper" index="0"]
+material = ExtResource( 21 )
+
 [node name="Function_BulletTime_movement" parent="FPController/RightHandController" index="4" instance=ExtResource( 17 )]
 order = 40
 bullet_time_button_id = 14
+
+[node name="Function_Jump_movement" parent="FPController/RightHandController" index="5" instance=ExtResource( 14 )]
+enabled = false
+
+[node name="Function_Direct_movement" parent="FPController/RightHandController" index="6" instance=ExtResource( 5 )]
+enabled = false
+max_speed = 4.0
+strafe = true
 
 [node name="PlayerBody" parent="FPController" instance=ExtResource( 6 )]
 
@@ -134,9 +165,35 @@ shape = SubResource( 2 )
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource( 11 )
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="BackgroundMusic" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 18 )
 autoplay = true
+
+[node name="ControlsViewport" parent="." instance=ExtResource( 19 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, -1 )
+
+[node name="MusicTextMeshLine1" type="MeshInstance" parent="."]
+
+[node name="MusicTextMeshLine2" type="MeshInstance" parent="."]
+skeleton = NodePath("../MusicTextMeshLine1")
+
+[node name="TutorialVideosViewport" parent="." instance=ExtResource( 20 )]
+transform = Transform( -0.0402364, 0, 0.99919, 0, 1, 0, -0.99919, 0, -0.0402364, -2.33406, 1.35042, 2.04112 )
+
+[node name="LevelSelectTextMesh" type="MeshInstance" parent="."]
+
+[node name="TutorialTextMesh" type="MeshInstance" parent="."]
+
+[node name="TitleTable" parent="." instance=ExtResource( 22 )]
+transform = Transform( 0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 4.95939 )
+
+[node name="TitleTable2" parent="." instance=ExtResource( 22 )]
+transform = Transform( -1.31134e-08, 0, 0.3, 0, 0.3, 0, -0.3, 0, -1.31134e-08, 2.94401, 0, 1.88534 )
+
+[node name="MusicLever" parent="." instance=ExtResource( 23 )]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 2.43812, 0.933228, 1.89821 )
+
+[node name="LeaderboardTextMesh" type="MeshInstance" parent="."]
 
 [editable path="FPController"]
 [editable path="FPController/LeftHandController/LeftHand"]
