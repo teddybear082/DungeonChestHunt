@@ -18,39 +18,86 @@ extends MovementProvider
 ##     controllers to provide different types of direct movement.
 ##
 
+enum SPRINT_TYPE { HOLD_TO_SPRINT, TOGGLE_SPRINT }
 
 ## Movement provider order
 export var order := 10
 
 ## Movement speed
-export var max_speed := 10.0
+
+export var default_speed := 4.0
+export var sprint_speed := 7.0
+var speed = default_speed
 
 ## Enable player strafing
 export var strafe := false
+
+
+## Can Sprint flag
+export var canSprint := true
+
+## Sprint activate button
+export (Buttons) var sprint_button_id = Buttons.VR_PAD
+
+## Choose type of sprinting - toggle or hold
+export (SPRINT_TYPE) var sprint_type = SPRINT_TYPE.TOGGLE_SPRINT
 
 
 # Controller node
 onready var _controller : ARVRController = get_parent()
 
 
-# Perform jump movement
+# Perform direct movement
 func physics_movement(delta: float, player_body: PlayerBody, _disabled: bool):
 	# Skip if the controller isn't active
 	if !_controller.get_is_active():
 		return
-
+	
+	# Implement sprinting toggle if selected
+	if sprint_type == SPRINT_TYPE.TOGGLE_SPRINT:
+	
+		if canSprint and button_pressed(sprint_button_id):
+			if is_sprinting == false: 
+				is_sprinting = true
+				speed = sprint_speed
+				print("sprinting now and speed = " + str(speed))
+				print(str(button_states))
+	
+			else:
+				is_sprinting = false
+				speed = default_speed
+				print("back to normal speed now and speed = " + str(speed))
+				print(str(button_states))
+				
+	# Implement hold sprint button if selected
+	if sprint_type == SPRINT_TYPE.HOLD_TO_SPRINT:
+		speed = default_speed
+		
+		if canSprint and _controller.is_button_pressed(sprint_button_id):
+			speed = sprint_speed
+			
 	# Apply forwards/backwards ground control
-	player_body.ground_control_velocity.y += _controller.get_joystick_axis(1) * max_speed
+	player_body.ground_control_velocity.y += _controller.get_joystick_axis(1) * speed
 
 	# Apply left/right ground control
 	if strafe:
-		player_body.ground_control_velocity.x += _controller.get_joystick_axis(0) * max_speed
+		player_body.ground_control_velocity.x += _controller.get_joystick_axis(0) * speed
 
 	# Clamp ground control
-	player_body.ground_control_velocity.x = clamp(player_body.ground_control_velocity.x, -max_speed, max_speed)
-	player_body.ground_control_velocity.y = clamp(player_body.ground_control_velocity.y, -max_speed, max_speed)
+	player_body.ground_control_velocity.x = clamp(player_body.ground_control_velocity.x, -speed, speed)
+	player_body.ground_control_velocity.y = clamp(player_body.ground_control_velocity.y, -speed, speed)
 
 
+func button_pressed(b):
+	if _controller.is_button_pressed(b) and !button_states.has(b):
+		button_states.append(b)
+		return true
+	if not _controller.is_button_pressed(b) and button_states.has(b):
+		button_states.erase(b)
+	
+	return false
+	
+	
 # This method verifies the MovementProvider has a valid configuration.
 func _get_configuration_warning():
 	# Check the controller node

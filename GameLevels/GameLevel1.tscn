@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=2]
+[gd_scene load_steps=34 format=2]
 
 [ext_resource path="res://addons/godot-xr-tools/assets/LeftHand.tscn" type="PackedScene" id=1]
 [ext_resource path="res://addons/godot-xr-tools/misc/VR_Common_Shader_Cache.tscn" type="PackedScene" id=2]
@@ -23,6 +23,8 @@
 [ext_resource path="res://materials/ropematerial.tres" type="Material" id=21]
 [ext_resource path="res://scenes/TitleTable.tscn" type="PackedScene" id=22]
 [ext_resource path="res://scenes/MusicLever.tscn" type="PackedScene" id=23]
+[ext_resource path="res://scenes/LeaderboardLever.tscn" type="PackedScene" id=24]
+[ext_resource path="res://scenes/LevelChooseLeverSnap.tscn" type="PackedScene" id=25]
 
 [sub_resource type="SpatialMaterial" id=8]
 flags_unshaded = true
@@ -194,6 +196,12 @@ transform = Transform( -1.31134e-08, 0, 0.3, 0, 0.3, 0, -0.3, 0, -1.31134e-08, 2
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 2.43812, 0.933228, 1.89821 )
 
 [node name="LeaderboardTextMesh" type="MeshInstance" parent="."]
+
+[node name="LeaderboardLever" parent="." instance=ExtResource( 24 )]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -0.97101, 0.932264, 4.65693 )
+
+[node name="LevelChooseLeverSnap" parent="." instance=ExtResource( 25 )]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 1.01032, 0.932264, 4.65693 )
 
 [editable path="FPController"]
 [editable path="FPController/LeftHandController/LeftHand"]
