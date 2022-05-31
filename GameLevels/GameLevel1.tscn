@@ -289,7 +289,7 @@ skeleton = NodePath("../..")
 material/0 = SubResource( 18 )
 
 [node name="LevelSelectSnapZone" parent="LevelSelectSliderSnap" instance=ExtResource( 29 )]
-transform = Transform( 1, 0, 0, 0, 0.999999, -1.42109e-14, 0, 1.42109e-14, 0.999999, -0.383744, 0.15119, 0.0538931 )
+transform = Transform( 1, 0, 0, 0, 0.999999, -1.42109e-14, 0, 1.42109e-14, 0.999999, -0.439856, 0.256674, 0.0538931 )
 grab_distance = 0.1
 
 [node name="CoinPickable" parent="." instance=ExtResource( 30 )]

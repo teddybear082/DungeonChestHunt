@@ -46,7 +46,7 @@ onready var _controller: ARVRController = get_parent()
 # Perform jump movement
 func physics_movement(delta: float, player_body: PlayerBody, _disabled: bool):
 	# Skip if the jump controller isn't active
-	if !_controller.get_is_active() or enabled == false:  #TB Edit as bandaid for now to add "enabled == false":
+	if !_controller.get_is_active():  #TB Edit as bandaid for now to add "enabled == false":
 		return
 
 	# Request jump if the button is pressed

@@ -17,14 +17,18 @@ func _ready():
 
 
 func _on_InteractableSlider_slider_moved(position):
-	print(str(position))
 	if position == 0:
 		emit_signal("level_chosen", 0)
+		return
 	if position == .1:
 		emit_signal("level_chosen", 1)
+		return
 	if position == .2:
 		emit_signal("level_chosen", 2)
+		return
 	if position == .3:
 		emit_signal("level_chosen", 3)
+		return
 	if position == .4:
-		emit_signal("level_chosen", 4) # Replace with function body.
+		emit_signal("level_chosen", 4)
+		return # Replace with function body.
