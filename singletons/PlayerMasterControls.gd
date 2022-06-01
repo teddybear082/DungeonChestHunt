@@ -7,7 +7,7 @@ extends Node
 
 
 export var backgroundmusic = true
-
+export var playername = "Guest"
 
 
 onready var _left_controller = null

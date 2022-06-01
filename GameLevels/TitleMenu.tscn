@@ -136,6 +136,7 @@ transform = Transform( 0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, -0.738136 )
 
 [node name="ReflectionProbe" type="ReflectionProbe" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.61278, -1.22616 )
+visible = false
 extents = Vector3( 0.6, 0.2, 0.2 )
 interior_enable = true
 interior_ambient_color = Color( 0.94902, 0.776471, 0.576471, 1 )
@@ -149,15 +150,18 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.53565, -1.39015 )
 mesh = SubResource( 14 )
 
 [node name="TitleScreenBorderWall" parent="." instance=ExtResource( 19 )]
-transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -2.75, 1.5, 0 )
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -2.75, 1.25, 0 )
 
 [node name="TitleScreenBorderWall4" parent="." instance=ExtResource( 19 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, -2.75 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25, -2.75 )
 
 [node name="TitleScreenBorderWall3" parent="." instance=ExtResource( 19 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 2.75 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25, 2.75 )
 
 [node name="TitleScreenBorderWall2" parent="." instance=ExtResource( 19 )]
-transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 2.75, 1.5, 0 )
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 2.75, 1.25, 0 )
+
+[node name="SpotLight" type="SpotLight" parent="."]
+transform = Transform( 1, 0, 0, 0, 0.990821, 0.13518, 0, -0.13518, 0.990821, -0.395169, 1.94605, -0.150669 )
 
 [editable path="FPController"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=51 format=2]
+[gd_scene load_steps=55 format=2]
 
 [ext_resource path="res://addons/godot-xr-tools/assets/LeftHand.tscn" type="PackedScene" id=1]
 [ext_resource path="res://addons/godot-xr-tools/misc/VR_Common_Shader_Cache.tscn" type="PackedScene" id=2]
@@ -35,6 +35,8 @@
 [ext_resource path="res://scenes/Mutant.tscn" type="PackedScene" id=33]
 [ext_resource path="res://scenes/RockMonster1.tscn" type="PackedScene" id=34]
 [ext_resource path="res://scenes/GameLevel1BorderWall.tscn" type="PackedScene" id=35]
+[ext_resource path="res://addons/godot-xr-tools/objects/Virtual_Keyboard.tscn" type="PackedScene" id=36]
+[ext_resource path="res://scenes/NameEditViewport.tscn" type="PackedScene" id=37]
 
 [sub_resource type="SpatialMaterial" id=8]
 flags_unshaded = true
@@ -122,6 +124,20 @@ emission = Color( 0.941176, 0.905882, 0.843137, 1 )
 emission_energy = 2.0
 emission_operator = 0
 emission_on_uv2 = false
+
+[sub_resource type="TextMesh" id=19]
+material = ExtResource( 26 )
+text = "Place Coin to Start"
+font = ExtResource( 25 )
+pixel_size = 0.001
+depth = 0.01
+
+[sub_resource type="TextMesh" id=20]
+material = ExtResource( 26 )
+text = "Enter your name:"
+font = ExtResource( 25 )
+pixel_size = 0.001
+depth = 0.01
 
 [node name="GameLevel1" type="Spatial"]
 
@@ -243,13 +259,13 @@ transform = Transform( -0.0402364, 0, 0.99919, 0, 1, 0, -0.99919, 0, -0.0402364,
 transform = Transform( 0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 4.95939 )
 
 [node name="StaticBody" parent="TitleTable/Sketchfab_model/root/GLTF_SceneRootNode/Table_0" index="0"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.316492, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.4, 0 )
 
 [node name="TitleTable2" parent="." instance=ExtResource( 22 )]
 transform = Transform( -1.31134e-08, 0, 0.3, 0, 0.3, 0, -0.3, 0, -1.31134e-08, 2.94401, 0, 1.88534 )
 
 [node name="MusicLever" parent="." instance=ExtResource( 23 )]
-transform = Transform( 0.8, 0, 0, 0, -3.49691e-08, 0.8, 0, -0.8, -3.49691e-08, 2.43812, 0.929717, 1.89821 )
+transform = Transform( 0.8, 0, 0, 0, -3.49691e-08, 0.8, 0, -0.8, -3.49691e-08, 2.43812, 0.929717, 1.31679 )
 
 [node name="MusicTextMeshLine1" type="MeshInstance" parent="MusicLever"]
 transform = Transform( -4.37114e-08, 0, -1, -1, -4.37114e-08, 4.37114e-08, -4.37114e-08, 1, 1.91069e-15, -0.0159583, -0.0154299, 0.416717 )
@@ -297,26 +313,42 @@ material/0 = SubResource( 18 )
 transform = Transform( 1, 0, 0, 0, 0.999999, -1.42109e-14, 0, 1.42109e-14, 0.999999, -0.448542, 0.276402, 0.0605203 )
 grab_distance = 0.1
 
+[node name="CoinTextMesh" type="MeshInstance" parent="LevelSelectSliderSnap"]
+transform = Transform( -0.5, 7.54979e-08, 3.30012e-15, 6.56451e-21, -2.18557e-08, 0.5, 7.54979e-08, 0.5, 2.18557e-08, -0.442162, 0.467861, -0.0330364 )
+cast_shadow = 0
+mesh = SubResource( 19 )
+
 [node name="CoinPickable" parent="." instance=ExtResource( 30 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.042195, 0.911442, 4.38421 )
 
 [node name="Mutant" parent="." instance=ExtResource( 33 )]
-transform = Transform( 0.01, 0, 0, 0, 0.01, 0, 0, 0, 0.01, 6.09941, 1.1186, 1.90654 )
+transform = Transform( 0.01, 0, 0, 0, 0.01, 0, 0, 0, 0.01, 4.90128, 1.1186, 1.90654 )
 
 [node name="RockMonster1" parent="." instance=ExtResource( 34 )]
 transform = Transform( 0.01, 0, 0, 0, 0.01, 0, 0, 0, 0.01, 3.15707, 1.03474, -1.73563 )
 
 [node name="GameLevel1BorderWall" parent="." instance=ExtResource( 35 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 7.19828 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25, 7 )
 
 [node name="GameLevel1BorderWall2" parent="." instance=ExtResource( 35 )]
-transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 6.36389, 1.5, 1.12566 )
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 6, 1.25, 1.125 )
 
 [node name="GameLevel1BorderWall3" parent="." instance=ExtResource( 35 )]
-transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -6.3297, 1.5, 1.32925 )
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -6, 1.25, 1.25 )
 
 [node name="GameLevel1BorderWall4" parent="." instance=ExtResource( 35 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, -4.17 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25, -4.5 )
+
+[node name="Virtual_Keyboard" parent="." instance=ExtResource( 36 )]
+transform = Transform( -3.49691e-08, 0.338095, -0.725046, 0, 0.725046, 0.338095, 0.8, 1.47786e-08, -3.16928e-08, 2.09529, 0.774927, 2.51871 )
+
+[node name="NameTextMesh" type="MeshInstance" parent="."]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 2.39876, 1.42577, 2.54675 )
+mesh = SubResource( 20 )
+
+[node name="NameEditViewport" parent="." instance=ExtResource( 37 )]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 2.52475, 1.15937, 2.55065 )
+viewport_size = Vector2( 300, 300 )
 
 [connection signal="level_chosen" from="LevelSelectSliderSnap" to="LevelSelectSliderSnap/LevelSelectTextMeshLn2" method="_on_LevelSelectSliderSnap_level_chosen"]
 
