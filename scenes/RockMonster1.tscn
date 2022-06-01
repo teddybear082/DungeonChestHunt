@@ -1,0 +1,73 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://RockMonster1.gd" type="Script" id=1]
+[ext_resource path="res://characters/cac-1654100070175.gltf" type="PackedScene" id=2]
+
+[node name="RockMonster1" instance=ExtResource( 2 )]
+transform = Transform( 0.01, 0, 0, 0, 0.01, 0, 0, 0, 0.01, 0, 0, 0 )
+script = ExtResource( 1 )
+
+[node name="Skeleton" parent="Node2" index="0"]
+bones/20/bound_children = [ NodePath("BoneAttachment") ]
+bones/26/bound_children = [ NodePath("BoneAttachment2") ]
+bones/32/bound_children = [ NodePath("BoneAttachment3") ]
+bones/38/bound_children = [ NodePath("BoneAttachment4") ]
+bones/44/bound_children = [ NodePath("BoneAttachment5") ]
+bones/48/bound_children = [ NodePath("BoneAttachment6"), NodePath("BoneAttachment7"), NodePath("BoneAttachment8") ]
+bones/62/bound_children = [ NodePath("BoneAttachment9") ]
+bones/68/bound_children = [ NodePath("BoneAttachment10") ]
+bones/74/bound_children = [ NodePath("BoneAttachment11") ]
+bones/80/bound_children = [ NodePath("BoneAttachment12") ]
+bones/86/bound_children = [ NodePath("BoneAttachment13") ]
+bones/94/bound_children = [ NodePath("BoneAttachment14") ]
+bones/102/bound_children = [ NodePath("BoneAttachment15") ]
+
+[node name="BoneAttachment" parent="Node2/Skeleton" index="0"]
+transform = Transform( 0.234934, 0.522666, -0.819528, -0.93615, 0.348571, -0.0460601, 0.261589, 0.778022, 0.571185, 17.6087, 75.1609, 29.404 )
+
+[node name="BoneAttachment2" parent="Node2/Skeleton" index="1"]
+transform = Transform( -0.974801, -0.139515, -0.174061, 0.0404885, -0.877982, 0.476978, -0.219368, 0.457912, 0.861507, 16.5981, 67.4342, 32.8138 )
+
+[node name="BoneAttachment3" parent="Node2/Skeleton" index="2"]
+transform = Transform( -0.974815, -0.139428, -0.174053, 0.0404142, -0.877986, 0.476978, -0.21932, 0.457931, 0.861509, 17.1114, 66.5513, 30.7344 )
+
+[node name="BoneAttachment4" parent="Node2/Skeleton" index="3"]
+transform = Transform( -0.960823, -0.23141, -0.15254, 0.13112, -0.864394, 0.485418, -0.244185, 0.446399, 0.860872, 16.4351, 69.4638, 34.7631 )
+
+[node name="BoneAttachment5" parent="Node2/Skeleton" index="4"]
+transform = Transform( -0.97489, -0.139449, -0.173617, 0.040675, -0.878044, 0.476848, -0.218939, 0.457813, 0.861668, 17.8198, 65.8582, 28.1462 )
+
+[node name="BoneAttachment6" parent="Node2/Skeleton" index="5"]
+transform = Transform( 0.99914, 0.00628978, 0.0409796, 0.0152196, 0.863772, -0.503653, -0.0385649, 0.503843, 0.862934, -0.37792, 133.896, 28.7699 )
+
+[node name="BoneAttachment7" parent="Node2/Skeleton" index="6"]
+transform = Transform( 0.99914, 0.00628978, 0.0409796, 0.0152196, 0.863772, -0.503653, -0.0385649, 0.503843, 0.862934, -0.37792, 133.896, 28.7699 )
+
+[node name="BoneAttachment8" parent="Node2/Skeleton" index="7"]
+transform = Transform( 0.99914, 0.00628978, 0.0409796, 0.0152196, 0.863772, -0.503653, -0.0385649, 0.503843, 0.862934, -0.37792, 133.896, 28.7699 )
+
+[node name="BoneAttachment9" parent="Node2/Skeleton" index="8"]
+transform = Transform( -0.788909, 0.503389, 0.35245, -0.290885, -0.811131, 0.507397, 0.541301, 0.297768, 0.786337, -18.3134, 70.3604, 30.5563 )
+
+[node name="BoneAttachment10" parent="Node2/Skeleton" index="9"]
+transform = Transform( 0.0977562, -0.172652, 0.98012, 0.774717, 0.631396, 0.0339534, -0.624706, 0.755996, 0.195479, -18.5093, 77.4112, 27.3171 )
+
+[node name="BoneAttachment11" parent="Node2/Skeleton" index="10"]
+transform = Transform( -0.906716, 0.366918, 0.207936, -0.178188, -0.780165, 0.59966, 0.38225, 0.506669, 0.772768, -17.6871, 72.0957, 31.1928 )
+
+[node name="BoneAttachment12" parent="Node2/Skeleton" index="11"]
+transform = Transform( -0.85635, 0.385164, 0.343964, -0.41619, -0.909096, -0.0181805, 0.305694, -0.158724, 0.938807, -19.3863, 69.6526, 28.8428 )
+
+[node name="BoneAttachment13" parent="Node2/Skeleton" index="12"]
+transform = Transform( -0.704234, 0.689916, 0.167541, -0.56737, -0.688751, 0.451346, 0.426785, 0.222796, 0.876479, -20.4127, 69.8485, 27.0317 )
+
+[node name="BoneAttachment14" parent="Node2/Skeleton" index="13"]
+transform = Transform( 0.98199, -0.175492, -0.0699908, 0.182376, 0.97722, 0.108539, 0.0493485, -0.119349, 0.991625, -32.8855, 7.53403e-05, 20.8761 )
+
+[node name="BoneAttachment15" parent="Node2/Skeleton" index="14"]
+transform = Transform( 0.992544, 0.0205098, -0.120147, -0.0128269, 0.997843, 0.0643736, 0.121209, -0.0623524, 0.990667, 31.0987, 6.48499e-05, 21.3597 )
+
+[node name="AnimationPlayer" parent="." index="1"]
+autoplay = "MutantBreathingIdle"
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]

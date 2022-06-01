@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=2]
+[gd_scene load_steps=51 format=2]
 
 [ext_resource path="res://addons/godot-xr-tools/assets/LeftHand.tscn" type="PackedScene" id=1]
 [ext_resource path="res://addons/godot-xr-tools/misc/VR_Common_Shader_Cache.tscn" type="PackedScene" id=2]
@@ -33,6 +33,8 @@
 [ext_resource path="res://GameLevels/BackgroundMusic.gd" type="Script" id=31]
 [ext_resource path="res://addons/godot-xr-tools/functions/Function_pointer.tscn" type="PackedScene" id=32]
 [ext_resource path="res://scenes/Mutant.tscn" type="PackedScene" id=33]
+[ext_resource path="res://scenes/RockMonster1.tscn" type="PackedScene" id=34]
+[ext_resource path="res://scenes/GameLevel1BorderWall.tscn" type="PackedScene" id=35]
 
 [sub_resource type="SpatialMaterial" id=8]
 flags_unshaded = true
@@ -230,7 +232,7 @@ autoplay = true
 script = ExtResource( 31 )
 
 [node name="ControlsViewport" parent="." instance=ExtResource( 19 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, -1 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, -1.41703 )
 
 [node name="TutorialVideosViewport" parent="." instance=ExtResource( 20 )]
 transform = Transform( -0.0402364, 0, 0.99919, 0, 1, 0, -0.99919, 0, -0.0402364, -2.33406, 1.35042, 2.04112 )
@@ -239,6 +241,9 @@ transform = Transform( -0.0402364, 0, 0.99919, 0, 1, 0, -0.99919, 0, -0.0402364,
 
 [node name="TitleTable" parent="." instance=ExtResource( 22 )]
 transform = Transform( 0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 4.95939 )
+
+[node name="StaticBody" parent="TitleTable/Sketchfab_model/root/GLTF_SceneRootNode/Table_0" index="0"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.316492, 0 )
 
 [node name="TitleTable2" parent="." instance=ExtResource( 22 )]
 transform = Transform( -1.31134e-08, 0, 0.3, 0, 0.3, 0, -0.3, 0, -1.31134e-08, 2.94401, 0, 1.88534 )
@@ -298,6 +303,21 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.042195, 0.911442, 4.38421 )
 [node name="Mutant" parent="." instance=ExtResource( 33 )]
 transform = Transform( 0.01, 0, 0, 0, 0.01, 0, 0, 0, 0.01, 6.09941, 1.1186, 1.90654 )
 
+[node name="RockMonster1" parent="." instance=ExtResource( 34 )]
+transform = Transform( 0.01, 0, 0, 0, 0.01, 0, 0, 0, 0.01, 3.15707, 1.03474, -1.73563 )
+
+[node name="GameLevel1BorderWall" parent="." instance=ExtResource( 35 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 7.19828 )
+
+[node name="GameLevel1BorderWall2" parent="." instance=ExtResource( 35 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 6.36389, 1.5, 1.12566 )
+
+[node name="GameLevel1BorderWall3" parent="." instance=ExtResource( 35 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -6.3297, 1.5, 1.32925 )
+
+[node name="GameLevel1BorderWall4" parent="." instance=ExtResource( 35 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, -4.17 )
+
 [connection signal="level_chosen" from="LevelSelectSliderSnap" to="LevelSelectSliderSnap/LevelSelectTextMeshLn2" method="_on_LevelSelectSliderSnap_level_chosen"]
 
 [editable path="FPController"]
@@ -307,3 +327,4 @@ transform = Transform( 0.01, 0, 0, 0, 0.01, 0, 0, 0, 0.01, 6.09941, 1.1186, 1.90
 [editable path="FPController/RightHandController/RightHand"]
 [editable path="FPController/RightHandController/RightHand/RightHand"]
 [editable path="FPController/RightHandController/Function_Grapple_movement"]
+[editable path="TitleTable"]

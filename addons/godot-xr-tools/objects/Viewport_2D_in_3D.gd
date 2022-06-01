@@ -15,6 +15,7 @@ export (int, LAYERS_3D_PHYSICS) var collision_layer = 15 setget set_collision_la
 
 var is_ready = false
 var scene_node = null
+var view_update_throttle = 0
 
 func set_enabled(is_enabled: bool):
 	enabled = is_enabled
@@ -82,7 +83,15 @@ func _ready():
 	set_collision_layer(collision_layer)
 	set_transparent(transparent)
 	set_process_input(true)
+	$Viewport.set_update_mode(1)
 
+func _process(delta):
+	#process to throttle viewport updates
+	view_update_throttle+=1
+	if view_update_throttle == 65:
+		$Viewport.set_update_mode(1)
+		view_update_throttle = 0
+			
 func _on_pointer_entered():
 	emit_signal("pointer_entered")
 
