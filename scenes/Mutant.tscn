@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://characters/cac-1654090217240.gltf" type="PackedScene" id=1]
+[ext_resource path="res://scenes/Mutant.gd" type="Script" id=2]
+
+[node name="Mutant" instance=ExtResource( 1 )]
+transform = Transform( 0.01, 0, 0, 0, 0.01, 0, 0, 0, 0.01, 0, 0, 0 )
+script = ExtResource( 2 )
+
+[node name="AnimationPlayer" parent="." index="1"]
+autoplay = "MutantBreathingIdle"
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
