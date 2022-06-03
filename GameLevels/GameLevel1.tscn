@@ -1,4 +1,4 @@
-[gd_scene load_steps=55 format=2]
+[gd_scene load_steps=56 format=2]
 
 [ext_resource path="res://addons/godot-xr-tools/assets/LeftHand.tscn" type="PackedScene" id=1]
 [ext_resource path="res://addons/godot-xr-tools/misc/VR_Common_Shader_Cache.tscn" type="PackedScene" id=2]
@@ -32,8 +32,8 @@
 [ext_resource path="res://scenes/CoinPickable.tscn" type="PackedScene" id=30]
 [ext_resource path="res://GameLevels/BackgroundMusic.gd" type="Script" id=31]
 [ext_resource path="res://addons/godot-xr-tools/functions/Function_pointer.tscn" type="PackedScene" id=32]
-[ext_resource path="res://scenes/Mutant.tscn" type="PackedScene" id=33]
-[ext_resource path="res://scenes/RockMonster1.tscn" type="PackedScene" id=34]
+[ext_resource path="res://scenes/EnemyMesh1.tscn" type="PackedScene" id=33]
+[ext_resource path="res://GameLevels/Enemy1KinematicBody.gd" type="Script" id=34]
 [ext_resource path="res://scenes/GameLevel1BorderWall.tscn" type="PackedScene" id=35]
 [ext_resource path="res://addons/godot-xr-tools/objects/Virtual_Keyboard.tscn" type="PackedScene" id=36]
 [ext_resource path="res://scenes/NameEditViewport.tscn" type="PackedScene" id=37]
@@ -97,6 +97,13 @@ font = ExtResource( 25 )
 pixel_size = 0.001
 depth = 0.01
 
+[sub_resource type="TextMesh" id=20]
+material = ExtResource( 26 )
+text = "Enter your name:"
+font = ExtResource( 25 )
+pixel_size = 0.001
+depth = 0.01
+
 [sub_resource type="TextMesh" id=13]
 material = ExtResource( 26 )
 text = "Level Select"
@@ -132,12 +139,9 @@ font = ExtResource( 25 )
 pixel_size = 0.001
 depth = 0.01
 
-[sub_resource type="TextMesh" id=20]
-material = ExtResource( 26 )
-text = "Enter your name:"
-font = ExtResource( 25 )
-pixel_size = 0.001
-depth = 0.01
+[sub_resource type="CapsuleShape" id=21]
+radius = 0.3
+height = 1.4
 
 [node name="GameLevel1" type="Spatial"]
 
@@ -280,7 +284,7 @@ mesh = SubResource( 16 )
 skeleton = NodePath("../MusicTextMeshLine1")
 
 [node name="LeaderboardLever" parent="." instance=ExtResource( 24 )]
-transform = Transform( 0.8, 0, 0, 0, -3.49691e-08, 0.8, 0, -0.8, -3.49691e-08, -0.97101, 0.926266, 4.65693 )
+transform = Transform( 0.8, 0, 0, 0, -3.49691e-08, 0.8, 0, -0.8, -3.49691e-08, -0.9178, 0.926266, 4.52927 )
 
 [node name="LeaderboardTextMesh" type="MeshInstance" parent="LeaderboardLever"]
 transform = Transform( -1, 0, -8.74228e-08, -8.74228e-08, -4.37114e-08, 1, -3.82137e-15, 1, 4.37114e-08, 0.04501, -0.00453615, 0.317736 )
@@ -289,43 +293,10 @@ mesh = SubResource( 12 )
 skeleton = NodePath("../..")
 
 [node name="LevelSelectSliderSnap" parent="." instance=ExtResource( 27 )]
-transform = Transform( 0.8, 0, 0, 0, -3.49691e-08, 0.8, 0, -0.8, -3.49691e-08, 0.790721, 0.910572, 4.63122 )
-
-[node name="LevelSelectTextMesh" type="MeshInstance" parent="LevelSelectSliderSnap"]
-transform = Transform( -1, 0, -8.74228e-08, -8.74228e-08, -4.37114e-08, 1, -3.82137e-15, 1, 4.37114e-08, -0.00474399, 0.241222, 0.311152 )
-cast_shadow = 0
-mesh = SubResource( 13 )
-skeleton = NodePath("../..")
-
-[node name="LevelSelectTextMeshLn2" type="MeshInstance" parent="LevelSelectSliderSnap"]
-transform = Transform( -1, 0, -8.74228e-08, -8.74228e-08, -4.37114e-08, 1, -3.82137e-15, 1, 4.37114e-08, -0.438859, 0.313072, 0.187833 )
-cast_shadow = 0
-mesh = SubResource( 14 )
-script = ExtResource( 28 )
-
-[node name="LevelSelectButton" type="MeshInstance" parent="LevelSelectSliderSnap"]
-transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -0.426924, 0.233731, -0.0216141 )
-mesh = SubResource( 17 )
-skeleton = NodePath("../..")
-material/0 = SubResource( 18 )
-
-[node name="LevelSelectSnapZone" parent="LevelSelectSliderSnap" instance=ExtResource( 29 )]
-transform = Transform( 1, 0, 0, 0, 0.999999, -1.42109e-14, 0, 1.42109e-14, 0.999999, -0.448542, 0.276402, 0.0605203 )
-grab_distance = 0.1
-
-[node name="CoinTextMesh" type="MeshInstance" parent="LevelSelectSliderSnap"]
-transform = Transform( -0.5, 7.54979e-08, 3.30012e-15, 6.56451e-21, -2.18557e-08, 0.5, 7.54979e-08, 0.5, 2.18557e-08, -0.442162, 0.467861, -0.0330364 )
-cast_shadow = 0
-mesh = SubResource( 19 )
+transform = Transform( -3.49691e-08, -0.8, -3.49691e-08, 0, -3.49691e-08, 0.8, -0.8, 3.49691e-08, 1.52855e-15, 0.876159, 0.910572, 4.39364 )
 
 [node name="CoinPickable" parent="." instance=ExtResource( 30 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.042195, 0.911442, 4.38421 )
-
-[node name="Mutant" parent="." instance=ExtResource( 33 )]
-transform = Transform( 0.01, 0, 0, 0, 0.01, 0, 0, 0, 0.01, 4.90128, 1.1186, 1.90654 )
-
-[node name="RockMonster1" parent="." instance=ExtResource( 34 )]
-transform = Transform( 0.01, 0, 0, 0, 0.01, 0, 0, 0, 0.01, 3.15707, 1.03474, -1.73563 )
 
 [node name="GameLevel1BorderWall" parent="." instance=ExtResource( 35 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25, 7 )
@@ -350,7 +321,44 @@ mesh = SubResource( 20 )
 transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 2.52475, 1.15937, 2.55065 )
 viewport_size = Vector2( 300, 300 )
 
-[connection signal="level_chosen" from="LevelSelectSliderSnap" to="LevelSelectSliderSnap/LevelSelectTextMeshLn2" method="_on_LevelSelectSliderSnap_level_chosen"]
+[node name="LevelSelectTextMesh" type="MeshInstance" parent="."]
+transform = Transform( -0.799209, 7.77156e-16, -0.0355651, 6.35275e-22, 0.8, 1.77636e-14, 0.0355651, 1.77636e-14, -0.799209, 0.77835, 1.15949, 4.4386 )
+cast_shadow = 0
+mesh = SubResource( 13 )
+
+[node name="LevelSelectTextMeshLn2" type="MeshInstance" parent="."]
+transform = Transform( -0.799209, 7.77156e-16, -0.0355651, 6.35275e-22, 0.8, 1.77636e-14, 0.0355651, 1.77636e-14, -0.799209, 0.428847, 1.06084, 4.39662 )
+cast_shadow = 0
+mesh = SubResource( 14 )
+skeleton = NodePath("../LevelSelectSliderSnap")
+script = ExtResource( 28 )
+
+[node name="LevelSelectButton" type="MeshInstance" parent="."]
+transform = Transform( 0.799209, 7.77156e-16, 0.0355651, 0, 0.8, -1.77636e-14, -0.0355651, 1.77636e-14, 0.799209, 0.441207, 0.893281, 4.4596 )
+mesh = SubResource( 17 )
+material/0 = SubResource( 18 )
+
+[node name="LevelSelectSnapZone" parent="." instance=ExtResource( 29 )]
+transform = Transform( 0.799209, -0.035565, -1.5546e-09, 0, -3.49691e-08, 0.799999, -0.0355651, -0.799208, -3.49345e-08, 0.422412, 0.958988, 4.42627 )
+grab_distance = 0.1
+
+[node name="CoinTextMesh" type="MeshInstance" parent="."]
+transform = Transform( -0.399605, 6.03386e-08, -0.0177825, 6.03983e-08, 0.4, 8.88178e-15, 0.0177825, -2.68508e-09, -0.399605, 0.420702, 0.884143, 4.27303 )
+cast_shadow = 0
+mesh = SubResource( 19 )
+skeleton = NodePath("../LevelSelectSliderSnap")
+
+[node name="Enemy1KinematicBody" type="KinematicBody" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4.438, 1.25, 0 )
+script = ExtResource( 34 )
+
+[node name="EnemyMesh1" parent="Enemy1KinematicBody" instance=ExtResource( 33 )]
+
+[node name="Enemy1CollisionCapsule" type="CollisionShape" parent="Enemy1KinematicBody"]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0 )
+shape = SubResource( 21 )
+
+[connection signal="level_chosen" from="LevelSelectSliderSnap" to="LevelSelectTextMeshLn2" method="_on_LevelSelectSliderSnap_level_chosen"]
 
 [editable path="FPController"]
 [editable path="FPController/LeftHandController/LeftHand"]
@@ -359,4 +367,5 @@ viewport_size = Vector2( 300, 300 )
 [editable path="FPController/RightHandController/RightHand"]
 [editable path="FPController/RightHandController/RightHand/RightHand"]
 [editable path="FPController/RightHandController/Function_Grapple_movement"]
+[editable path="FPController/PlayerBody"]
 [editable path="TitleTable"]
