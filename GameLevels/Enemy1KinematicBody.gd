@@ -53,7 +53,10 @@ func perform_enemy_animation(distance):
 	
 	if distance_to_target <= enemy_attack_range:
 		#$EnemyMesh1/AnimationPlayer.animation_set_next("MutantWalking", "MutantPunch")
-		$EnemyMesh1/AnimationPlayer.play("MutantPunch")
+		var attackchoices = ["MutantPunch", "MutantSwiping"]
+		var attackselection = (randi() % 2)
+		var playingattack = attackchoices[attackselection]
+		$EnemyMesh1/AnimationPlayer.animation_set_next($EnemyMesh1/AnimationPlayer.current_animation, playingattack)
 
 	
 	if distance_to_target > enemy_attack_range and distance_to_target < enemy_alert_range:

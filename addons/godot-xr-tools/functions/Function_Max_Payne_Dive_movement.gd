@@ -24,7 +24,7 @@ export var max_payne_ease := .25
 export var max_payne_dive_speed = 2
 
 ## Set max payne dive lateral distance in units
-export var max_payne_dive_distance = 4
+export var max_payne_dive_distance = 5
 
 ## Set max payne dive height in units
 export var max_payne_dive_height = 1.5
@@ -72,6 +72,11 @@ onready var _playerbody = get_parent().get_parent().get_node("PlayerBody")
 ## Variable to stop buttons from triggering action again when held by player
 var button_states = []
 
+## Variables to assist in leaping motion
+var leap_target = null
+var curr_transform = null
+var controller_direction = null
+var leap_direction = null
 ## Tell other nodes when Bullettime is active or not
 signal player_max_payne_dove
 signal player_stopped_max_payne_diving
@@ -97,18 +102,29 @@ func physics_movement(delta: float, player_body: PlayerBody, is_active: bool):
 			#trigger start of player movement into dive
 			
 			#get current player position before movement started
-			var curr_transform = player_body.kinematic_node.global_transform #could try regular transform instead
+			curr_transform = player_body.camera_node.global_transform
+			#curr_transform = player_body.global_transform
+			
+			#perform basic left dive
+			leap_target = curr_transform.translated(Vector3(-max_payne_dive_distance * ARVRServer.world_scale, max_payne_dive_height * ARVRServer.world_scale, 0))
+			
+			#get controller direction for direction of dive
 			
 			
-			#pick designated "dive" target point
-			var leap_target = curr_transform.translated(Vector3(-max_payne_dive_distance * ARVRServer.world_scale, max_payne_dive_height * ARVRServer.world_scale, 0))  #give a vector to a global transform origin that will be the target of the leap
-			#var leap_target = leap_target.orthonormalized() #possible to try
-			#var leap_target = curr_transform.origin - Vector3(-4,0,0) #possible to try
-			#var leap_target_x = curr_transform.origin.x - 4
-			#var leap_target_y = curr_transform.origin.y + 1
-			#var leap_target = Vector3(leap_target_x, leap_target_y, curr_transform.z)  #possible to try then would modify the reference to leap target origin below to just leap target
+			#controller_direction = -_controller.global_transform.basis.z.normalized()
+			#print("Performing dive and this is the direction of controller: " + str(controller_direction))
 			
+			#make into an actionable decision whether left (z is > .90, i.e., approx. 1), right (z is < -.90,i.e. approx. -1) or back (z is around zero)
+			#leap_direction = controller_direction.z
 			
+			#pick designated "dive" target point if controller direction is left or right
+			#if leap_direction > .85 or leap_direction < -.85:
+				#leap_target = curr_transform.translated(Vector3(-max_payne_dive_distance * leap_direction * ARVRServer.world_scale, max_payne_dive_height * ARVRServer.world_scale, 0))  #give a vector to a global transform origin that will be the target of the leap
+				#leap_target = curr_transform.origin + Vector3(-max_payne_dive_distance*leap_direction*ARVRServer.world_scale, max_payne_dive_height*ARVRServer.world_scale, 0)
+			#otherwise move player backward
+			#else:
+			#	leap_target = curr_transform.translated(Vector3(0, max_payne_dive_height * ARVRServer.world_scale, max_payne_dive_distance))
+			#	leap_target = curr_transform.origin + Vector3(0, max_payne_dive_height*ARVRServer.world_scale, max_payne_dive_distance)
 			#start moving player toward dive point
 			player_body.velocity = player_body.move_and_slide(leap_target.origin - curr_transform.origin) * max_payne_dive_speed * ARVRServer.world_scale
 			
@@ -121,7 +137,8 @@ func physics_movement(delta: float, player_body: PlayerBody, is_active: bool):
 			Engine.time_scale = normal_time_scale 
 			is_max_payne_diving = false
 			return true
-			
+		
+		#stop diving movement if button is pressed again	
 		if is_max_payne_diving == false:	
 			emit_signal("player_stopped_max_payne_diving")
 			$MP_Tween.stop_all()

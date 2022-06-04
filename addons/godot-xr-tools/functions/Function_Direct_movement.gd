@@ -78,14 +78,14 @@ func physics_movement(delta: float, player_body: PlayerBody, _disabled: bool):
 			if is_sprinting == false: 
 				is_sprinting = true
 				speed = sprint_speed
-				print("sprinting now and speed = " + str(speed))
-				print(str(button_states))
+				#print("sprinting now and speed = " + str(speed))
+				#print(str(button_states))
 	
 			else:
 				is_sprinting = false
 				speed = default_speed
-				print("back to normal speed now and speed = " + str(speed))
-				print(str(button_states))
+				#print("back to normal speed now and speed = " + str(speed))
+				#print(str(button_states))
 				
 	# Implement hold sprint button if selected
 	if sprint_type == SPRINT_TYPE.HOLD_TO_SPRINT:

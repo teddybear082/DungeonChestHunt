@@ -58,8 +58,8 @@ func _ready():
 	r_teleport_node = load("res://addons/godot-xr-tools/functions/Function_Teleport.tscn").instance()
 	l_direct_move_node = left_controller.get_node("Function_Direct_movement")
 	r_direct_move_node = right_controller.get_node("Function_Direct_movement")
-	l_bullet_time_node = left_controller.get_node("Function_BulletTime_movement")
-	r_bullet_time_node = right_controller.get_node("Function_BulletTime_movement")
+	l_bullet_time_node = left_controller.get_node("Function_Max_Payne_Dive_movement")
+	r_bullet_time_node = right_controller.get_node("Function_Max_Payne_Dive_movement")
 	
 	
 	#generate all of the options menus for the options button
@@ -248,11 +248,11 @@ func _on_BulletOptionButton_item_selected(index):
 		button_assignment = 15
 	if index < 4:
 		l_bullet_time_node.enabled = true
-		l_bullet_time_node.bullet_time_button_id = button_assignment
+		l_bullet_time_node.max_payne_dive_button_id = button_assignment
 		r_bullet_time_node.enabled = false
 	if index >= 4:
 		r_bullet_time_node.enabled = true
-		r_bullet_time_node.bullet_time_button_id = button_assignment
+		r_bullet_time_node.max_payne_dive_button_id = button_assignment
 		l_bullet_time_node.enabled = false
 		 # Replace with function body.
 
