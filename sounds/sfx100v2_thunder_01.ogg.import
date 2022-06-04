@@ -11,5 +11,5 @@ dest_files=[ "res://.import/sfx100v2_thunder_01.ogg-11bd49b2805b7f13dd19a7542e51
 
 [params]
 
-loop=true
+loop=false
 loop_offset=0
