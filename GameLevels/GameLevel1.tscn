@@ -187,6 +187,7 @@ enabled = false
 
 [node name="MP_Sound" parent="FPController/LeftHandController/Function_Max_Payne_Dive_movement" index="1"]
 stream = ExtResource( 38 )
+volume_db = 5.0
 
 [node name="RightHand" parent="FPController/RightHandController" index="0" instance=ExtResource( 4 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.03, -0.05, 0.15 )
@@ -222,6 +223,7 @@ show_laser = false
 
 [node name="MP_Sound" parent="FPController/RightHandController/Function_Max_Payne_Dive_movement" index="1"]
 stream = ExtResource( 38 )
+volume_db = 5.0
 
 [node name="PlayerBody" parent="FPController" instance=ExtResource( 6 )]
 

@@ -75,7 +75,7 @@ var button_states = []
 ## Variables to assist in leaping motion
 var leap_target = null
 var curr_transform = null
-var controller_direction = null
+var solve_controller_direction = null
 var leap_direction = null
 ## Tell other nodes when Bullettime is active or not
 signal player_max_payne_dove
@@ -106,15 +106,46 @@ func physics_movement(delta: float, player_body: PlayerBody, is_active: bool):
 			#curr_transform = player_body.global_transform
 			
 			#perform basic left dive
-			leap_target = curr_transform.translated(Vector3(-max_payne_dive_distance * ARVRServer.world_scale, max_payne_dive_height * ARVRServer.world_scale, 0))
+			#leap_target = curr_transform.translated(Vector3(-max_payne_dive_distance * ARVRServer.world_scale, max_payne_dive_height * ARVRServer.world_scale, 0))
 			
 			#get controller direction for direction of dive
 			
 			
-			#controller_direction = -_controller.global_transform.basis.z.normalized()
-			#print("Performing dive and this is the direction of controller: " + str(controller_direction))
+			#controller_direction
+			#solve_controller_direction = player_body.camera_node.rotation_degrees.y-_controller.rotation_degrees.y
+			solve_controller_direction = player_body.camera_node.rotation.y - _controller.rotation.y
+			#controller_direction = -_controller.global_transform.basis.z * HORIZONTAL
 			
-			#make into an actionable decision whether left (z is > .90, i.e., approx. 1), right (z is < -.90,i.e. approx. -1) or back (z is around zero)
+			
+			print("Performing dive and this is the direction of the controller angle: " + str(solve_controller_direction))
+			print("The Camera's transform basis is: " + str(player_body.camera_node.transform.basis))
+			print("Controller's transform.basis is: " + str(_controller.transform.basis))
+			print("Camera transform basis x - controller transform basis x is: " + str(player_body.camera_node.transform.basis.x - _controller.transform.basis.x))
+			print("Camera transform basis z - controller transform basis z is: " + str(player_body.camera_node.transform.basis.z - _controller.transform.basis.z))
+			print("Camera transform basis x.x - controller transform basis x.x is: " + str(player_body.camera_node.transform.basis.x.x - _controller.transform.basis.x.x))
+			print("Camera transform basis z.z - controller transform basis z.z is: " + str(player_body.camera_node.transform.basis.z.z - _controller.transform.basis.z.z))
+			print("Camera transform basis x.z - controller transform basis x.z is: " + str(player_body.camera_node.transform.basis.x.z - _controller.transform.basis.x.z))
+			print("Camera transform basis z.x - controller transform basis z.x is: " + str(player_body.camera_node.transform.basis.z.x - _controller.transform.basis.z.x))#make into an actionable decision whether left (z is > .90, i.e., approx. 1), right (z is < -.90,i.e. approx. -1) or back (z is around zero)
+			print("Camera rotation degrees is: " + str(player_body.camera_node.rotation_degrees))
+			print("Camera rotation is: " + str(player_body.camera_node.rotation))
+			print("Controller rotation degrees is: " + str(_controller.rotation_degrees))
+			print("Controller rotation is:" + str(_controller.rotation))
+			
+			#make leap go backward if controller is roughly neutral
+			#if solve_controller_direction >= -15 and solve_controller_direction <= 15:
+			if solve_controller_direction <.50 and solve_controller_direction > -.50:
+				leap_target = curr_transform.translated(Vector3(0, max_payne_dive_height * ARVRServer.world_scale, max_payne_dive_distance))
+			
+			#make leap go left if controller is angled left with respect to camera
+			#if solve_controller_direction < -15:
+			if solve_controller_direction <= -.50 or solve_controller_direction > 4.00:
+				leap_target = curr_transform.translated(Vector3(-max_payne_dive_distance * ARVRServer.world_scale, max_payne_dive_height * ARVRServer.world_scale, 0))
+				
+			#make leap go right if controller is angled right with respect to camera
+			#if solve_controller_direction > 15:
+			if solve_controller_direction >= .50 and solve_controller_direction < 4.00:
+				leap_target = curr_transform.translated(Vector3(max_payne_dive_distance * ARVRServer.world_scale, max_payne_dive_height * ARVRServer.world_scale, 0))
+			
 			#leap_direction = controller_direction.z
 			
 			#pick designated "dive" target point if controller direction is left or right
