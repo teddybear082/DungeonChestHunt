@@ -95,6 +95,9 @@ func physics_movement(delta: float, player_body: PlayerBody, is_active: bool):
 		if is_max_payne_diving:
 			#code for slowing down world, starting timer and tween, naturally end if no intervention
 			emit_signal("player_max_payne_dove")
+			_controller.set_rumble(.2) 
+			yield(get_tree().create_timer(.1), "timeout") 
+			_controller.set_rumble(0) 
 			$MP_Sound.play()
 			$MP_Tween.stop_all()
 			
@@ -175,7 +178,9 @@ func physics_movement(delta: float, player_body: PlayerBody, is_active: bool):
 			$MP_Tween.start()
 			yield($MP_Tween, "tween_completed")
 			$MP_Sound.play()
-				
+			_controller.set_rumble(.3) 
+			yield(get_tree().create_timer(.1), "timeout") 
+			_controller.set_rumble(0) 	
 
 
 func button_pressed(b):

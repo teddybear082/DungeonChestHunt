@@ -328,6 +328,9 @@ func _pick_up_object(target: Spatial) -> void:
 	picked_up_ranged = not _object_in_grab_area.has(target)
 	picked_up_object = target.pick_up(self, _controller)
 	if is_instance_valid(picked_up_object):
+		_controller.set_rumble(.4) 
+		yield(get_tree().create_timer(.2), "timeout") 
+		_controller.set_rumble(0)
 		emit_signal("has_picked_up", picked_up_object)
 
 

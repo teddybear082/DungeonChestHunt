@@ -96,11 +96,34 @@ func physics_movement(delta: float, player_body: PlayerBody, disabled: bool):
 	# Average the offset if we have two hands moving
 	if left_climbable and right_climbable:
 		offset *= 0.5
-
+	
+	#Trying (New Code) if not enough y movement and mostly x or z movement, shrink player collision shape then restore it after move
+	#This is because we assume the person is trying to vault a shape or get to the top of the wall when that occurs.
+	
+	#print("The offset for climbing is " + str(offset))  --> Just debug text if needed.
+	var normal_collision_height = player_body._collision_node.shape.height 
+	var normal_collision_radius = player_body._collision_node.shape.radius
+	#print("The player's normal height is " + str(normal_collision_height) + " and the normal radius is " + str(normal_collision_radius)) --> just debut text
+	
+	#if abs(offset.y) >= .02*world_scale: #trying arbitrary number to test if we are climbing vertically or not
+		#print("Not trying the smaller body shape here, because climbing vertically") --> This was all just for debug to make sure it was not triggering all the time
+	
+	if abs(offset.y) < .02*ARVRServer.world_scale: #test if we are climbing vertically or not, .02 was trial and error
+		player_body._collision_node.shape.radius *= .05 #arbitrary reduction in size for testing
+		player_body._collision_node.shape.height *= .05 #arbitrary reduction in size for testing
+		#print("Trying to apply smaller kinematic node collision shape to see if that helps")  #--> Just debug text
+		#print("The player's height now is " + str(player_body._collision_node.shape.height) + " and new radius is" + str(player_body._collision_node.shape.radius))  --> Just debug text
+	
 	# Move the player by the offset
 	var old_position := player_body.kinematic_node.global_transform.origin
 	player_body.kinematic_node.move_and_collide(-offset)
 	player_body.velocity = Vector3.ZERO
+	
+	#always reset the collision shape at the end of movement in case we changed it for lateral movement
+	player_body.velocity = Vector3.ZERO
+	player_body._collision_node.shape.radius = lerp(player_body._collision_node.shape.radius, normal_collision_radius, delta)
+	player_body._collision_node.shape.height = lerp(player_body._collision_node.shape.height, normal_collision_height, delta)
+	
 
 	# Update the players average-velocity data
 	var distance := player_body.kinematic_node.global_transform.origin - old_position
