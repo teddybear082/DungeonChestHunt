@@ -24,4 +24,4 @@ func _ready():
 
 func _on_InteractableHinge_hinge_moved(angle):
 	if angle == -45:
-		 get_tree().change_scene("res://GameLevels/GameLevel1.tscn")# Replace with function body.
+		get_tree().change_scene("res://GameLevels/GameLevel1.tscn")# Replace with function body.

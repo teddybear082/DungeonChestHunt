@@ -137,7 +137,7 @@ func _process(delta):
 		return
 
 	# Calculate average velocity
-	if picked_up_object and picked_up_object.is_picked_up():
+	if is_instance_valid(picked_up_object) and picked_up_object.is_picked_up():
 		# Average velocity of picked up object
 		_velocity_averager.add_transform(delta, picked_up_object.global_transform)
 	else:
@@ -324,13 +324,22 @@ func _pick_up_object(target: Spatial) -> void:
 	if not is_instance_valid(target):
 		return
 
-	# pick up our target
+	# Handle snap-zone
+	var snap := target as XRTSnapZone
+	if snap:
+		target = snap.picked_up_object
+		snap.drop_object()
+
+	# Pick up our target. Note, target may do instant drop_and_free
 	picked_up_ranged = not _object_in_grab_area.has(target)
-	picked_up_object = target.pick_up(self, _controller)
+	picked_up_object = target
+	target.pick_up(self, _controller)
+
+	# If object picked up then emit signal
 	if is_instance_valid(picked_up_object):
 		_controller.set_rumble(.4) 
 		yield(get_tree().create_timer(.2), "timeout") 
-		_controller.set_rumble(0)
+		_controller.set_rumble(0) 
 		emit_signal("has_picked_up", picked_up_object)
 
 

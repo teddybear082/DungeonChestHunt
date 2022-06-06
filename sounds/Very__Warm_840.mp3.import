@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Very__Warm_840.mp3-d939c9c8c181ec243c44115698e03735.mp3str"
+
+[deps]
+
+source_file="res://sounds/Very__Warm_840.mp3"
+dest_files=[ "res://.import/Very__Warm_840.mp3-d939c9c8c181ec243c44115698e03735.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

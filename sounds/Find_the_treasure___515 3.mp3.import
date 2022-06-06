@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Find_the_treasure___515 3.mp3-abdf0c93eb6b8777783aad6f08488efa.mp3str"
+
+[deps]
+
+source_file="res://sounds/Find_the_treasure___515 3.mp3"
+dest_files=[ "res://.import/Find_the_treasure___515 3.mp3-abdf0c93eb6b8777783aad6f08488efa.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

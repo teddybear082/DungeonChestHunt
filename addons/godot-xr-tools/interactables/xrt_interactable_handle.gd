@@ -23,7 +23,7 @@ extends XRToolsPickable
 
 ## Distance from the handle origin to auto-snap the grab
 export var snap_distance := 0.3
-#signal lever_distance(distance)
+
 
 # Handle origin spatial node
 onready var handle_origin: Spatial = get_parent()
@@ -42,33 +42,29 @@ func _ready() -> void:
 func _process(var _delta: float) -> void:
 	# Skip if not picked up
 	if !picked_up_by:
-		
 		return
 
 	# If too far from the origin then drop the handle
 	var origin_pos = handle_origin.global_transform.origin
 	var handle_pos = global_transform.origin
-	#emit_signal("lever_distance", handle_pos.distance_to(origin_pos))
 	if handle_pos.distance_to(origin_pos) > snap_distance:
 		picked_up_by.drop_object()
 
-	
+
 # Called when the handle is picked up
-func pick_up(by: Spatial, with_controller: ARVRController) -> Spatial:
+func pick_up(by, with_controller) -> void:
 	# Call the base-class to perform the pickup
 	.pick_up(by, with_controller)
 
 	# Enable the process function while held
 	set_process(true)
-	return self
+
 
 # Called when the handle is dropped
 func let_go(_p_linear_velocity = Vector3(), _p_angular_velocity = Vector3()) -> void:
 	# Call the base-class to perform the drop, but with no velocity
 	.let_go(Vector3(0,0,0), Vector3(0,0,0))
-	#var origin_pos = handle_origin.global_transform.origin
-	#var handle_pos = global_transform.origin
-	#emit_signal("lever_distance", handle_pos.distance_to(origin_pos))
+
 	# Disable the process function as no-longer held
 	set_process(false)
 

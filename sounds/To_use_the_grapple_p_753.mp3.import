@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/To_use_the_grapple_p_753.mp3-0d49340ae843bc5f8d0076703c648388.mp3str"
+
+[deps]
+
+source_file="res://sounds/To_use_the_grapple_p_753.mp3"
+dest_files=[ "res://.import/To_use_the_grapple_p_753.mp3-0d49340ae843bc5f8d0076703c648388.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

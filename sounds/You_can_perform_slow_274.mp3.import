@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/You_can_perform_slow_274.mp3-d91b71bbf1792370ba57cfcaa8e6b2a8.mp3str"
+
+[deps]
+
+source_file="res://sounds/You_can_perform_slow_274.mp3"
+dest_files=[ "res://.import/You_can_perform_slow_274.mp3-d91b71bbf1792370ba57cfcaa8e6b2a8.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

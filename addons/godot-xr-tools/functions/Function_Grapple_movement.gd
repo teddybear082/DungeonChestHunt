@@ -135,7 +135,7 @@ func _process(_delta: float):
 		_line.visible = false
 
 	# Update grapple target
-	if !is_active and _grapple_raycast.is_colliding():
+	if enabled and !is_active and _grapple_raycast.is_colliding():
 		_grapple_target.global_transform.origin  = _grapple_raycast.get_collision_point()
 		_grapple_target.global_transform = _grapple_target.global_transform.orthonormalized()
 		_grapple_target.visible = true
@@ -161,10 +161,10 @@ func physics_movement(delta: float, player_body: PlayerBody, disabled: bool):
 	elif _grapple_button and !old_grapple_button and _grapple_raycast.is_colliding():
 		hook_point = _grapple_raycast.get_collision_point()
 		do_impulse = true
-		_set_grappling(true)
 		_controller.set_rumble(.3) 
 		yield(get_tree().create_timer(.2), "timeout") 
 		_controller.set_rumble(0) 
+		_set_grappling(true)
 
 	# Skip if not grappling
 	if !is_active:

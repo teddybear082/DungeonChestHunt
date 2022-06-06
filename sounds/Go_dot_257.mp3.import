@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Go_dot_257.mp3-c905ec11fef773ddcba0789bb03d6134.mp3str"
+
+[deps]
+
+source_file="res://sounds/Go_dot_257.mp3"
+dest_files=[ "res://.import/Go_dot_257.mp3-c905ec11fef773ddcba0789bb03d6134.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

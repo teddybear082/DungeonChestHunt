@@ -14,6 +14,8 @@ func _ready():
 	#f.close()
 	#SilentWolf.configure({"api_key": self.apiKey, "game_id": "Pellet-Man", "game_version": "1.0.6","log_level": 1})
 	preload("res://GameLevels/TitleMenu.tscn")
+	yield(get_tree().create_timer(3), "timeout")
+	$BackgroundMusic.play()
 	yield(get_tree().create_timer(6), "timeout") # Replace with function body.
 	get_tree().change_scene("res://GameLevels/TitleMenu.tscn")
 

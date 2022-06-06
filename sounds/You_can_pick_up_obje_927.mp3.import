@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/You_can_pick_up_obje_927.mp3-908cd8de8eaa4ca9fc8f8f1d50d8cc36.mp3str"
+
+[deps]
+
+source_file="res://sounds/You_can_pick_up_obje_927.mp3"
+dest_files=[ "res://.import/You_can_pick_up_obje_927.mp3-908cd8de8eaa4ca9fc8f8f1d50d8cc36.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

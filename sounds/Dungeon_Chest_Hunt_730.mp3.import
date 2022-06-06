@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Dungeon_Chest_Hunt_730.mp3-e9855cdfbff76759a65e0bab18d7fd3e.mp3str"
+
+[deps]
+
+source_file="res://sounds/Dungeon_Chest_Hunt_730.mp3"
+dest_files=[ "res://.import/Dungeon_Chest_Hunt_730.mp3-e9855cdfbff76759a65e0bab18d7fd3e.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0
