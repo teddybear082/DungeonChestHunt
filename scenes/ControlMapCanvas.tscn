@@ -18,9 +18,9 @@ expand = true
 
 [node name="JumpOptionButton" type="OptionButton" parent="ControllerTexture"]
 anchor_left = 0.658203
-anchor_top = 0.492188
+anchor_top = 0.515625
 anchor_right = 0.658203
-anchor_bottom = 0.492188
+anchor_bottom = 0.520508
 margin_left = 122.0
 margin_top = 410.0
 margin_right = 218.0
@@ -70,6 +70,14 @@ margin_right = 995.0
 margin_bottom = 860.0
 custom_colors/font_color = Color( 0.835294, 0.823529, 0.0666667, 1 )
 text = "BULLET TIME"
+
+[node name="MaxPayneDiveOptionButton" type="OptionButton" parent="ControllerTexture"]
+margin_left = 796.0
+margin_top = 875.0
+margin_right = 997.0
+margin_bottom = 920.0
+custom_colors/font_color = Color( 0.835294, 0.823529, 0.0666667, 1 )
+text = "Max Payne Dive"
 
 [node name="ControlLabel" type="RichTextLabel" parent="ControllerTexture"]
 margin_left = 360.0
@@ -121,11 +129,18 @@ margin_right = 773.0
 margin_bottom = 860.0
 text = "Bullet Time"
 
-[node name="JumpLabel" type="RichTextLabel" parent="ControllerTexture"]
+[node name="MaxPayneDiveLabel" type="RichTextLabel" parent="ControllerTexture"]
 margin_left = 574.0
-margin_top = 909.0
-margin_right = 667.0
-margin_bottom = 949.0
+margin_top = 878.0
+margin_right = 773.0
+margin_bottom = 918.0
+text = "Max Payne Dive"
+
+[node name="JumpLabel" type="RichTextLabel" parent="ControllerTexture"]
+margin_left = 678.0
+margin_top = 933.0
+margin_right = 771.0
+margin_bottom = 973.0
 text = "Jump"
 
 [node name="SprintLabel" type="RichTextLabel" parent="ControllerTexture"]
@@ -180,6 +195,7 @@ text = "Right Action Btn"
 [connection signal="item_selected" from="ControllerTexture/HandOptionButton" to="." method="_on_HandOptionButton_item_selected"]
 [connection signal="item_selected" from="ControllerTexture/LeftGrappleOptionButton" to="." method="_on_LeftGrappleOptionButton_item_selected"]
 [connection signal="item_selected" from="ControllerTexture/BulletOptionButton" to="." method="_on_BulletOptionButton_item_selected"]
+[connection signal="item_selected" from="ControllerTexture/MaxPayneDiveOptionButton" to="." method="_on_MaxPayneDiveOptionButton_item_selected"]
 [connection signal="item_selected" from="ControllerTexture/RightGrappleOptionButton" to="." method="_on_RightGrappleOptionButton_item_selected"]
 [connection signal="item_selected" from="ControllerTexture/SprintOptionButton" to="." method="_on_SprintOptionButton_item_selected"]
 [connection signal="item_selected" from="ControllerTexture/LHolsterOptionButton" to="." method="_on_LHolsterOptionButton_item_selected"]
