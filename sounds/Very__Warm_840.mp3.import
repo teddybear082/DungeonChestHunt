@@ -11,5 +11,5 @@ dest_files=[ "res://.import/Very__Warm_840.mp3-d939c9c8c181ec243c44115698e03735.
 
 [params]
 
-loop=true
+loop=false
 loop_offset=0

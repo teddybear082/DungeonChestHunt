@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://addons/godot-xr-tools/objects/Object_pickable.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/handgun_model_mesh.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/PickableHandGun.gd" type="Script" id=3]
 [ext_resource path="res://scenes/Bullet.tscn" type="PackedScene" id=4]
+[ext_resource path="res://sounds/V_22P.mp3" type="AudioStream" id=5]
 
 [sub_resource type="ConvexPolygonShape" id=1]
 points = PoolVector3Array( 0, 0.588374, -2.34742, -0.127419, 0.590591, -2.34742, 0.127358, 0.590591, -2.34742, 0, 0.588374, -1.46111, -0.257628, 0.720198, -2.34742, -0.127419, 0.590591, -1.46111, -0.281838, 0.717734, -1.46111, 0.257568, 0.720198, -2.34742, 0.281777, 0.717734, -1.46111, 0.127358, 0.590591, -1.46111, 0.30987, 0.853829, 1.87581, -0.309931, 0.853829, 1.87581, -0.276681, 0.718309, -1.65044, -0.309931, 0.853829, -1.46111, -0.306958, 1.0112, -2.34742, 0.306897, 1.0112, -2.34742, 0.30987, 0.853829, -1.46111, 0.27662, 0.718309, -1.65044, 0.30987, 1.23205, 1.77659, 0.114555, 1.42745, 1.72657, 0.309931, 0.965695, -1.65044, 0, 1.42745, 1.72657, -0.309931, 1.23205, 1.77659, -0.309931, 1.01243, -1.84432, -0.306958, 1.23008, -2.34742, 0.306897, 1.23008, -2.34742, 0.30987, 1.01243, -1.84432, 0.252653, 1.3702, 1.74063, 0.30987, 1.23205, -0.26061, 0.114555, 1.42745, -2.34742, 0, 1.42745, -2.34742, -0.110369, 1.41455, 1.72657, -0.251925, 1.36782, 1.74063, -0.25332, 1.36552, -2.34742, -0.309931, 1.23205, -0.000172138, 0.252168, 1.36207, -2.34742, 0.252653, 1.3702, -0.32758, 0.28202, 1.29924, -0.32758, -0.109823, 1.41291, -2.34742 )
@@ -41,5 +42,9 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.050537, -0.162184 )
 
 [node name="ShotTimer" type="Timer" parent="." index="6"]
 wait_time = 0.1
+
+[node name="GunSound" type="AudioStreamPlayer3D" parent="." index="7"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0873425, 0.057828 )
+stream = ExtResource( 5 )
 
 [connection signal="timeout" from="ShotTimer" to="." method="_on_ShotTimer_timeout"]

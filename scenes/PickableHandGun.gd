@@ -15,6 +15,7 @@ func action():
 	emit_signal("action_pressed", self)
 	
 	if can_shoot:
+		$GunSound.play()
 		var bullet = bullet_scene.instance()
 		get_owner().add_child(bullet)
 		bullet.global_transform = $BulletSpawnPoint.global_transform

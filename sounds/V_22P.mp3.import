@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/V_22P.mp3-d71e05aef327bfccb731e342c605eed0.mp3str"
+
+[deps]
+
+source_file="res://sounds/V_22P.mp3"
+dest_files=[ "res://.import/V_22P.mp3-d71e05aef327bfccb731e342c605eed0.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0
