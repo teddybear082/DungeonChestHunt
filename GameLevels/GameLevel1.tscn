@@ -203,6 +203,7 @@ enabled = false
 
 [node name="Function_Max_Payne_Dive_movement" parent="FPController/LeftHandController" index="6" instance=ExtResource( 17 )]
 enabled = false
+max_payne_dive_distance = 6
 
 [node name="MP_Sound" parent="FPController/LeftHandController/Function_Max_Payne_Dive_movement" index="1"]
 stream = ExtResource( 38 )
@@ -244,6 +245,7 @@ strafe = true
 show_laser = false
 
 [node name="Function_Max_Payne_Dive_movement" parent="FPController/RightHandController" index="7" instance=ExtResource( 17 )]
+max_payne_dive_distance = 6
 
 [node name="MP_Sound" parent="FPController/RightHandController/Function_Max_Payne_Dive_movement" index="1"]
 stream = ExtResource( 38 )
