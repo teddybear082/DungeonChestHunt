@@ -1,4 +1,4 @@
-extends Spatial
+extends RigidBody
 
 
 # Declare member variables here. Examples:
@@ -16,7 +16,6 @@ func _ready():
 #	pass
 
 
-func _on_AnimationPlayer_animation_finished(anim_name):
-	#$AnimationPlayer.play(anim_name)
-	pass
-	 # Replace with function body.
+func _on_BulletCleanUpTimer_timeout():
+	queue_free() # Replace with function body.
+	#pass

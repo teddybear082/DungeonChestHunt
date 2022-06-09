@@ -7,46 +7,61 @@
 transform = Transform( -0.01, 0, 8.74228e-10, 0, 0.01, 0, -8.74228e-10, 0, -0.01, 0, 0, 0 )
 script = ExtResource( 2 )
 
+[node name="Skeleton" parent="Node2" index="0"]
+bones/4/bound_children = [ NodePath("BoneAttachment") ]
+bones/9/bound_children = [ NodePath("BoneAttachment2") ]
+bones/16/bound_children = [ NodePath("BoneAttachment3") ]
+bones/19/bound_children = [ NodePath("BoneAttachment4") ]
+bones/22/bound_children = [ NodePath("BoneAttachment5") ]
+bones/25/bound_children = [ NodePath("BoneAttachment6") ]
+bones/28/bound_children = [ NodePath("BoneAttachment7") ]
+bones/35/bound_children = [ NodePath("BoneAttachment8") ]
+bones/38/bound_children = [ NodePath("BoneAttachment9") ]
+bones/41/bound_children = [ NodePath("BoneAttachment10") ]
+bones/44/bound_children = [ NodePath("BoneAttachment11") ]
+bones/47/bound_children = [ NodePath("BoneAttachment12") ]
+bones/51/bound_children = [ NodePath("BoneAttachment13") ]
+
 [node name="BoneAttachment" parent="Node2/Skeleton" index="0"]
-transform = Transform( -0.0706591, -0.996141, -0.052068, -0.0241725, -0.0504733, 0.998433, -0.997208, 0.0718068, -0.0205129, -26.9792, 1.06086, -19.2654 )
+transform = Transform( -0.995243, -0.0957259, -0.0181192, -0.0173523, -0.00883734, 0.99981, -0.0958679, 0.995368, 0.00713438, -16.3137, 0.753551, 10.2391 )
 
 [node name="BoneAttachment2" parent="Node2/Skeleton" index="1"]
-transform = Transform( 0.746558, -0.25937, -0.612681, 0.0999318, 0.954149, -0.282158, 0.657772, 0.149421, 0.738247, -2.03611, 148.927, -1.35775 )
+transform = Transform( 1, 0, 0, 0, 1, -7.45058e-09, 0, 7.45058e-09, 1, -2.28882e-05, 155.061, -0.921187 )
 
 [node name="BoneAttachment3" parent="Node2/Skeleton" index="2"]
-transform = Transform( -0.795896, -0.278083, 0.537791, 0.5585, 0.00568996, 0.829485, -0.233725, 0.96054, 0.150781, -14.4526, 116.991, 42.1276 )
+transform = Transform( 0.578607, 0.722656, -0.37813, 0.0584391, -0.49916, -0.864537, -0.81351, 0.47813, -0.331049, 76.5147, 137.239, 3.70686 )
 
 [node name="BoneAttachment4" parent="Node2/Skeleton" index="3"]
-transform = Transform( -0.508661, -0.0628833, 0.858667, 0.10822, 0.98475, 0.136225, -0.854139, 0.162217, -0.494098, -21.2069, 117.111, 43.9635 )
+transform = Transform( 0.208093, 0.942386, -0.261929, 0.0990295, -0.286714, -0.952884, -0.973083, 0.17235, -0.152987, 85.0112, 139.779, 2.10958 )
 
 [node name="BoneAttachment5" parent="Node2/Skeleton" index="4"]
-transform = Transform( -0.526856, 0.361353, 0.769315, 0.0287747, 0.91219, -0.408756, -0.849467, -0.193219, -0.490991, -22.39, 118.251, 41.7935 )
+transform = Transform( 0.0896399, 0.975749, -0.199694, 0.108108, -0.208849, -0.971954, -0.99009, 0.0655376, -0.124207, 86.1193, 140.178, -0.9748 )
 
 [node name="BoneAttachment6" parent="Node2/Skeleton" index="5"]
-transform = Transform( -0.554542, 0.487607, 0.674331, 0.0402465, 0.82511, -0.563538, -0.831182, -0.285366, -0.477182, -22.0205, 118.322, 39.2392 )
+transform = Transform( 0.0453271, 0.973432, -0.224446, 0.111082, -0.228195, -0.967258, -0.992777, 0.0189111, -0.118475, 85.2084, 140.315, -3.59245 )
 
 [node name="BoneAttachment7" parent="Node2/Skeleton" index="6"]
-transform = Transform( -0.375276, 0.272469, 0.885962, 0.359397, 0.923819, -0.131878, -0.854401, 0.268922, -0.444611, -22.7356, 117.814, 37.552 )
+transform = Transform( -0.0128688, 0.936814, -0.349592, 0.114647, -0.345933, -0.931228, -0.993323, -0.0520635, -0.102951, 83.5657, 140.528, -5.99331 )
 
 [node name="BoneAttachment8" parent="Node2/Skeleton" index="7"]
-transform = Transform( 0.208411, 0.0565024, 0.976408, 0.974095, 0.0775949, -0.212408, -0.0877659, 0.995382, -0.0388671, -20.0161, 117.801, 11.3763 )
+transform = Transform( 0.574626, -0.757332, 0.310249, -0.0537491, -0.413187, -0.909059, 0.81665, 0.505693, -0.278134, -76.6081, 137.217, 3.74 )
 
 [node name="BoneAttachment9" parent="Node2/Skeleton" index="8"]
-transform = Transform( -0.137032, 0.809652, 0.570688, 0.980953, 0.190989, -0.0354186, -0.137672, 0.554965, -0.820402, -22.3414, 118.283, 19.1241 )
+transform = Transform( 0.163314, -0.960085, 0.227081, -0.09726, -0.244718, -0.964704, 0.981768, 0.135464, -0.133344, -85.1695, 139.739, 2.02513 )
 
 [node name="BoneAttachment10" parent="Node2/Skeleton" index="9"]
-transform = Transform( 0.0863937, 0.00460964, -0.996251, 0.99, -0.112329, 0.0853317, -0.111514, -0.99366, -0.0142681, -20.1762, 114.566, 16.4422 )
+transform = Transform( 0.0996362, -0.975412, 0.196579, -0.102076, -0.20654, -0.973099, 0.989774, 0.07689, -0.120145, -86.0567, 140.21, -0.939237 )
 
 [node name="BoneAttachment11" parent="Node2/Skeleton" index="10"]
-transform = Transform( -0.188594, -0.479371, -0.857108, 0.971871, -0.216468, -0.0927778, -0.141062, -0.850497, 0.506712, -20.3539, 113.123, 15.4569 )
+transform = Transform( 0.0129512, -0.981151, 0.192808, -0.107911, -0.193069, -0.975233, 0.994076, -0.00817546, -0.108378, -85.1654, 140.262, -3.65283 )
 
 [node name="BoneAttachment12" parent="Node2/Skeleton" index="11"]
-transform = Transform( -0.265369, -0.0519638, -0.962745, 0.957681, -0.129656, -0.256975, -0.111473, -0.990196, 0.0841716, -20.3628, 111.142, 15.9173 )
+transform = Transform( -0.0134012, -0.951166, 0.308389, -0.109522, -0.305165, -0.945981, 0.993894, -0.0464524, -0.100084, -83.5483, 140.546, -5.97934 )
 
 [node name="BoneAttachment13" parent="Node2/Skeleton" index="12"]
-transform = Transform( -0.965343, -0.260741, 0.0112875, 0.0128552, -0.00430843, 0.999908, -0.260669, 0.965399, 0.00751072, -0.37776, 0.753934, 41.5015 )
+transform = Transform( -0.995309, 0.0953247, 0.016514, 0.015749, -0.00877246, 0.999837, 0.0954541, 0.995408, 0.00723004, 16.3136, 0.75387, 10.2162 )
 
 [node name="AnimationPlayer" parent="." index="1"]
-autoplay = "MutantWalking"
+playback_process_mode = 0
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]

@@ -22,6 +22,8 @@ var distance_to_target = 0
 var enemy_velocity = Vector3.ZERO
 var height_offset = 0
 var direction = 0
+var enemy_alive = true
+var death_anim_playing = false
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	height_offset = ARVRServer.world_scale * Vector3(0,1,0)
@@ -41,28 +43,54 @@ func _physics_process(delta):
 	
 	#run function to determine which anmiation is going to play 
 	#or move enemy based on distance from player
-	perform_enemy_animation(distance_to_target)
+	perform_enemy_animation(distance_to_target, enemy_alive)
+	if enemy_alive == false:
+		yield($EnemyMesh1/AnimationPlayer, "animation_finished") 
+		queue_free()
 	
 	
+func perform_enemy_animation(distance, isEnemyAlive):
+	if isEnemyAlive == false and death_anim_playing == false:
+		var deathchoices = ["DeathFromRight", "FallingBackDeath", "FlyingBackDeath", "MutantDying", "StandingDeathForward02"]
+		var deathselection = (randi() % 5)
+		var playingdeath = deathchoices[deathselection]
+#		$EnemyMesh1/AnimationPlayer.stop()
+#		$EnemyMesh1/AnimationPlayer.animation_set_next($EnemyMesh1/AnimationPlayer.current_animation, playingdeath)
+#		$EnemyMesh1/AnimationPlayer.advance(0)
+		$EnemyMesh1/AnimationPlayer.play(playingdeath)
+#		print("performing death anim")
+#		$EnemyMesh1/AnimationPlayer.advance(0)
+#		yield($EnemyMesh1/AnimationPlayer, "animation_finished")
+		death_anim_playing = true
+		return
 	
-func perform_enemy_animation(distance):
+	if isEnemyAlive == true:	
+#		print("running alive scripts")
+		if distance_to_target >= enemy_alert_range:
+			$EnemyMesh1/AnimationPlayer.play("MutantBreathingIdle")
+			return
+		
+		if distance_to_target <= enemy_attack_range:
+			#$EnemyMesh1/AnimationPlayer.animation_set_next("MutantWalking", "MutantPunch")
+			var attackchoices = ["MutantPunch", "MutantSwiping"]
+			var attackselection = (randi() % 2)
+			var playingattack = attackchoices[attackselection]
+			$EnemyMesh1/AnimationPlayer.animation_set_next($EnemyMesh1/AnimationPlayer.current_animation, playingattack)
+	#		$EnemyMesh1/AnimationPlayer.play(playingattack)
+	#		$EnemyMesh1/AnimationPlayer.advance(0)
+			yield($EnemyMesh1/AnimationPlayer, "animation_finished") 
+			return
+		
+		if distance_to_target > enemy_attack_range and distance_to_target < enemy_alert_range:
+			$EnemyMesh1/AnimationPlayer.play("MutantWalking")
+		#	print("Enemy moved and slid")
+			look_at(player_body.translation+height_offset, Vector3.UP)
+			enemy_velocity = move_and_slide(enemy_velocity, Vector3.UP)
+			return
 	
-	if distance_to_target >= enemy_alert_range:
-		$EnemyMesh1/AnimationPlayer.play("MutantBreathingIdle")
-	
-	
-	if distance_to_target <= enemy_attack_range:
-		#$EnemyMesh1/AnimationPlayer.animation_set_next("MutantWalking", "MutantPunch")
-		var attackchoices = ["MutantPunch", "MutantSwiping"]
-		var attackselection = (randi() % 2)
-		var playingattack = attackchoices[attackselection]
-		$EnemyMesh1/AnimationPlayer.animation_set_next($EnemyMesh1/AnimationPlayer.current_animation, playingattack)
 
-	
-	if distance_to_target > enemy_attack_range and distance_to_target < enemy_alert_range:
-		$EnemyMesh1/AnimationPlayer.play("MutantWalking")
-	#	print("Enemy moved and slid")
-		look_at(player_body.translation+height_offset, Vector3.UP)
-		enemy_velocity = move_and_slide(enemy_velocity, Vector3.UP)
-	
-	
+
+func _on_HitArea_body_entered(body):
+	if body.is_in_group("bullets"):
+		enemy_alive = false
+		body.queue_free()# Replace with function body.

@@ -1,4 +1,4 @@
-[gd_scene load_steps=64 format=2]
+[gd_scene load_steps=66 format=2]
 
 [ext_resource path="res://addons/godot-xr-tools/assets/LeftHand.tscn" type="PackedScene" id=1]
 [ext_resource path="res://addons/godot-xr-tools/misc/VR_Common_Shader_Cache.tscn" type="PackedScene" id=2]
@@ -44,6 +44,7 @@
 [ext_resource path="res://GameLevels/Level1Voiceovers.gd" type="Script" id=42]
 [ext_resource path="res://scenes/QuitSliderSnap.tscn" type="PackedScene" id=43]
 [ext_resource path="res://addons/godot-xr-tools/functions/Function_BulletTime_movement.tscn" type="PackedScene" id=44]
+[ext_resource path="res://scenes/PickableHandGun.tscn" type="PackedScene" id=45]
 
 [sub_resource type="SpatialMaterial" id=8]
 flags_unshaded = true
@@ -149,6 +150,10 @@ depth = 0.01
 [sub_resource type="CapsuleShape" id=21]
 radius = 0.3
 height = 1.3
+
+[sub_resource type="CapsuleShape" id=23]
+radius = 0.35
+height = 1.35
 
 [sub_resource type="TextMesh" id=22]
 material = ExtResource( 26 )
@@ -377,6 +382,7 @@ skeleton = NodePath("../LevelSelectSliderSnap")
 
 [node name="Enemy1KinematicBody" type="KinematicBody" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4.438, 1, 0 )
+input_ray_pickable = false
 axis_lock_motion_y = true
 move_lock_y = true
 script = ExtResource( 34 )
@@ -388,8 +394,18 @@ enemy_attack_range = 1.25
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0 )
 shape = SubResource( 21 )
 
+[node name="HitArea" type="Area" parent="Enemy1KinematicBody"]
+collision_layer = 3
+collision_mask = 3
+input_ray_pickable = false
+
+[node name="AreaCollisionShape" type="CollisionShape" parent="Enemy1KinematicBody/HitArea"]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0 )
+shape = SubResource( 23 )
+
 [node name="Enemy1KinematicBody2" type="KinematicBody" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4.36294, 1, 4.77049 )
+input_ray_pickable = false
 axis_lock_motion_y = true
 move_lock_y = true
 script = ExtResource( 34 )
@@ -401,8 +417,18 @@ enemy_attack_range = 1.25
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0 )
 shape = SubResource( 21 )
 
+[node name="HitArea" type="Area" parent="Enemy1KinematicBody2"]
+collision_layer = 3
+collision_mask = 3
+input_ray_pickable = false
+
+[node name="AreaCollisionShape" type="CollisionShape" parent="Enemy1KinematicBody2/HitArea"]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0 )
+shape = SubResource( 23 )
+
 [node name="Enemy2KinematicBody" type="KinematicBody" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.61091, 1, -2.26856 )
+input_ray_pickable = false
 axis_lock_motion_y = true
 move_lock_y = true
 script = ExtResource( 39 )
@@ -413,8 +439,18 @@ script = ExtResource( 39 )
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0 )
 shape = SubResource( 21 )
 
+[node name="HitArea" type="Area" parent="Enemy2KinematicBody"]
+collision_layer = 3
+collision_mask = 3
+input_ray_pickable = false
+
+[node name="AreaCollisionShape" type="CollisionShape" parent="Enemy2KinematicBody/HitArea"]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0 )
+shape = SubResource( 23 )
+
 [node name="Enemy2KinematicBody2" type="KinematicBody" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.61091, 1, 4.85718 )
+input_ray_pickable = false
 axis_lock_motion_y = true
 move_lock_y = true
 script = ExtResource( 39 )
@@ -424,6 +460,15 @@ script = ExtResource( 39 )
 [node name="Enemy2CollisionCapsule" type="CollisionShape" parent="Enemy2KinematicBody2"]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0 )
 shape = SubResource( 21 )
+
+[node name="HitArea" type="Area" parent="Enemy2KinematicBody2"]
+collision_layer = 3
+collision_mask = 3
+input_ray_pickable = false
+
+[node name="AreaCollisionShape" type="CollisionShape" parent="Enemy2KinematicBody2/HitArea"]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0 )
+shape = SubResource( 23 )
 
 [node name="Level1Voiceovers" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 41 )
@@ -436,7 +481,21 @@ mesh = SubResource( 22 )
 [node name="QuitSliderSnap" parent="QuitLeverTextMesh" instance=ExtResource( 43 )]
 transform = Transform( -0.8, -6.99382e-08, 0, 6.99382e-08, -0.8, 0, 0, 0, 0.8, 0, -0.286986, 0 )
 
+[node name="PickableHandGun" parent="." instance=ExtResource( 45 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.468631, 1.07129, 4.54829 )
+collision_layer = 3
+collision_mask = 3
+
+[node name="PickableHandGun2" parent="." instance=ExtResource( 45 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.226356, 1.08492, 4.54166 )
+collision_layer = 3
+collision_mask = 3
+
 [connection signal="level_chosen" from="LevelSelectSliderSnap" to="LevelSelectTextMeshLn2" method="_on_LevelSelectSliderSnap_level_chosen"]
+[connection signal="body_entered" from="Enemy1KinematicBody/HitArea" to="Enemy1KinematicBody" method="_on_HitArea_body_entered"]
+[connection signal="body_entered" from="Enemy1KinematicBody2/HitArea" to="Enemy1KinematicBody2" method="_on_HitArea_body_entered"]
+[connection signal="body_entered" from="Enemy2KinematicBody/HitArea" to="Enemy2KinematicBody" method="_on_HitArea_body_entered"]
+[connection signal="body_entered" from="Enemy2KinematicBody2/HitArea" to="Enemy2KinematicBody2" method="_on_HitArea_body_entered"]
 
 [editable path="FPController"]
 [editable path="FPController/LeftHandController/LeftHand"]
