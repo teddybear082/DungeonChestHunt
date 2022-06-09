@@ -1,4 +1,4 @@
-[gd_scene load_steps=67 format=2]
+[gd_scene load_steps=68 format=2]
 
 [ext_resource path="res://addons/godot-xr-tools/assets/LeftHand.tscn" type="PackedScene" id=1]
 [ext_resource path="res://addons/godot-xr-tools/misc/VR_Common_Shader_Cache.tscn" type="PackedScene" id=2]
@@ -46,6 +46,7 @@
 [ext_resource path="res://addons/godot-xr-tools/functions/Function_BulletTime_movement.tscn" type="PackedScene" id=44]
 [ext_resource path="res://scenes/PickableHandGun.tscn" type="PackedScene" id=45]
 [ext_resource path="res://sounds/Very__Warm_840.mp3" type="AudioStream" id=46]
+[ext_resource path="res://sounds/creature_roar_03.ogg" type="AudioStream" id=47]
 
 [sub_resource type="SpatialMaterial" id=8]
 flags_unshaded = true
@@ -412,6 +413,12 @@ input_ray_pickable = false
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0 )
 shape = SubResource( 23 )
 
+[node name="EnemySounds" type="AudioStreamPlayer3D" parent="Enemy1KinematicBody"]
+stream = ExtResource( 47 )
+unit_db = 3.0
+max_db = 5.0
+max_distance = 10.0
+
 [node name="Enemy1KinematicBody2" type="KinematicBody" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4.36294, 1, 4.77049 )
 input_ray_pickable = false
@@ -435,6 +442,12 @@ input_ray_pickable = false
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0 )
 shape = SubResource( 23 )
 
+[node name="EnemySounds" type="AudioStreamPlayer3D" parent="Enemy1KinematicBody2"]
+stream = ExtResource( 47 )
+unit_db = 3.0
+max_db = 5.0
+max_distance = 10.0
+
 [node name="Enemy2KinematicBody" type="KinematicBody" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.61091, 1, -2.26856 )
 input_ray_pickable = false
@@ -457,6 +470,12 @@ input_ray_pickable = false
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0 )
 shape = SubResource( 23 )
 
+[node name="EnemySounds" type="AudioStreamPlayer3D" parent="Enemy2KinematicBody"]
+stream = ExtResource( 47 )
+unit_db = 3.0
+max_db = 5.0
+max_distance = 10.0
+
 [node name="Enemy2KinematicBody2" type="KinematicBody" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.61091, 1, 4.85718 )
 input_ray_pickable = false
@@ -478,6 +497,12 @@ input_ray_pickable = false
 [node name="AreaCollisionShape" type="CollisionShape" parent="Enemy2KinematicBody2/HitArea"]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0 )
 shape = SubResource( 23 )
+
+[node name="EnemySounds" type="AudioStreamPlayer3D" parent="Enemy2KinematicBody2"]
+stream = ExtResource( 47 )
+unit_db = 3.0
+max_db = 5.0
+max_distance = 10.0
 
 [node name="Level1Voiceovers" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 41 )

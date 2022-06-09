@@ -89,7 +89,7 @@ func physics_movement(_delta: float, _player_body: PlayerBody, _disabled: bool):
 			$SloMo_Tween.interpolate_property(Engine, "time_scale", Engine.time_scale, normal_time_scale, slo_mo_ease, Tween.TRANS_SINE, Tween.EASE_IN_OUT)
 			$SloMo_Tween.start()
 			yield($SloMo_Tween, "tween_completed")
-			$SloMo_Sound.play()	
+#			$SloMo_Sound.play()	
 	
 
 

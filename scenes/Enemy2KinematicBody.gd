@@ -58,6 +58,7 @@ func perform_enemy_animation(distance, isEnemyAlive):
 #		$EnemyMesh1/AnimationPlayer.animation_set_next($EnemyMesh1/AnimationPlayer.current_animation, playingdeath)
 #		$EnemyMesh1/AnimationPlayer.advance(0)
 		$Enemy2Mesh/AnimationPlayer.play(playingdeath)
+		$EnemySounds.play()
 #		print("performing death anim")
 #		$EnemyMesh1/AnimationPlayer.advance(0)
 #		yield($EnemyMesh1/AnimationPlayer, "animation_finished")
