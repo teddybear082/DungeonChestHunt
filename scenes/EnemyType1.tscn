@@ -1,0 +1,47 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://scenes/EnemyMesh1.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scenes/Enemy1KinematicBody.gd" type="Script" id=2]
+[ext_resource path="res://sounds/creature_roar_03.ogg" type="AudioStream" id=3]
+[ext_resource path="res://scenes/EnemyMesh1.gd" type="Script" id=4]
+
+[sub_resource type="CapsuleShape" id=21]
+radius = 0.3
+height = 1.3
+
+[sub_resource type="CapsuleShape" id=23]
+radius = 0.35
+height = 1.35
+
+[node name="Enemy1KinematicBody" type="KinematicBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4.438, 1, 0 )
+input_ray_pickable = false
+axis_lock_motion_y = true
+move_lock_y = true
+script = ExtResource( 2 )
+enemy_attack_range = 1.25
+
+[node name="EnemyMesh1" type="Spatial" parent="." instance=ExtResource( 1 )]
+transform = Transform( -0.01, 0, 8.74228e-10, 0, 0.01, 0, -8.74228e-10, 0, -0.01, 0, 0, 0 )
+script = ExtResource( 4 )
+
+[node name="Enemy1CollisionCapsule" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0 )
+shape = SubResource( 21 )
+
+[node name="HitArea" type="Area" parent="."]
+collision_layer = 3
+collision_mask = 3
+input_ray_pickable = false
+
+[node name="AreaCollisionShape" type="CollisionShape" parent="HitArea"]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0 )
+shape = SubResource( 23 )
+
+[node name="EnemySounds" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource( 3 )
+unit_db = 3.0
+max_db = 5.0
+max_distance = 10.0
+
+[connection signal="body_entered" from="HitArea" to="." method="_on_HitArea_body_entered"]

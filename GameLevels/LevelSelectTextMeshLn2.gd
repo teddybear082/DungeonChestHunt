@@ -18,7 +18,7 @@ func _ready():
 
 func _on_LevelSelectSliderSnap_level_chosen(level):
 	if level == 0:
-		mesh.text = "Level" # Replace with function body.
+		mesh.text = "Options Level" # Replace with function body.
 	if level > 0:
 		mesh.text = "Level " + str(level)
-	
+		

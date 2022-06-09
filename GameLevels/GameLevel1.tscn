@@ -1,4 +1,4 @@
-[gd_scene load_steps=68 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://addons/godot-xr-tools/assets/LeftHand.tscn" type="PackedScene" id=1]
 [ext_resource path="res://addons/godot-xr-tools/misc/VR_Common_Shader_Cache.tscn" type="PackedScene" id=2]
@@ -6,168 +6,27 @@
 [ext_resource path="res://addons/godot-xr-tools/assets/RightHand.tscn" type="PackedScene" id=4]
 [ext_resource path="res://addons/godot-xr-tools/functions/Function_Direct_movement.tscn" type="PackedScene" id=5]
 [ext_resource path="res://addons/godot-xr-tools/assets/PlayerBody.tscn" type="PackedScene" id=6]
-[ext_resource path="res://addons/godot-xr-tools/functions/Function_Turn_movement.tscn" type="PackedScene" id=7]
-[ext_resource path="res://materials/grassmaterial.tres" type="Material" id=8]
-[ext_resource path="res://addons/godot-xr-tools/functions/Function_Grapple_movement.tscn" type="PackedScene" id=9]
-[ext_resource path="res://textures/SkyOnlyHDRI023_2K-TONEMAPPED.jpg" type="Texture" id=10]
+[ext_resource path="res://addons/godot-xr-tools/assets/PlayerBody.gd" type="Script" id=7]
+[ext_resource path="res://scenes/Floor.tscn" type="PackedScene" id=8]
+[ext_resource path="res://scenes/QuitLever.tscn" type="PackedScene" id=9]
 [ext_resource path="res://addons/godot-xr-tools/functions/Function_Pickup.tscn" type="PackedScene" id=11]
 [ext_resource path="res://addons/godot-xr-tools/functions/Function_JumpDetect_movement.tscn" type="PackedScene" id=12]
 [ext_resource path="res://addons/godot-xr-tools/functions/Locomotion_WalkInPlace.tscn" type="PackedScene" id=13]
 [ext_resource path="res://addons/godot-xr-tools/functions/Function_Jump_movement.tscn" type="PackedScene" id=14]
-[ext_resource path="res://addons/godot-xr-tools/functions/Function_Climb_movement.tscn" type="PackedScene" id=15]
 [ext_resource path="res://addons/godot-xr-tools/functions/Function_Glide_movement.tscn" type="PackedScene" id=16]
 [ext_resource path="res://addons/godot-xr-tools/functions/Function_Max_Payne_Dive_movement.tscn" type="PackedScene" id=17]
-[ext_resource path="res://sounds/Soliloquy.mp3" type="AudioStream" id=18]
-[ext_resource path="res://scenes/ControlsViewport.tscn" type="PackedScene" id=19]
-[ext_resource path="res://scenes/TutorialVideosViewport.tscn" type="PackedScene" id=20]
-[ext_resource path="res://materials/ropematerial.tres" type="Material" id=21]
-[ext_resource path="res://scenes/TitleTable.tscn" type="PackedScene" id=22]
-[ext_resource path="res://scenes/MusicLever.tscn" type="PackedScene" id=23]
-[ext_resource path="res://scenes/LeaderboardLever.tscn" type="PackedScene" id=24]
-[ext_resource path="res://fonts/TitleFont.tres" type="DynamicFont" id=25]
-[ext_resource path="res://materials/leverhandlematerial.tres" type="Material" id=26]
-[ext_resource path="res://scenes/LevelSelectSliderSnap.tscn" type="PackedScene" id=27]
-[ext_resource path="res://GameLevels/LevelSelectTextMeshLn2.gd" type="Script" id=28]
-[ext_resource path="res://scenes/LevelSelectSnapZone.tscn" type="PackedScene" id=29]
-[ext_resource path="res://scenes/CoinPickable.tscn" type="PackedScene" id=30]
-[ext_resource path="res://GameLevels/BackgroundMusic.gd" type="Script" id=31]
-[ext_resource path="res://addons/godot-xr-tools/functions/Function_pointer.tscn" type="PackedScene" id=32]
-[ext_resource path="res://scenes/EnemyMesh1.tscn" type="PackedScene" id=33]
-[ext_resource path="res://scenes/Enemy1KinematicBody.gd" type="Script" id=34]
-[ext_resource path="res://scenes/GameLevel1BorderWall.tscn" type="PackedScene" id=35]
-[ext_resource path="res://addons/godot-xr-tools/objects/Virtual_Keyboard.tscn" type="PackedScene" id=36]
-[ext_resource path="res://scenes/NameEditViewport.tscn" type="PackedScene" id=37]
 [ext_resource path="res://sounds/sfx100v2_thunder_01.ogg" type="AudioStream" id=38]
-[ext_resource path="res://scenes/Enemy2KinematicBody.gd" type="Script" id=39]
-[ext_resource path="res://scenes/Enemy2Mesh.tscn" type="PackedScene" id=40]
-[ext_resource path="res://sounds/Welcome_to_the_optio_814.mp3" type="AudioStream" id=41]
-[ext_resource path="res://GameLevels/Level1Voiceovers.gd" type="Script" id=42]
-[ext_resource path="res://scenes/QuitSliderSnap.tscn" type="PackedScene" id=43]
 [ext_resource path="res://addons/godot-xr-tools/functions/Function_BulletTime_movement.tscn" type="PackedScene" id=44]
 [ext_resource path="res://scenes/PickableHandGun.tscn" type="PackedScene" id=45]
 [ext_resource path="res://sounds/Very__Warm_840.mp3" type="AudioStream" id=46]
-[ext_resource path="res://sounds/creature_roar_03.ogg" type="AudioStream" id=47]
-
-[sub_resource type="SpatialMaterial" id=8]
-flags_unshaded = true
-flags_vertex_lighting = true
-flags_do_not_receive_shadows = true
-albedo_color = Color( 0.117647, 0.0901961, 0.0901961, 1 )
-
-[sub_resource type="CubeMesh" id=5]
-resource_local_to_scene = true
-size = Vector3( 0.05, 0.05, 0.05 )
-subdivide_depth = 20
-
-[sub_resource type="SpatialMaterial" id=9]
-flags_unshaded = true
-flags_vertex_lighting = true
-flags_do_not_receive_shadows = true
-albedo_color = Color( 0.117647, 0.0901961, 0.0901961, 1 )
-
-[sub_resource type="CubeMesh" id=6]
-resource_local_to_scene = true
-size = Vector3( 0.05, 0.05, 0.05 )
-subdivide_depth = 20
-
-[sub_resource type="CubeMesh" id=1]
-size = Vector3( 50, 0.25, 50 )
-
-[sub_resource type="BoxShape" id=2]
-extents = Vector3( 25, 0.125, 25 )
-
-[sub_resource type="PanoramaSky" id=10]
-panorama = ExtResource( 10 )
-
-[sub_resource type="Environment" id=11]
-background_mode = 2
-background_sky = SubResource( 10 )
-background_color = Color( 0.454902, 0.768627, 0.8, 0 )
-ambient_light_color = Color( 0.952941, 0.909804, 0.909804, 1 )
-ambient_light_sky_contribution = 0.0
-
-[sub_resource type="TextMesh" id=15]
-material = ExtResource( 26 )
-text = "Music"
-font = ExtResource( 25 )
-pixel_size = 0.001
-depth = 0.01
-
-[sub_resource type="TextMesh" id=16]
-material = ExtResource( 26 )
-text = "On"
-font = ExtResource( 25 )
-pixel_size = 0.001
-depth = 0.01
-
-[sub_resource type="TextMesh" id=12]
-material = ExtResource( 26 )
-text = "Leaderboard"
-font = ExtResource( 25 )
-pixel_size = 0.001
-depth = 0.01
-
-[sub_resource type="TextMesh" id=20]
-material = ExtResource( 26 )
-text = "Enter your name:"
-font = ExtResource( 25 )
-pixel_size = 0.001
-depth = 0.01
-
-[sub_resource type="TextMesh" id=13]
-material = ExtResource( 26 )
-text = "Level Select"
-font = ExtResource( 25 )
-pixel_size = 0.001
-depth = 0.001
-
-[sub_resource type="TextMesh" id=14]
-material = ExtResource( 26 )
-text = "Level"
-font = ExtResource( 25 )
-pixel_size = 0.001
-depth = 0.01
-
-[sub_resource type="SphereMesh" id=17]
-radius = 0.2
-height = 0.2
-is_hemisphere = true
-
-[sub_resource type="SpatialMaterial" id=18]
-flags_transparent = true
-albedo_color = Color( 0.807843, 0.6, 0.27451, 0.541176 )
-emission_enabled = true
-emission = Color( 0.941176, 0.905882, 0.843137, 1 )
-emission_energy = 2.0
-emission_operator = 0
-emission_on_uv2 = false
-
-[sub_resource type="TextMesh" id=19]
-material = ExtResource( 26 )
-text = "Place Coin to Start"
-font = ExtResource( 25 )
-pixel_size = 0.001
-depth = 0.01
-
-[sub_resource type="CapsuleShape" id=21]
-radius = 0.3
-height = 1.3
-
-[sub_resource type="CapsuleShape" id=23]
-radius = 0.35
-height = 1.35
-
-[sub_resource type="TextMesh" id=22]
-material = ExtResource( 26 )
-text = "Quit"
-font = ExtResource( 25 )
-pixel_size = 0.001
-depth = 0.01
+[ext_resource path="res://scenes/EnemyType2.tscn" type="PackedScene" id=48]
+[ext_resource path="res://scenes/EnemyType1.tscn" type="PackedScene" id=49]
 
 [node name="GameLevel1" type="Spatial"]
 
+[node name="Floor" parent="." instance=ExtResource( 8 )]
+
 [node name="FPController" parent="." instance=ExtResource( 3 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.40654 )
 
 [node name="ARVRCamera" parent="FPController" index="1"]
 far = 1000.0
@@ -177,40 +36,12 @@ far = 1000.0
 [node name="LeftHand" parent="FPController/LeftHandController" index="0" instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.03, -0.05, 0.15 )
 
-[node name="Hand_Left" parent="FPController/LeftHandController/LeftHand/LeftHand/Armature_Left/Skeleton" index="0"]
-material_override = SubResource( 8 )
-cast_shadow = 0
+[node name="Function_Pickup" parent="FPController/LeftHandController" index="1" instance=ExtResource( 11 )]
 
-[node name="Function_Direct_movement" parent="FPController/LeftHandController" index="1" instance=ExtResource( 5 )]
+[node name="Function_Direct_movement" parent="FPController/LeftHandController" index="2" instance=ExtResource( 5 )]
 strafe = true
 
-[node name="Function_Pickup" parent="FPController/LeftHandController" index="2" instance=ExtResource( 11 )]
-
-[node name="Function_Grapple_movement" parent="FPController/LeftHandController" index="3" instance=ExtResource( 9 )]
-grapple_button_id = 7
-
-[node name="Grapple_Target" parent="FPController/LeftHandController/Function_Grapple_movement" index="1"]
-mesh = SubResource( 5 )
-
-[node name="Line" parent="FPController/LeftHandController/Function_Grapple_movement/LineHelper" index="0"]
-material = ExtResource( 21 )
-
-[node name="Function_Jump_movement" parent="FPController/LeftHandController" index="4" instance=ExtResource( 14 )]
-enabled = false
-jump_button_id = 14
-
-[node name="Function_Turn_movement" parent="FPController/LeftHandController" index="5" instance=ExtResource( 7 )]
-enabled = false
-
-[node name="Function_Max_Payne_Dive_movement" parent="FPController/LeftHandController" index="6" instance=ExtResource( 17 )]
-enabled = false
-max_payne_dive_distance = 6
-
-[node name="MP_Sound" parent="FPController/LeftHandController/Function_Max_Payne_Dive_movement" index="1"]
-stream = ExtResource( 38 )
-volume_db = 10.0
-
-[node name="Function_BulletTime_movement" parent="FPController/LeftHandController" index="7" instance=ExtResource( 44 )]
+[node name="Function_BulletTime_movement" parent="FPController/LeftHandController" index="3" instance=ExtResource( 44 )]
 
 [node name="SloMo_Sound" parent="FPController/LeftHandController/Function_BulletTime_movement" index="1"]
 stream = ExtResource( 46 )
@@ -218,49 +49,20 @@ stream = ExtResource( 46 )
 [node name="RightHand" parent="FPController/RightHandController" index="0" instance=ExtResource( 4 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.03, -0.05, 0.15 )
 
-[node name="Hand_Left" parent="FPController/RightHandController/RightHand/RightHand/Armature_Left/Skeleton" index="0"]
-material_override = SubResource( 9 )
-cast_shadow = 0
+[node name="Function_Pickup" parent="FPController/RightHandController" index="1" instance=ExtResource( 11 )]
 
-[node name="Function_Turn_movement" parent="FPController/RightHandController" index="1" instance=ExtResource( 7 )]
-
-[node name="Function_Pickup" parent="FPController/RightHandController" index="2" instance=ExtResource( 11 )]
-
-[node name="Function_Grapple_movement" parent="FPController/RightHandController" index="3" instance=ExtResource( 9 )]
-grapple_button_id = 7
-
-[node name="Grapple_Target" parent="FPController/RightHandController/Function_Grapple_movement" index="1"]
-mesh = SubResource( 6 )
-
-[node name="Line" parent="FPController/RightHandController/Function_Grapple_movement/LineHelper" index="0"]
-material = ExtResource( 21 )
-
-[node name="Function_Jump_movement" parent="FPController/RightHandController" index="4" instance=ExtResource( 14 )]
-jump_button_id = 14
-
-[node name="Function_Direct_movement" parent="FPController/RightHandController" index="5" instance=ExtResource( 5 )]
-enabled = false
-strafe = true
-
-[node name="Function_pointer" parent="FPController/RightHandController" index="6" instance=ExtResource( 32 )]
-show_laser = false
-
-[node name="Function_Max_Payne_Dive_movement" parent="FPController/RightHandController" index="7" instance=ExtResource( 17 )]
+[node name="Function_Max_Payne_Dive_movement" parent="FPController/RightHandController" index="2" instance=ExtResource( 17 )]
 max_payne_dive_distance = 6
 
 [node name="MP_Sound" parent="FPController/RightHandController/Function_Max_Payne_Dive_movement" index="1"]
 stream = ExtResource( 38 )
 volume_db = 10.0
 
-[node name="Function_BulletTime_movement" parent="FPController/RightHandController" index="8" instance=ExtResource( 44 )]
-enabled = false
+[node name="Function_Jump_movement" parent="FPController/RightHandController" index="3" instance=ExtResource( 14 )]
+jump_button_id = 14
 
-[node name="SloMo_Sound" parent="FPController/RightHandController/Function_BulletTime_movement" index="1"]
-stream = ExtResource( 46 )
-
-[node name="PlayerBody" parent="FPController" instance=ExtResource( 6 )]
-
-[node name="Function_JumpDetect_Movement" parent="FPController" instance=ExtResource( 12 )]
+[node name="PlayerBody" type="Node" parent="FPController" instance=ExtResource( 6 )]
+script = ExtResource( 7 )
 
 [node name="Locomotion_WalkInPlace" parent="FPController" instance=ExtResource( 13 )]
 fpcontroller_path = NodePath("..")
@@ -268,279 +70,43 @@ arvrcamera_path = NodePath("../ARVRCamera")
 l_controller_path = NodePath("../LeftHandController")
 r_controller_path = NodePath("../RightHandController")
 
-[node name="Function_Climb_movement" parent="FPController" instance=ExtResource( 15 )]
-left_pickup = NodePath("../LeftHandController/Function_Pickup")
-right_pickup = NodePath("../RightHandController/Function_Pickup")
-
 [node name="Function_Glide_movement" parent="FPController" instance=ExtResource( 16 )]
 
-[node name="Floor" type="StaticBody" parent="."]
+[node name="Function_JumpDetect_Movement" parent="FPController" instance=ExtResource( 12 )]
 
-[node name="MeshInstance" type="MeshInstance" parent="Floor"]
-cast_shadow = 0
-mesh = SubResource( 1 )
-material/0 = ExtResource( 8 )
+[node name="Enemy1KinematicBody" parent="." instance=ExtResource( 49 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 7.79837, 1, -6.55746 )
 
-[node name="CollisionShape" type="CollisionShape" parent="Floor"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.04, 0 )
-shape = SubResource( 2 )
+[node name="Enemy2KinematicBody" parent="." instance=ExtResource( 48 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -9.46211, 1, -8.58405 )
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource( 11 )
+[node name="Enemy1KinematicBody2" parent="." instance=ExtResource( 49 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -8.876, 1, 0 )
 
-[node name="BackgroundMusic" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 18 )
-autoplay = true
-script = ExtResource( 31 )
+[node name="Enemy2KinematicBody2" parent="." instance=ExtResource( 48 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 12.1659, 1, 0.157863 )
 
-[node name="ControlsViewport" parent="." instance=ExtResource( 19 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, -1.41703 )
+[node name="Enemy1KinematicBody3" parent="." instance=ExtResource( 49 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.251722, 1, -6.45389 )
 
-[node name="TutorialVideosViewport" parent="." instance=ExtResource( 20 )]
-transform = Transform( -0.0402364, 0, 0.99919, 0, 1, 0, -0.99919, 0, -0.0402364, -2.33406, 1.35042, 2.04112 )
+[node name="Enemy2KinematicBody3" parent="." instance=ExtResource( 48 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -8.70568, 1, 2.26475 )
 
-[node name="TutorialTextMesh" type="MeshInstance" parent="."]
+[node name="Enemy1KinematicBody4" parent="." instance=ExtResource( 49 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4.438, 1, 6.23843 )
 
-[node name="TitleTable" parent="." instance=ExtResource( 22 )]
-transform = Transform( 0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 4.95939 )
-
-[node name="StaticBody" parent="TitleTable/Sketchfab_model/root/GLTF_SceneRootNode/Table_0" index="0"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.4, 0 )
-
-[node name="TitleTable2" parent="." instance=ExtResource( 22 )]
-transform = Transform( -1.31134e-08, 0, 0.3, 0, 0.3, 0, -0.3, 0, -1.31134e-08, 2.94401, 0, 1.88534 )
-
-[node name="MusicLever" parent="." instance=ExtResource( 23 )]
-transform = Transform( 0.8, 0, 0, 0, -3.49691e-08, 0.8, 0, -0.8, -3.49691e-08, 2.43812, 0.929717, 1.31679 )
-
-[node name="MusicTextMeshLine1" type="MeshInstance" parent="MusicLever"]
-transform = Transform( -4.37114e-08, 0, -1, -1, -4.37114e-08, 4.37114e-08, -4.37114e-08, 1, 1.91069e-15, -0.0159583, -0.0154299, 0.416717 )
-cast_shadow = 0
-mesh = SubResource( 15 )
-skeleton = NodePath("../..")
-
-[node name="MusicTextMeshLine2" type="MeshInstance" parent="MusicLever"]
-transform = Transform( -4.37114e-08, 0, -1, -1, -4.37114e-08, 4.37114e-08, -4.37114e-08, 1, 1.91069e-15, 0.0028801, -0.00579, 0.316772 )
-cast_shadow = 0
-mesh = SubResource( 16 )
-skeleton = NodePath("../MusicTextMeshLine1")
-
-[node name="LeaderboardLever" parent="." instance=ExtResource( 24 )]
-transform = Transform( 0.8, 0, 0, 0, -3.49691e-08, 0.8, 0, -0.8, -3.49691e-08, -0.9178, 0.926266, 4.52927 )
-
-[node name="LeaderboardTextMesh" type="MeshInstance" parent="LeaderboardLever"]
-transform = Transform( -1, 0, -8.74228e-08, -8.74228e-08, -4.37114e-08, 1, -3.82137e-15, 1, 4.37114e-08, 0.04501, -0.00453615, 0.317736 )
-cast_shadow = 0
-mesh = SubResource( 12 )
-skeleton = NodePath("../..")
-
-[node name="LevelSelectSliderSnap" parent="." instance=ExtResource( 27 )]
-transform = Transform( -3.49691e-08, -0.8, -3.49691e-08, 0, -3.49691e-08, 0.8, -0.8, 3.49691e-08, 1.52855e-15, 0.876159, 0.910572, 4.39364 )
-
-[node name="CoinPickable" parent="." instance=ExtResource( 30 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.042195, 0.911442, 4.38421 )
-
-[node name="GameLevel1BorderWall" parent="." instance=ExtResource( 35 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25, 7 )
-
-[node name="GameLevel1BorderWall2" parent="." instance=ExtResource( 35 )]
-transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 6, 1.25, 1.125 )
-
-[node name="GameLevel1BorderWall3" parent="." instance=ExtResource( 35 )]
-transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -6, 1.25, 1.25 )
-
-[node name="GameLevel1BorderWall4" parent="." instance=ExtResource( 35 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25, -4.5 )
-
-[node name="Virtual_Keyboard" parent="." instance=ExtResource( 36 )]
-transform = Transform( -4.37114e-08, 0.422619, -0.906308, 0, 0.906308, 0.422619, 1, 1.84733e-08, -3.9616e-08, 2.09529, 0.774927, 2.51871 )
-
-[node name="NameTextMesh" type="MeshInstance" parent="."]
-transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 2.39876, 1.42577, 2.54675 )
-mesh = SubResource( 20 )
-
-[node name="NameEditViewport" parent="." instance=ExtResource( 37 )]
-transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 2.52475, 1.15937, 2.55065 )
-viewport_size = Vector2( 300, 300 )
-
-[node name="LevelSelectTextMesh" type="MeshInstance" parent="."]
-transform = Transform( -0.799209, 7.77156e-16, -0.0355651, 6.35275e-22, 0.8, 1.77636e-14, 0.0355651, 1.77636e-14, -0.799209, 0.77835, 1.15949, 4.4386 )
-cast_shadow = 0
-mesh = SubResource( 13 )
-
-[node name="LevelSelectTextMeshLn2" type="MeshInstance" parent="."]
-transform = Transform( -0.799209, 7.77156e-16, -0.0355651, 6.35275e-22, 0.8, 1.77636e-14, 0.0355651, 1.77636e-14, -0.799209, 0.428847, 1.06084, 4.39662 )
-cast_shadow = 0
-mesh = SubResource( 14 )
-skeleton = NodePath("../LevelSelectSliderSnap")
-script = ExtResource( 28 )
-
-[node name="LevelSelectButton" type="MeshInstance" parent="."]
-transform = Transform( 0.799209, 7.77156e-16, 0.0355651, 0, 0.8, -1.77636e-14, -0.0355651, 1.77636e-14, 0.799209, 0.441207, 0.893281, 4.4596 )
-mesh = SubResource( 17 )
-material/0 = SubResource( 18 )
-
-[node name="LevelSelectSnapZone" parent="." instance=ExtResource( 29 )]
-transform = Transform( 0.799209, -0.035565, -1.5546e-09, 0, -3.49691e-08, 0.799999, -0.0355651, -0.799208, -3.49345e-08, 0.422412, 0.958988, 4.42627 )
-grab_distance = 0.1
-
-[node name="CoinTextMesh" type="MeshInstance" parent="."]
-transform = Transform( -0.399605, 6.03386e-08, -0.0177825, 6.03983e-08, 0.4, 8.88178e-15, 0.0177825, -2.68508e-09, -0.399605, 0.420702, 0.884143, 4.27303 )
-cast_shadow = 0
-mesh = SubResource( 19 )
-skeleton = NodePath("../LevelSelectSliderSnap")
-
-[node name="Enemy1KinematicBody" type="KinematicBody" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4.438, 1, 0 )
-input_ray_pickable = false
-axis_lock_motion_y = true
-move_lock_y = true
-script = ExtResource( 34 )
-enemy_attack_range = 1.25
-
-[node name="EnemyMesh1" parent="Enemy1KinematicBody" instance=ExtResource( 33 )]
-
-[node name="Enemy1CollisionCapsule" type="CollisionShape" parent="Enemy1KinematicBody"]
-transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0 )
-shape = SubResource( 21 )
-
-[node name="HitArea" type="Area" parent="Enemy1KinematicBody"]
-collision_layer = 3
-collision_mask = 3
-input_ray_pickable = false
-
-[node name="AreaCollisionShape" type="CollisionShape" parent="Enemy1KinematicBody/HitArea"]
-transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0 )
-shape = SubResource( 23 )
-
-[node name="EnemySounds" type="AudioStreamPlayer3D" parent="Enemy1KinematicBody"]
-stream = ExtResource( 47 )
-unit_db = 3.0
-max_db = 5.0
-max_distance = 10.0
-
-[node name="Enemy1KinematicBody2" type="KinematicBody" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4.36294, 1, 4.77049 )
-input_ray_pickable = false
-axis_lock_motion_y = true
-move_lock_y = true
-script = ExtResource( 34 )
-enemy_attack_range = 1.25
-
-[node name="EnemyMesh1" parent="Enemy1KinematicBody2" instance=ExtResource( 33 )]
-
-[node name="Enemy1CollisionCapsule" type="CollisionShape" parent="Enemy1KinematicBody2"]
-transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0 )
-shape = SubResource( 21 )
-
-[node name="HitArea" type="Area" parent="Enemy1KinematicBody2"]
-collision_layer = 3
-collision_mask = 3
-input_ray_pickable = false
-
-[node name="AreaCollisionShape" type="CollisionShape" parent="Enemy1KinematicBody2/HitArea"]
-transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0 )
-shape = SubResource( 23 )
-
-[node name="EnemySounds" type="AudioStreamPlayer3D" parent="Enemy1KinematicBody2"]
-stream = ExtResource( 47 )
-unit_db = 3.0
-max_db = 5.0
-max_distance = 10.0
-
-[node name="Enemy2KinematicBody" type="KinematicBody" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.61091, 1, -2.26856 )
-input_ray_pickable = false
-axis_lock_motion_y = true
-move_lock_y = true
-script = ExtResource( 39 )
-
-[node name="Enemy2Mesh" parent="Enemy2KinematicBody" instance=ExtResource( 40 )]
-
-[node name="Enemy2CollisionCapsule" type="CollisionShape" parent="Enemy2KinematicBody"]
-transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0 )
-shape = SubResource( 21 )
-
-[node name="HitArea" type="Area" parent="Enemy2KinematicBody"]
-collision_layer = 3
-collision_mask = 3
-input_ray_pickable = false
-
-[node name="AreaCollisionShape" type="CollisionShape" parent="Enemy2KinematicBody/HitArea"]
-transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0 )
-shape = SubResource( 23 )
-
-[node name="EnemySounds" type="AudioStreamPlayer3D" parent="Enemy2KinematicBody"]
-stream = ExtResource( 47 )
-unit_db = 3.0
-max_db = 5.0
-max_distance = 10.0
-
-[node name="Enemy2KinematicBody2" type="KinematicBody" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.61091, 1, 4.85718 )
-input_ray_pickable = false
-axis_lock_motion_y = true
-move_lock_y = true
-script = ExtResource( 39 )
-
-[node name="Enemy2Mesh" parent="Enemy2KinematicBody2" instance=ExtResource( 40 )]
-
-[node name="Enemy2CollisionCapsule" type="CollisionShape" parent="Enemy2KinematicBody2"]
-transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0 )
-shape = SubResource( 21 )
-
-[node name="HitArea" type="Area" parent="Enemy2KinematicBody2"]
-collision_layer = 3
-collision_mask = 3
-input_ray_pickable = false
-
-[node name="AreaCollisionShape" type="CollisionShape" parent="Enemy2KinematicBody2/HitArea"]
-transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0 )
-shape = SubResource( 23 )
-
-[node name="EnemySounds" type="AudioStreamPlayer3D" parent="Enemy2KinematicBody2"]
-stream = ExtResource( 47 )
-unit_db = 3.0
-max_db = 5.0
-max_distance = 10.0
-
-[node name="Level1Voiceovers" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 41 )
-script = ExtResource( 42 )
-
-[node name="QuitLeverTextMesh" type="MeshInstance" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.67309, 1.58128, -1.43699 )
-mesh = SubResource( 22 )
-
-[node name="QuitSliderSnap" parent="QuitLeverTextMesh" instance=ExtResource( 43 )]
-transform = Transform( -0.8, -6.99382e-08, 0, 6.99382e-08, -0.8, 0, 0, 0, 0.8, 0, -0.286986, 0 )
+[node name="Enemy2KinematicBody4" parent="." instance=ExtResource( 48 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.27136, 1, 5.69117 )
 
 [node name="PickableHandGun" parent="." instance=ExtResource( 45 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.468631, 1.07129, 4.54829 )
-collision_layer = 3
-collision_mask = 3
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.539169, -1.27158 )
 
 [node name="PickableHandGun2" parent="." instance=ExtResource( 45 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.226356, 1.08492, 4.54166 )
-collision_layer = 3
-collision_mask = 3
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.339126, 0.535776, -1.28872 )
 
-[connection signal="level_chosen" from="LevelSelectSliderSnap" to="LevelSelectTextMeshLn2" method="_on_LevelSelectSliderSnap_level_chosen"]
-[connection signal="body_entered" from="Enemy1KinematicBody/HitArea" to="Enemy1KinematicBody" method="_on_HitArea_body_entered"]
-[connection signal="body_entered" from="Enemy1KinematicBody2/HitArea" to="Enemy1KinematicBody2" method="_on_HitArea_body_entered"]
-[connection signal="body_entered" from="Enemy2KinematicBody/HitArea" to="Enemy2KinematicBody" method="_on_HitArea_body_entered"]
-[connection signal="body_entered" from="Enemy2KinematicBody2/HitArea" to="Enemy2KinematicBody2" method="_on_HitArea_body_entered"]
+[node name="QuitLeverTextMesh" parent="." instance=ExtResource( 9 )]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 3.21455, 1.58128, -1.43699 )
 
 [editable path="FPController"]
-[editable path="FPController/LeftHandController/LeftHand"]
-[editable path="FPController/LeftHandController/LeftHand/LeftHand"]
-[editable path="FPController/LeftHandController/Function_Grapple_movement"]
-[editable path="FPController/LeftHandController/Function_Max_Payne_Dive_movement"]
 [editable path="FPController/LeftHandController/Function_BulletTime_movement"]
-[editable path="FPController/RightHandController/RightHand"]
-[editable path="FPController/RightHandController/RightHand/RightHand"]
-[editable path="FPController/RightHandController/Function_Grapple_movement"]
 [editable path="FPController/RightHandController/Function_Max_Payne_Dive_movement"]
-[editable path="FPController/RightHandController/Function_BulletTime_movement"]
-[editable path="FPController/PlayerBody"]
-[editable path="TitleTable"]

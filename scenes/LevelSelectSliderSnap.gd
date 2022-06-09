@@ -5,7 +5,7 @@ extends Spatial
 # var a = 2
 # var b = "text"
 signal level_chosen(level)
-
+var level = 0
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
@@ -22,13 +22,17 @@ func _on_InteractableSlider_slider_moved(position):
 		return
 	if position == .1:
 		emit_signal("level_chosen", 1)
+		level = 1
 		return
 	if position == .2:
 		emit_signal("level_chosen", 2)
+		level = 2
 		return
 	if position >= .2 and position < .4:
 		emit_signal("level_chosen", 3)
+		level = 3
 		return
 	if position == .4:
 		emit_signal("level_chosen", 4)
+		level = 4
 		return # Replace with function body.
