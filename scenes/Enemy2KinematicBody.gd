@@ -6,7 +6,11 @@ extends KinematicBody
 # var b = "text"
 
 
-onready var player_body = get_owner().get_node("FPController/PlayerBody/KinematicBody")
+
+#onready var player_body = get_owner().get_node("FPController/PlayerBody/KinematicBody")
+onready var player_body = get_tree().current_scene.get_node("FPController/PlayerBody/KinematicBody")
+#onready var player_body = get_node("/root/World/FPController/PlayerBody/KinematicBody")
+#onready var player_body = get_node("/root/FPController/PlayerBody/KinematicBody")
 
 #set enemy parameters
 export var enemy_speed = 1.5
@@ -24,8 +28,11 @@ var height_offset = 0
 var direction = 0
 var enemy_alive = true
 var death_anim_playing = false
+
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	
 	height_offset = ARVRServer.world_scale * Vector3(0,1,0)
 	look_at(player_body.translation+height_offset, Vector3.UP) # Replace with function body.
 
@@ -33,6 +40,7 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
 	#check distance from player every frame
+	
 	enemy_velocity = Vector3.ZERO
 	direction = player_body.global_transform.origin+height_offset-global_transform.origin
 	#print("Direction is " + str(direction))

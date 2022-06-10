@@ -1,4 +1,4 @@
-[gd_scene load_steps=68 format=2]
+[gd_scene load_steps=59 format=2]
 
 [ext_resource path="res://addons/godot-xr-tools/functions/Function_Direct_movement.tscn" type="PackedScene" id=1]
 [ext_resource path="res://addons/godot-xr-tools/functions/Function_pointer.tscn" type="PackedScene" id=2]
@@ -10,30 +10,24 @@
 [ext_resource path="res://addons/godot-xr-tools/misc/VR_Common_Shader_Cache.tscn" type="PackedScene" id=8]
 [ext_resource path="res://addons/godot-xr-tools/assets/PlayerBody.tscn" type="PackedScene" id=9]
 [ext_resource path="res://addons/godot-xr-tools/functions/Function_Turn_movement.tscn" type="PackedScene" id=10]
-[ext_resource path="res://scenes/EnemyMesh1.tscn" type="PackedScene" id=11]
 [ext_resource path="res://fonts/TitleFont.tres" type="DynamicFont" id=12]
 [ext_resource path="res://GameLevels/BackgroundMusic.gd" type="Script" id=13]
-[ext_resource path="res://scenes/Enemy1KinematicBody.gd" type="Script" id=14]
-[ext_resource path="res://scenes/Enemy2KinematicBody.gd" type="Script" id=15]
 [ext_resource path="res://materials/ropematerial.tres" type="Material" id=16]
 [ext_resource path="res://scenes/Floor.tscn" type="PackedScene" id=17]
 [ext_resource path="res://materials/leverhandlematerial.tres" type="Material" id=18]
 [ext_resource path="res://sounds/Welcome_to_the_optio_814.mp3" type="AudioStream" id=19]
 [ext_resource path="res://sounds/sfx100v2_thunder_01.ogg" type="AudioStream" id=20]
 [ext_resource path="res://sounds/Very__Warm_840.mp3" type="AudioStream" id=21]
-[ext_resource path="res://sounds/creature_roar_03.ogg" type="AudioStream" id=22]
 [ext_resource path="res://textures/SkyOnlyHDRI023_2K-TONEMAPPED.jpg" type="Texture" id=23]
 [ext_resource path="res://sounds/Soliloquy.mp3" type="AudioStream" id=24]
 [ext_resource path="res://GameLevels/LevelSelectTextMeshLn2.gd" type="Script" id=25]
 [ext_resource path="res://GameLevels/Level1Voiceovers.gd" type="Script" id=26]
-[ext_resource path="res://scenes/Enemy2Mesh.tscn" type="PackedScene" id=27]
 [ext_resource path="res://addons/godot-xr-tools/functions/Function_Max_Payne_Dive_movement.tscn" type="PackedScene" id=28]
 [ext_resource path="res://scenes/LevelSelectSliderSnap.tscn" type="PackedScene" id=29]
 [ext_resource path="res://scenes/ControlsViewport.tscn" type="PackedScene" id=30]
 [ext_resource path="res://scenes/CoinPickable.tscn" type="PackedScene" id=31]
 [ext_resource path="res://scenes/PickableHandGun.tscn" type="PackedScene" id=32]
 [ext_resource path="res://scenes/TutorialVideosViewport.tscn" type="PackedScene" id=33]
-[ext_resource path="res://scenes/EnemyType2.tscn" type="PackedScene" id=34]
 [ext_resource path="res://addons/godot-xr-tools/functions/Function_Glide_movement.tscn" type="PackedScene" id=35]
 [ext_resource path="res://addons/godot-xr-tools/functions/Function_Climb_movement.tscn" type="PackedScene" id=36]
 [ext_resource path="res://addons/godot-xr-tools/objects/Virtual_Keyboard.tscn" type="PackedScene" id=37]
@@ -42,7 +36,6 @@
 [ext_resource path="res://scenes/GameLevel1BorderWall.tscn" type="PackedScene" id=40]
 [ext_resource path="res://scenes/NameEditViewport.tscn" type="PackedScene" id=41]
 [ext_resource path="res://scenes/MusicLever.tscn" type="PackedScene" id=42]
-[ext_resource path="res://scenes/EnemyType1.tscn" type="PackedScene" id=43]
 [ext_resource path="res://scenes/QuitLever.tscn" type="PackedScene" id=44]
 [ext_resource path="res://addons/godot-xr-tools/functions/Function_Grapple_movement.tscn" type="PackedScene" id=45]
 [ext_resource path="res://scenes/LeaderboardLever.tscn" type="PackedScene" id=46]
@@ -145,14 +138,6 @@ text = "Place Coin to Start"
 font = ExtResource( 12 )
 pixel_size = 0.001
 depth = 0.01
-
-[sub_resource type="CapsuleShape" id=21]
-radius = 0.3
-height = 1.3
-
-[sub_resource type="CapsuleShape" id=23]
-radius = 0.35
-height = 1.35
 
 [node name="GameOptionsLevel" type="Spatial"]
 script = ExtResource( 50 )
@@ -372,67 +357,6 @@ cast_shadow = 0
 mesh = SubResource( 19 )
 skeleton = NodePath("../LevelSelectSliderSnap")
 
-[node name="Enemy1KinematicBody" parent="." instance=ExtResource( 43 )]
-
-[node name="Enemy1KinematicBody2" type="KinematicBody" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4.36294, 1, 4.77049 )
-input_ray_pickable = false
-axis_lock_motion_y = true
-move_lock_y = true
-script = ExtResource( 14 )
-enemy_attack_range = 1.25
-
-[node name="EnemyMesh1" parent="Enemy1KinematicBody2" instance=ExtResource( 11 )]
-
-[node name="Enemy1CollisionCapsule" type="CollisionShape" parent="Enemy1KinematicBody2"]
-transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0 )
-shape = SubResource( 21 )
-
-[node name="HitArea" type="Area" parent="Enemy1KinematicBody2"]
-collision_layer = 3
-collision_mask = 3
-input_ray_pickable = false
-
-[node name="AreaCollisionShape" type="CollisionShape" parent="Enemy1KinematicBody2/HitArea"]
-transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0 )
-shape = SubResource( 23 )
-
-[node name="EnemySounds" type="AudioStreamPlayer3D" parent="Enemy1KinematicBody2"]
-stream = ExtResource( 22 )
-unit_db = 3.0
-max_db = 5.0
-max_distance = 10.0
-
-[node name="Enemy2KinematicBody" parent="." instance=ExtResource( 34 )]
-
-[node name="Enemy2KinematicBody2" type="KinematicBody" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.61091, 1, 4.85718 )
-input_ray_pickable = false
-axis_lock_motion_y = true
-move_lock_y = true
-script = ExtResource( 15 )
-
-[node name="Enemy2Mesh" parent="Enemy2KinematicBody2" instance=ExtResource( 27 )]
-
-[node name="Enemy2CollisionCapsule" type="CollisionShape" parent="Enemy2KinematicBody2"]
-transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0 )
-shape = SubResource( 21 )
-
-[node name="HitArea" type="Area" parent="Enemy2KinematicBody2"]
-collision_layer = 3
-collision_mask = 3
-input_ray_pickable = false
-
-[node name="AreaCollisionShape" type="CollisionShape" parent="Enemy2KinematicBody2/HitArea"]
-transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0 )
-shape = SubResource( 23 )
-
-[node name="EnemySounds" type="AudioStreamPlayer3D" parent="Enemy2KinematicBody2"]
-stream = ExtResource( 22 )
-unit_db = 3.0
-max_db = 5.0
-max_distance = 10.0
-
 [node name="Level1Voiceovers" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 19 )
 script = ExtResource( 26 )
@@ -451,8 +375,6 @@ collision_mask = 3
 
 [connection signal="level_chosen" from="LevelSelectSliderSnap" to="LevelSelectTextMeshLn2" method="_on_LevelSelectSliderSnap_level_chosen"]
 [connection signal="has_picked_up" from="LevelSelectSnapZone" to="." method="_on_LevelSelectSnapZone_has_picked_up"]
-[connection signal="body_entered" from="Enemy1KinematicBody2/HitArea" to="Enemy1KinematicBody2" method="_on_HitArea_body_entered"]
-[connection signal="body_entered" from="Enemy2KinematicBody2/HitArea" to="Enemy2KinematicBody2" method="_on_HitArea_body_entered"]
 
 [editable path="FPController"]
 [editable path="FPController/LeftHandController/LeftHand"]

@@ -7,7 +7,7 @@
 [ext_resource path="res://scenes/OQ_SplashScreen.tscn" type="PackedScene" id=5]
 [ext_resource path="res://GameLevels/BackgroundMusic.gd" type="Script" id=6]
 [ext_resource path="res://addons/godot-xr-tools/misc/VR_Common_Shader_Cache.tscn" type="PackedScene" id=7]
-[ext_resource path="res://sounds/Go_dot_257.mp3" type="AudioStream" id=8]
+[ext_resource path="res://sounds/Go_Dough_Game_Engine_912.mp3" type="AudioStream" id=8]
 
 [sub_resource type="Environment" id=1]
 

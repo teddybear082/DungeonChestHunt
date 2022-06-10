@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=29 format=2]
 
 [ext_resource path="res://addons/godot-xr-tools/assets/LeftHand.tscn" type="PackedScene" id=1]
 [ext_resource path="res://addons/godot-xr-tools/misc/VR_Common_Shader_Cache.tscn" type="PackedScene" id=2]
@@ -6,15 +6,20 @@
 [ext_resource path="res://addons/godot-xr-tools/assets/RightHand.tscn" type="PackedScene" id=4]
 [ext_resource path="res://addons/godot-xr-tools/functions/Function_Direct_movement.tscn" type="PackedScene" id=5]
 [ext_resource path="res://addons/godot-xr-tools/assets/PlayerBody.tscn" type="PackedScene" id=6]
-[ext_resource path="res://addons/godot-xr-tools/assets/PlayerBody.gd" type="Script" id=7]
+[ext_resource path="res://sounds/Kanye West  Power Audio.mp3" type="AudioStream" id=7]
 [ext_resource path="res://scenes/Floor.tscn" type="PackedScene" id=8]
 [ext_resource path="res://scenes/QuitLever.tscn" type="PackedScene" id=9]
+[ext_resource path="res://addons/godot-xr-tools/functions/Function_Turn_movement.tscn" type="PackedScene" id=10]
 [ext_resource path="res://addons/godot-xr-tools/functions/Function_Pickup.tscn" type="PackedScene" id=11]
 [ext_resource path="res://addons/godot-xr-tools/functions/Function_JumpDetect_movement.tscn" type="PackedScene" id=12]
 [ext_resource path="res://addons/godot-xr-tools/functions/Locomotion_WalkInPlace.tscn" type="PackedScene" id=13]
 [ext_resource path="res://addons/godot-xr-tools/functions/Function_Jump_movement.tscn" type="PackedScene" id=14]
+[ext_resource path="res://materials/ropematerial.tres" type="Material" id=15]
 [ext_resource path="res://addons/godot-xr-tools/functions/Function_Glide_movement.tscn" type="PackedScene" id=16]
 [ext_resource path="res://addons/godot-xr-tools/functions/Function_Max_Payne_Dive_movement.tscn" type="PackedScene" id=17]
+[ext_resource path="res://addons/godot-xr-tools/functions/Function_Grapple_movement.tscn" type="PackedScene" id=18]
+[ext_resource path="res://GameLevels/GameLevel1.gd" type="Script" id=19]
+[ext_resource path="res://scenes/EnemySpawner.tscn" type="PackedScene" id=20]
 [ext_resource path="res://sounds/sfx100v2_thunder_01.ogg" type="AudioStream" id=38]
 [ext_resource path="res://addons/godot-xr-tools/functions/Function_BulletTime_movement.tscn" type="PackedScene" id=44]
 [ext_resource path="res://scenes/PickableHandGun.tscn" type="PackedScene" id=45]
@@ -22,7 +27,18 @@
 [ext_resource path="res://scenes/EnemyType2.tscn" type="PackedScene" id=48]
 [ext_resource path="res://scenes/EnemyType1.tscn" type="PackedScene" id=49]
 
+[sub_resource type="CubeMesh" id=1]
+resource_local_to_scene = true
+size = Vector3( 0.05, 0.05, 0.05 )
+subdivide_depth = 20
+
+[sub_resource type="CubeMesh" id=2]
+resource_local_to_scene = true
+size = Vector3( 0.05, 0.05, 0.05 )
+subdivide_depth = 20
+
 [node name="GameLevel1" type="Spatial"]
+script = ExtResource( 19 )
 
 [node name="Floor" parent="." instance=ExtResource( 8 )]
 
@@ -46,6 +62,15 @@ strafe = true
 [node name="SloMo_Sound" parent="FPController/LeftHandController/Function_BulletTime_movement" index="1"]
 stream = ExtResource( 46 )
 
+[node name="Function_Grapple_movement" parent="FPController/LeftHandController" index="4" instance=ExtResource( 18 )]
+grapple_button_id = 7
+
+[node name="Grapple_Target" parent="FPController/LeftHandController/Function_Grapple_movement" index="1"]
+mesh = SubResource( 1 )
+
+[node name="Line" parent="FPController/LeftHandController/Function_Grapple_movement/LineHelper" index="0"]
+material = ExtResource( 15 )
+
 [node name="RightHand" parent="FPController/RightHandController" index="0" instance=ExtResource( 4 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.03, -0.05, 0.15 )
 
@@ -61,8 +86,19 @@ volume_db = 10.0
 [node name="Function_Jump_movement" parent="FPController/RightHandController" index="3" instance=ExtResource( 14 )]
 jump_button_id = 14
 
-[node name="PlayerBody" type="Node" parent="FPController" instance=ExtResource( 6 )]
-script = ExtResource( 7 )
+[node name="Function_Turn_movement" parent="FPController/RightHandController" index="4" instance=ExtResource( 10 )]
+smooth_rotation = true
+
+[node name="Function_Grapple_movement" parent="FPController/RightHandController" index="5" instance=ExtResource( 18 )]
+grapple_button_id = 7
+
+[node name="Grapple_Target" parent="FPController/RightHandController/Function_Grapple_movement" index="1"]
+mesh = SubResource( 2 )
+
+[node name="Line" parent="FPController/RightHandController/Function_Grapple_movement/LineHelper" index="0"]
+material = ExtResource( 15 )
+
+[node name="PlayerBody" parent="FPController" instance=ExtResource( 6 )]
 
 [node name="Locomotion_WalkInPlace" parent="FPController" instance=ExtResource( 13 )]
 fpcontroller_path = NodePath("..")
@@ -76,27 +112,35 @@ r_controller_path = NodePath("../RightHandController")
 
 [node name="Enemy1KinematicBody" parent="." instance=ExtResource( 49 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 7.79837, 1, -6.55746 )
+enemy_alert_range = 20
 
 [node name="Enemy2KinematicBody" parent="." instance=ExtResource( 48 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -9.46211, 1, -8.58405 )
+enemy_alert_range = 20
 
 [node name="Enemy1KinematicBody2" parent="." instance=ExtResource( 49 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -8.876, 1, 0 )
+enemy_alert_range = 20
 
 [node name="Enemy2KinematicBody2" parent="." instance=ExtResource( 48 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 12.1659, 1, 0.157863 )
+enemy_alert_range = 20
 
 [node name="Enemy1KinematicBody3" parent="." instance=ExtResource( 49 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.251722, 1, -6.45389 )
+enemy_alert_range = 20
 
 [node name="Enemy2KinematicBody3" parent="." instance=ExtResource( 48 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -8.70568, 1, 2.26475 )
+enemy_alert_range = 20
 
 [node name="Enemy1KinematicBody4" parent="." instance=ExtResource( 49 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4.438, 1, 6.23843 )
+enemy_alert_range = 20
 
 [node name="Enemy2KinematicBody4" parent="." instance=ExtResource( 48 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.27136, 1, 5.69117 )
+enemy_alert_range = 20
 
 [node name="PickableHandGun" parent="." instance=ExtResource( 45 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.539169, -1.27158 )
@@ -107,6 +151,45 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.339126, 0.535776, -1.28872 )
 [node name="QuitLeverTextMesh" parent="." instance=ExtResource( 9 )]
 transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 3.21455, 1.58128, -1.43699 )
 
+[node name="BackgroundMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 7 )
+autoplay = true
+
+[node name="Enemy1KinematicBody5" parent="." instance=ExtResource( 49 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3.36, 1, -12.587 )
+enemy_alert_range = 20
+
+[node name="Enemy2KinematicBody5" parent="." instance=ExtResource( 48 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.61091, 1, 9.45784 )
+enemy_alert_range = 20
+
+[node name="Enemy1KinematicBody6" parent="." instance=ExtResource( 49 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4.8025, 1, -14.1602 )
+enemy_alert_range = 20
+
+[node name="Enemy2KinematicBody6" parent="." instance=ExtResource( 48 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 12.9747, 1, -10.723 )
+enemy_alert_range = 20
+
+[node name="Enemy1KinematicBody7" parent="." instance=ExtResource( 49 )]
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 15.458, 2, 12.412 )
+enemy_alert_range = 20
+
+[node name="Enemy2KinematicBody8" parent="." instance=ExtResource( 48 )]
+transform = Transform( 4, 0, 0, 0, 4, 0, 0, 0, 4, 12.848, 4, -16.323 )
+enemy_alert_range = 25
+
+[node name="Enemy1KinematicBody8" parent="." instance=ExtResource( 49 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -7.4391, 1, 15.9861 )
+
+[node name="Enemy2KinematicBody7" parent="." instance=ExtResource( 48 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 10.0501, 1, 8.41797 )
+
+[node name="EnemySpawner" parent="." instance=ExtResource( 20 )]
+num_zombies = 30
+
 [editable path="FPController"]
 [editable path="FPController/LeftHandController/Function_BulletTime_movement"]
+[editable path="FPController/LeftHandController/Function_Grapple_movement"]
 [editable path="FPController/RightHandController/Function_Max_Payne_Dive_movement"]
+[editable path="FPController/RightHandController/Function_Grapple_movement"]

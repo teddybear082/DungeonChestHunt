@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Kanye West  Power Audio.mp3-d357b804465b3888f6de534814037ea7.mp3str"
+
+[deps]
+
+source_file="res://sounds/Kanye West  Power Audio.mp3"
+dest_files=[ "res://.import/Kanye West  Power Audio.mp3-d357b804465b3888f6de534814037ea7.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

@@ -6,8 +6,10 @@ extends KinematicBody
 # var b = "text"
 
 
-onready var player_body = get_owner().get_node("FPController/PlayerBody/KinematicBody")
-
+#onready var player_body = get_owner().get_node("FPController/PlayerBody/KinematicBody")
+onready var player_body = get_tree().current_scene.get_node("FPController/PlayerBody/KinematicBody")
+#onready var player_body = get_node("/root/World/FPController/PlayerBody/KinematicBody")
+#onready var player_body = get_node("/root/FPController/PlayerBody/KinematicBody")
 #set enemy parameters
 export var enemy_speed = 1.5
 export var enemy_health = 100
@@ -24,6 +26,7 @@ var height_offset = 0
 var direction = 0
 var enemy_alive = true
 var death_anim_playing = false
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	height_offset = ARVRServer.world_scale * Vector3(0,1,0)
