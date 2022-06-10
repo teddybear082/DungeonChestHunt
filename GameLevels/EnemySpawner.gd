@@ -1,6 +1,6 @@
 extends Spatial
 
-export var num_zombies = 20
+export var num_zombies = 50
 
 var random_x_coord = 0
 var random_z_coord = 0

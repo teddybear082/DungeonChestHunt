@@ -17,5 +17,5 @@ func _ready():
 
 
 func _on_AnimationPlayer_animation_finished(anim_name):
-#	$AnimationPlayer.play(anim_name) # Replace with function body.
-	pass
+	$AnimationPlayer.play(anim_name) # Replace with function body.
+#	pass

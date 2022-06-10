@@ -87,7 +87,7 @@ func perform_enemy_animation(distance, isEnemyAlive):
 			$Enemy2Mesh/AnimationPlayer.animation_set_next($Enemy2Mesh/AnimationPlayer.current_animation, playingattack)
 	#		$EnemyMesh1/AnimationPlayer.play(playingattack)
 	#		$EnemyMesh1/AnimationPlayer.advance(0)
-			yield($Enemy2Mesh/AnimationPlayer, "animation_finished") 
+	#		yield($Enemy2Mesh/AnimationPlayer, "animation_finished") 
 			return
 		
 		if distance_to_target > enemy_attack_range and distance_to_target < enemy_alert_range:
