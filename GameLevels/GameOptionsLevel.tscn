@@ -1,4 +1,4 @@
-[gd_scene load_steps=59 format=2]
+[gd_scene load_steps=57 format=2]
 
 [ext_resource path="res://addons/godot-xr-tools/functions/Function_Direct_movement.tscn" type="PackedScene" id=1]
 [ext_resource path="res://addons/godot-xr-tools/functions/Function_pointer.tscn" type="PackedScene" id=2]
@@ -10,16 +10,16 @@
 [ext_resource path="res://addons/godot-xr-tools/misc/VR_Common_Shader_Cache.tscn" type="PackedScene" id=8]
 [ext_resource path="res://addons/godot-xr-tools/assets/PlayerBody.tscn" type="PackedScene" id=9]
 [ext_resource path="res://addons/godot-xr-tools/functions/Function_Turn_movement.tscn" type="PackedScene" id=10]
+[ext_resource path="res://materials/brightoutdoorworldenv.tres" type="Environment" id=11]
 [ext_resource path="res://fonts/TitleFont.tres" type="DynamicFont" id=12]
 [ext_resource path="res://GameLevels/BackgroundMusic.gd" type="Script" id=13]
+[ext_resource path="res://sounds/Dark Ages.mp3" type="AudioStream" id=14]
 [ext_resource path="res://materials/ropematerial.tres" type="Material" id=16]
 [ext_resource path="res://scenes/Floor.tscn" type="PackedScene" id=17]
 [ext_resource path="res://materials/leverhandlematerial.tres" type="Material" id=18]
 [ext_resource path="res://sounds/Welcome_to_the_optio_814.mp3" type="AudioStream" id=19]
 [ext_resource path="res://sounds/sfx100v2_thunder_01.ogg" type="AudioStream" id=20]
 [ext_resource path="res://sounds/Very__Warm_840.mp3" type="AudioStream" id=21]
-[ext_resource path="res://textures/SkyOnlyHDRI023_2K-TONEMAPPED.jpg" type="Texture" id=23]
-[ext_resource path="res://sounds/Soliloquy.mp3" type="AudioStream" id=24]
 [ext_resource path="res://GameLevels/LevelSelectTextMeshLn2.gd" type="Script" id=25]
 [ext_resource path="res://GameLevels/Level1Voiceovers.gd" type="Script" id=26]
 [ext_resource path="res://addons/godot-xr-tools/functions/Function_Max_Payne_Dive_movement.tscn" type="PackedScene" id=28]
@@ -65,16 +65,6 @@ albedo_color = Color( 0.117647, 0.0901961, 0.0901961, 1 )
 resource_local_to_scene = true
 size = Vector3( 0.05, 0.05, 0.05 )
 subdivide_depth = 20
-
-[sub_resource type="PanoramaSky" id=10]
-panorama = ExtResource( 23 )
-
-[sub_resource type="Environment" id=11]
-background_mode = 2
-background_sky = SubResource( 10 )
-background_color = Color( 0.454902, 0.768627, 0.8, 0 )
-ambient_light_color = Color( 0.952941, 0.909804, 0.909804, 1 )
-ambient_light_sky_contribution = 0.0
 
 [sub_resource type="TextMesh" id=15]
 material = ExtResource( 18 )
@@ -253,10 +243,10 @@ right_pickup = NodePath("../RightHandController/Function_Pickup")
 [node name="Floor" parent="." instance=ExtResource( 17 )]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource( 11 )
+environment = ExtResource( 11 )
 
 [node name="BackgroundMusic" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 24 )
+stream = ExtResource( 14 )
 autoplay = true
 script = ExtResource( 13 )
 

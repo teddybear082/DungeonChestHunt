@@ -16,5 +16,8 @@ func on_music_state_changed(state):
 	if state == false:
 		stop()
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+func _process(delta):
+	if PlayerMasterControls.backgroundmusic == true and is_playing() == false:
+		play()
+	if PlayerMasterControls.backgroundmusic == false:
+		stop()

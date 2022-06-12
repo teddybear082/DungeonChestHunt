@@ -5,7 +5,6 @@
 [ext_resource path="res://textures/Rock033_1K-JPG/Rock033_1K_NormalGL.jpg" type="Texture" id=3]
 
 [resource]
-flags_use_shadow_to_opacity = true
 albedo_texture = ExtResource( 1 )
 roughness_texture = ExtResource( 2 )
 normal_enabled = true

@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/janus-turning.mp3-41abe08262e058edf1c153804aaf00b9.mp3str"
+
+[deps]
+
+source_file="res://sounds/janus-turning.mp3"
+dest_files=[ "res://.import/janus-turning.mp3-41abe08262e058edf1c153804aaf00b9.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

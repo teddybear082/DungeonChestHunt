@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://scenes/OverlayLabel3D.gd" type="Script" id=1]
+[ext_resource path="res://scenes/OverlayLabel3D.tscn" type="PackedScene" id=2]
+
+[node name="OverlayHelper" type="Spatial"]
+script = ExtResource( 1 )
+arvrcamera_path = NodePath("../FPController/ARVRCamera")
+
+[node name="OverlayLabel3D" parent="." instance=ExtResource( 2 )]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0.3, 0 )

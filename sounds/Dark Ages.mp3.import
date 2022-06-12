@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Dark Ages.mp3-aa3eff79896a56b6b2e960161510b972.mp3str"
+
+[deps]
+
+source_file="res://sounds/Dark Ages.mp3"
+dest_files=[ "res://.import/Dark Ages.mp3-aa3eff79896a56b6b2e960161510b972.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

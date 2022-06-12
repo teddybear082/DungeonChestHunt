@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://addons/godot-xr-tools/objects/LeverSnap.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scenes/OptionsLeverSnap.gd" type="Script" id=2]
+[ext_resource path="res://materials/leverhandlematerial.tres" type="Material" id=3]
+[ext_resource path="res://materials/leverboxmaterial.tres" type="Material" id=4]
+
+[node name="OptionsLeverSnap" instance=ExtResource( 1 )]
+transform = Transform( 0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0, 0, 0 )
+script = ExtResource( 2 )
+
+[node name="MeshInstance" parent="Frame" index="1"]
+material/0 = ExtResource( 4 )
+
+[node name="BarMesh" parent="HingeOrigin/InteractableHinge/HingeBody" index="2"]
+material/0 = ExtResource( 3 )
+
+[node name="MeshInstance" parent="HingeOrigin/InteractableHinge/HingeBody" index="3"]
+material/0 = ExtResource( 3 )
+
+[node name="InteractableHandle" parent="HingeOrigin/InteractableHinge/HandleOrigin" index="0"]
+collision_layer = 262147
+collision_mask = 3
+
+[connection signal="hinge_moved" from="HingeOrigin/InteractableHinge" to="." method="_on_InteractableHinge_hinge_moved"]

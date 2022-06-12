@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://fonts/overlayfont.tres" type="DynamicFont" id=2]
+
+[node name="OverlayLabel3D" type="Label3D"]
+transform = Transform( -1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 0 )
+cast_shadow = 0
+pixel_size = 0.001
+modulate = Color( 0.847059, 0.596078, 0.145098, 1 )
+text = "Test Text"
+font = ExtResource( 2 )

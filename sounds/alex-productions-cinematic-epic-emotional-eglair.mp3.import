@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/alex-productions-cinematic-epic-emotional-eglair.mp3-9068d24cfe697cf77ffeecd47f459f98.mp3str"
+
+[deps]
+
+source_file="res://sounds/alex-productions-cinematic-epic-emotional-eglair.mp3"
+dest_files=[ "res://.import/alex-productions-cinematic-epic-emotional-eglair.mp3-9068d24cfe697cf77ffeecd47f459f98.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://fonts/TitleFont.tres" type="DynamicFont" id=1]
+[ext_resource path="res://materials/leverhandlematerial.tres" type="Material" id=2]
+
+[sub_resource type="TextMesh" id=3]
+material = ExtResource( 2 )
+text = "Return to Options Menu"
+font = ExtResource( 1 )
+pixel_size = 0.001
+depth = 0.01
+
+[node name="OptionsLeverTextMesh" type="MeshInstance"]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 3.16897, 1.16419, -0.26765 )
+mesh = SubResource( 3 )
