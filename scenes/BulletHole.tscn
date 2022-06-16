@@ -1,0 +1,33 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://decalco/src/DecalGLES2.shader" type="Shader" id=1]
+[ext_resource path="res://scenes/BulletHole.gd" type="Script" id=2]
+[ext_resource path="res://textures/bullet_hole2.png" type="Texture" id=3]
+
+[sub_resource type="CubeMesh" id=1]
+
+[sub_resource type="ShaderMaterial" id=2]
+shader = ExtResource( 1 )
+shader_param/albedo_tint = Color( 1, 1, 1, 1 )
+shader_param/emission_tint = Color( 0, 0, 0, 1 )
+shader_param/emission_strength = 1.0
+shader_param/occlusion_strength = 1.0
+shader_param/specular_strength = 1.0
+shader_param/metallic_strength = 1.0
+shader_param/current_frame = 0
+shader_param/flipbook_columns_count = 1
+shader_param/current_frame_blend = 0.0
+shader_param/use_normal_map = false
+shader_param/albedo = ExtResource( 3 )
+
+[node name="BulletHole" type="MeshInstance"]
+transform = Transform( 0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0 )
+mesh = SubResource( 1 )
+material/0 = SubResource( 2 )
+script = ExtResource( 2 )
+
+[node name="BulletHoleCleanUpTimer" type="Timer" parent="."]
+wait_time = 10.0
+autostart = true
+
+[connection signal="timeout" from="BulletHoleCleanUpTimer" to="." method="_on_BulletHoleCleanUpTimer_timeout"]

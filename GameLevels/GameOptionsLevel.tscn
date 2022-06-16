@@ -1,4 +1,4 @@
-[gd_scene load_steps=57 format=2]
+[gd_scene load_steps=58 format=2]
 
 [ext_resource path="res://addons/godot-xr-tools/functions/Function_Direct_movement.tscn" type="PackedScene" id=1]
 [ext_resource path="res://addons/godot-xr-tools/functions/Function_pointer.tscn" type="PackedScene" id=2]
@@ -14,6 +14,7 @@
 [ext_resource path="res://fonts/TitleFont.tres" type="DynamicFont" id=12]
 [ext_resource path="res://GameLevels/BackgroundMusic.gd" type="Script" id=13]
 [ext_resource path="res://sounds/Dark Ages.mp3" type="AudioStream" id=14]
+[ext_resource path="res://scenes/BulletHole.tscn" type="PackedScene" id=15]
 [ext_resource path="res://materials/ropematerial.tres" type="Material" id=16]
 [ext_resource path="res://scenes/Floor.tscn" type="PackedScene" id=17]
 [ext_resource path="res://materials/leverhandlematerial.tres" type="Material" id=18]
@@ -362,6 +363,9 @@ collision_mask = 3
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.226356, 1.08492, 4.54166 )
 collision_layer = 3
 collision_mask = 3
+
+[node name="BulletHole" parent="." instance=ExtResource( 15 )]
+transform = Transform( 0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0.93346, 6.65839 )
 
 [connection signal="level_chosen" from="LevelSelectSliderSnap" to="LevelSelectTextMeshLn2" method="_on_LevelSelectSliderSnap_level_chosen"]
 [connection signal="has_picked_up" from="LevelSelectSnapZone" to="." method="_on_LevelSelectSnapZone_has_picked_up"]
