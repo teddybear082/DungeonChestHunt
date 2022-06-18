@@ -21,6 +21,8 @@ size = Vector3( 10, 10, 10 )
 
 [node name="Enemy1KinematicBody" type="KinematicBody" groups=["enemies"]]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4.438, 1, 0 )
+collision_layer = 131076
+collision_mask = 131079
 input_ray_pickable = false
 axis_lock_motion_y = true
 move_lock_y = true
@@ -73,8 +75,8 @@ transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0
 shape = SubResource( 21 )
 
 [node name="HitArea" type="Area" parent="."]
-collision_layer = 3
-collision_mask = 3
+collision_layer = 6
+collision_mask = 2
 input_ray_pickable = false
 
 [node name="AreaCollisionShape" type="CollisionShape" parent="HitArea"]

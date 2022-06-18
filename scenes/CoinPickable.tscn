@@ -9,8 +9,8 @@ points = PoolVector3Array( 0, -0.105812, -1, -0.707126, -0.105812, -0.707126, 0,
 
 [node name="CoinPickable" instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.035706, 0, 0.0127465 )
-collision_layer = 131073
-collision_mask = 131073
+collision_layer = 131074
+collision_mask = 131074
 press_to_hold = false
 
 [node name="PickupCenter" parent="." index="0"]

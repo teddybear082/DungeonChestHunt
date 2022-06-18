@@ -6,6 +6,8 @@
 radius = 0.1
 
 [node name="LevelSelectSnapZone" instance=ExtResource( 1 )]
+collision_layer = 2
+collision_mask = 2
 
 [node name="CollisionShape" parent="." index="0"]
 shape = SubResource( 1 )

@@ -284,6 +284,14 @@ singletons=[ "res://addons/godot-openxr/config/godot_openxr.gdnlib" ]
 
 common/drop_mouse_on_gui_input_disabled=true
 
+[layer_names]
+
+3d_physics/layer_1="Playerbody"
+3d_physics/layer_2="Environment and Objs"
+3d_physics/layer_3="Enemies"
+3d_physics/layer_4="Menus"
+3d_physics/layer_18="PhysicsHands"
+
 [physics]
 
 common/physics_fps=72

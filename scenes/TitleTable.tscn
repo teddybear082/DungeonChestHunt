@@ -25,8 +25,8 @@ surfaces/0 = {
 transform = Transform( 0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 0 )
 
 [node name="StaticBody" type="StaticBody" parent="Sketchfab_model/root/GLTF_SceneRootNode/Table_0" index="0"]
-collision_layer = 3
-collision_mask = 3
+collision_layer = 131074
+collision_mask = 131074
 input_ray_pickable = false
 
 [node name="CollisionShape" type="CollisionShape" parent="Sketchfab_model/root/GLTF_SceneRootNode/Table_0/StaticBody" index="0"]
