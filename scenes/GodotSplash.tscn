@@ -45,3 +45,5 @@ stream = ExtResource( 8 )
 
 [editable path="OQ_SplashScreen"]
 [editable path="FPController"]
+[editable path="FPController/LeftHandController/LeftHand"]
+[editable path="FPController/LeftHandController/LeftHand/LeftHand"]

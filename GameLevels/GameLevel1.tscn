@@ -152,6 +152,7 @@ autoplay = true
 script = ExtResource( 7 )
 
 [node name="EnemySpawner" parent="." instance=ExtResource( 20 )]
+num_zombies = 20
 
 [node name="Voiceover" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 21 )
@@ -319,8 +320,12 @@ grab_distance = 0.15
 [connection signal="finished" from="Voiceover" to="Voiceover" method="_on_Voiceover_finished"]
 
 [editable path="FPController"]
+[editable path="FPController/LeftHandController/LeftHand"]
+[editable path="FPController/LeftHandController/LeftHand/LeftHand"]
 [editable path="FPController/LeftHandController/Function_BulletTime_movement"]
 [editable path="FPController/LeftHandController/Function_Grapple_movement"]
+[editable path="FPController/RightHandController/RightHand"]
+[editable path="FPController/RightHandController/RightHand/RightHand"]
 [editable path="FPController/RightHandController/Function_Max_Payne_Dive_movement"]
 [editable path="FPController/RightHandController/Function_Grapple_movement"]
 [editable path="FPController/PlayerBody"]

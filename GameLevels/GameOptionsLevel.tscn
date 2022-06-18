@@ -1,4 +1,4 @@
-[gd_scene load_steps=58 format=2]
+[gd_scene load_steps=60 format=2]
 
 [ext_resource path="res://addons/godot-xr-tools/functions/Function_Direct_movement.tscn" type="PackedScene" id=1]
 [ext_resource path="res://addons/godot-xr-tools/functions/Function_pointer.tscn" type="PackedScene" id=2]
@@ -14,7 +14,7 @@
 [ext_resource path="res://fonts/TitleFont.tres" type="DynamicFont" id=12]
 [ext_resource path="res://GameLevels/BackgroundMusic.gd" type="Script" id=13]
 [ext_resource path="res://sounds/Dark Ages.mp3" type="AudioStream" id=14]
-[ext_resource path="res://scenes/BulletHole.tscn" type="PackedScene" id=15]
+[ext_resource path="res://addons/follow_bone_3d/FollowBone3D.gd" type="Script" id=15]
 [ext_resource path="res://materials/ropematerial.tres" type="Material" id=16]
 [ext_resource path="res://scenes/Floor.tscn" type="PackedScene" id=17]
 [ext_resource path="res://materials/leverhandlematerial.tres" type="Material" id=18]
@@ -129,6 +129,10 @@ text = "Place Coin to Start"
 font = ExtResource( 12 )
 pixel_size = 0.001
 depth = 0.01
+
+[sub_resource type="SphereMesh" id=21]
+
+[sub_resource type="SphereShape" id=22]
 
 [node name="GameOptionsLevel" type="Spatial"]
 script = ExtResource( 50 )
@@ -364,8 +368,19 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.226356, 1.08492, 4.54166 )
 collision_layer = 3
 collision_mask = 3
 
-[node name="BulletHole" parent="." instance=ExtResource( 15 )]
-transform = Transform( 0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0.93346, 6.65839 )
+[node name="FollowBone3D" type="Position3D" parent="."]
+transform = Transform( -0.0316173, 0.0127275, -0.000628471, -0.000167084, -0.00209511, -0.0340238, -0.0127419, -0.0315541, 0.0020056, -0.529683, 0.984693, 1.90058 )
+script = ExtResource( 15 )
+skeleton = NodePath("../FPController/LeftHandController/LeftHand/LeftHand/Armature_Left/Skeleton")
+selected_bone = 7
+
+[node name="KinematicBody" type="KinematicBody" parent="FollowBone3D"]
+
+[node name="MeshInstance" type="MeshInstance" parent="FollowBone3D/KinematicBody"]
+mesh = SubResource( 21 )
+
+[node name="CollisionShape" type="CollisionShape" parent="FollowBone3D/KinematicBody"]
+shape = SubResource( 22 )
 
 [connection signal="level_chosen" from="LevelSelectSliderSnap" to="LevelSelectTextMeshLn2" method="_on_LevelSelectSliderSnap_level_chosen"]
 [connection signal="has_picked_up" from="LevelSelectSnapZone" to="." method="_on_LevelSelectSnapZone_has_picked_up"]

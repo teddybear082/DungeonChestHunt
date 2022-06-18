@@ -105,3 +105,6 @@ func _get_configuration_warning() -> String:
 		return "Duration must be a positive number"
 
 	return ""
+
+
+
