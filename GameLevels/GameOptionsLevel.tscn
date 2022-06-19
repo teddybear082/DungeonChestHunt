@@ -1,4 +1,4 @@
-[gd_scene load_steps=60 format=2]
+[gd_scene load_steps=58 format=2]
 
 [ext_resource path="res://addons/godot-xr-tools/functions/Function_Direct_movement.tscn" type="PackedScene" id=1]
 [ext_resource path="res://addons/godot-xr-tools/functions/Function_pointer.tscn" type="PackedScene" id=2]
@@ -14,7 +14,7 @@
 [ext_resource path="res://fonts/TitleFont.tres" type="DynamicFont" id=12]
 [ext_resource path="res://GameLevels/BackgroundMusic.gd" type="Script" id=13]
 [ext_resource path="res://sounds/Dark Ages.mp3" type="AudioStream" id=14]
-[ext_resource path="res://addons/follow_bone_3d/FollowBone3D.gd" type="Script" id=15]
+[ext_resource path="res://addons/follow_bone_3d/XRToolsPhysicsHands.tscn" type="PackedScene" id=15]
 [ext_resource path="res://materials/ropematerial.tres" type="Material" id=16]
 [ext_resource path="res://scenes/Floor.tscn" type="PackedScene" id=17]
 [ext_resource path="res://materials/leverhandlematerial.tres" type="Material" id=18]
@@ -130,10 +130,6 @@ font = ExtResource( 12 )
 pixel_size = 0.001
 depth = 0.01
 
-[sub_resource type="SphereMesh" id=21]
-
-[sub_resource type="SphereShape" id=22]
-
 [node name="GameOptionsLevel" type="Spatial"]
 script = ExtResource( 50 )
 
@@ -156,9 +152,15 @@ cast_shadow = 0
 strafe = true
 
 [node name="Function_Pickup" parent="FPController/LeftHandController" index="2" instance=ExtResource( 5 )]
+grab_collision_mask = 2
+ranged_collision_mask = 2
 
 [node name="Function_Grapple_movement" parent="FPController/LeftHandController" index="3" instance=ExtResource( 45 )]
+grapple_collision_mask = 10
 grapple_button_id = 7
+
+[node name="Grapple_RayCast" parent="FPController/LeftHandController/Function_Grapple_movement" index="0"]
+collision_mask = 10
 
 [node name="Grapple_Target" parent="FPController/LeftHandController/Function_Grapple_movement" index="1"]
 mesh = SubResource( 5 )
@@ -196,9 +198,15 @@ cast_shadow = 0
 [node name="Function_Turn_movement" parent="FPController/RightHandController" index="1" instance=ExtResource( 10 )]
 
 [node name="Function_Pickup" parent="FPController/RightHandController" index="2" instance=ExtResource( 5 )]
+grab_collision_mask = 2
+ranged_collision_mask = 2
 
 [node name="Function_Grapple_movement" parent="FPController/RightHandController" index="3" instance=ExtResource( 45 )]
+grapple_collision_mask = 10
 grapple_button_id = 7
+
+[node name="Grapple_RayCast" parent="FPController/RightHandController/Function_Grapple_movement" index="0"]
+collision_mask = 10
 
 [node name="Grapple_Target" parent="FPController/RightHandController/Function_Grapple_movement" index="1"]
 mesh = SubResource( 6 )
@@ -260,6 +268,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, -1.41703 )
 
 [node name="TutorialVideosViewport" parent="." instance=ExtResource( 33 )]
 transform = Transform( -0.0402364, 0, 0.99919, 0, 1, 0, -0.99919, 0, -0.0402364, -2.33406, 1.35042, 2.04112 )
+collision_layer = 8
 
 [node name="TutorialTextMesh" type="MeshInstance" parent="."]
 
@@ -360,27 +369,27 @@ script = ExtResource( 26 )
 
 [node name="PickableHandGun" parent="." instance=ExtResource( 32 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.468631, 1.07129, 4.54829 )
-collision_layer = 3
-collision_mask = 3
 
 [node name="PickableHandGun2" parent="." instance=ExtResource( 32 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.226356, 1.08492, 4.54166 )
-collision_layer = 3
-collision_mask = 3
 
-[node name="FollowBone3D" type="Position3D" parent="."]
+[node name="XRToolsPhysicsHands" parent="." instance=ExtResource( 15 )]
+
+[node name="LHFollowBone3D" parent="XRToolsPhysicsHands" index="0"]
 transform = Transform( -0.0316173, 0.0127275, -0.000628471, -0.000167084, -0.00209511, -0.0340238, -0.0127419, -0.0315541, 0.0020056, -0.529683, 0.984693, 1.90058 )
-script = ExtResource( 15 )
-skeleton = NodePath("../FPController/LeftHandController/LeftHand/LeftHand/Armature_Left/Skeleton")
 selected_bone = 7
 
-[node name="KinematicBody" type="KinematicBody" parent="FollowBone3D"]
+[node name="RHFollowBone3D" parent="XRToolsPhysicsHands" index="1"]
+transform = Transform( 0.0316173, -0.0127275, 0.000628471, -0.000167084, -0.00209511, -0.0340238, -0.0127419, -0.0315541, 0.0020056, 0.529683, 0.984693, 1.90058 )
+selected_bone = 7
 
-[node name="MeshInstance" type="MeshInstance" parent="FollowBone3D/KinematicBody"]
-mesh = SubResource( 21 )
+[node name="LPalmFollowBone3D" parent="XRToolsPhysicsHands" index="2"]
+transform = Transform( -0.0339721, -0.00281232, -0.000149438, -0.000176133, 0.00392693, -0.0338613, 0.00281077, -0.0337447, -0.00392804, -0.53, 0.949478, 2.04596 )
+selected_bone = 8
 
-[node name="CollisionShape" type="CollisionShape" parent="FollowBone3D/KinematicBody"]
-shape = SubResource( 22 )
+[node name="RPalmFollowBone3D" parent="XRToolsPhysicsHands" index="3"]
+transform = Transform( 0.0340549, 0.00151675, -2.29086e-05, 0.000268751, -0.00653943, -0.0334545, 0.00149293, -0.0334212, 0.00654491, 0.53, 0.949478, 2.04596 )
+selected_bone = 12
 
 [connection signal="level_chosen" from="LevelSelectSliderSnap" to="LevelSelectTextMeshLn2" method="_on_LevelSelectSliderSnap_level_chosen"]
 [connection signal="has_picked_up" from="LevelSelectSnapZone" to="." method="_on_LevelSelectSnapZone_has_picked_up"]
@@ -398,3 +407,4 @@ shape = SubResource( 22 )
 [editable path="FPController/RightHandController/Function_BulletTime_movement"]
 [editable path="FPController/PlayerBody"]
 [editable path="TitleTable"]
+[editable path="XRToolsPhysicsHands"]

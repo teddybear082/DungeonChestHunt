@@ -1,4 +1,4 @@
-[gd_scene load_steps=46 format=2]
+[gd_scene load_steps=47 format=2]
 
 [ext_resource path="res://addons/godot-xr-tools/assets/LeftHand.tscn" type="PackedScene" id=1]
 [ext_resource path="res://addons/godot-xr-tools/misc/VR_Common_Shader_Cache.tscn" type="PackedScene" id=2]
@@ -31,6 +31,7 @@
 [ext_resource path="res://objects/rock2.obj" type="ArrayMesh" id=29]
 [ext_resource path="res://objects/rock1.obj" type="ArrayMesh" id=30]
 [ext_resource path="res://materials/brightoutdoorworldenv.tres" type="Environment" id=31]
+[ext_resource path="res://addons/follow_bone_3d/XRToolsPhysicsHands.tscn" type="PackedScene" id=32]
 [ext_resource path="res://scenes/Holster.tscn" type="PackedScene" id=34]
 [ext_resource path="res://sounds/alex-productions-cinematic-epic-emotional-eglair.mp3" type="AudioStream" id=35]
 [ext_resource path="res://scenes/HolsterHelper.gd" type="Script" id=36]
@@ -80,6 +81,8 @@ far = 1000.0
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.03, -0.05, 0.15 )
 
 [node name="Function_Pickup" parent="FPController/LeftHandController" index="1" instance=ExtResource( 11 )]
+grab_collision_mask = 2
+ranged_collision_mask = 2
 
 [node name="Function_Direct_movement" parent="FPController/LeftHandController" index="2" instance=ExtResource( 5 )]
 strafe = true
@@ -90,7 +93,11 @@ strafe = true
 stream = ExtResource( 46 )
 
 [node name="Function_Grapple_movement" parent="FPController/LeftHandController" index="4" instance=ExtResource( 18 )]
+grapple_collision_mask = 10
 grapple_button_id = 7
+
+[node name="Grapple_RayCast" parent="FPController/LeftHandController/Function_Grapple_movement" index="0"]
+collision_mask = 10
 
 [node name="Grapple_Target" parent="FPController/LeftHandController/Function_Grapple_movement" index="1"]
 mesh = SubResource( 1 )
@@ -102,6 +109,8 @@ material = ExtResource( 15 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.03, -0.05, 0.15 )
 
 [node name="Function_Pickup" parent="FPController/RightHandController" index="1" instance=ExtResource( 11 )]
+grab_collision_mask = 2
+ranged_collision_mask = 2
 
 [node name="Function_Max_Payne_Dive_movement" parent="FPController/RightHandController" index="2" instance=ExtResource( 17 )]
 max_payne_dive_distance = 6
@@ -117,7 +126,11 @@ jump_button_id = 14
 smooth_rotation = true
 
 [node name="Function_Grapple_movement" parent="FPController/RightHandController" index="5" instance=ExtResource( 18 )]
+grapple_collision_mask = 10
 grapple_button_id = 7
+
+[node name="Grapple_RayCast" parent="FPController/RightHandController/Function_Grapple_movement" index="0"]
+collision_mask = 10
 
 [node name="Grapple_Target" parent="FPController/RightHandController/Function_Grapple_movement" index="1"]
 mesh = SubResource( 2 )
@@ -152,7 +165,7 @@ autoplay = true
 script = ExtResource( 7 )
 
 [node name="EnemySpawner" parent="." instance=ExtResource( 20 )]
-num_zombies = 20
+num_zombies = 10
 
 [node name="Voiceover" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 21 )
@@ -175,6 +188,8 @@ mesh = ExtResource( 30 )
 material/0 = ExtResource( 27 )
 
 [node name="StaticBody" type="StaticBody" parent="Rock1"]
+collision_layer = 2
+collision_mask = 2
 
 [node name="CollisionShape" type="CollisionShape" parent="Rock1/StaticBody"]
 shape = SubResource( 4 )
@@ -185,6 +200,8 @@ mesh = ExtResource( 30 )
 material/0 = ExtResource( 27 )
 
 [node name="StaticBody" type="StaticBody" parent="Rock7"]
+collision_layer = 2
+collision_mask = 2
 
 [node name="CollisionShape" type="CollisionShape" parent="Rock7/StaticBody"]
 shape = SubResource( 4 )
@@ -195,6 +212,8 @@ mesh = ExtResource( 30 )
 material/0 = ExtResource( 27 )
 
 [node name="StaticBody" type="StaticBody" parent="Rock6"]
+collision_layer = 2
+collision_mask = 2
 
 [node name="CollisionShape" type="CollisionShape" parent="Rock6/StaticBody"]
 shape = SubResource( 4 )
@@ -205,6 +224,8 @@ mesh = ExtResource( 30 )
 material/0 = ExtResource( 27 )
 
 [node name="StaticBody" type="StaticBody" parent="Rock4"]
+collision_layer = 2
+collision_mask = 2
 
 [node name="CollisionShape" type="CollisionShape" parent="Rock4/StaticBody"]
 shape = SubResource( 4 )
@@ -215,6 +236,8 @@ mesh = ExtResource( 30 )
 material/0 = ExtResource( 27 )
 
 [node name="StaticBody" type="StaticBody" parent="Rock5"]
+collision_layer = 2
+collision_mask = 2
 
 [node name="CollisionShape" type="CollisionShape" parent="Rock5/StaticBody"]
 shape = SubResource( 4 )
@@ -225,6 +248,8 @@ mesh = ExtResource( 30 )
 material/0 = ExtResource( 27 )
 
 [node name="StaticBody" type="StaticBody" parent="Rock2"]
+collision_layer = 2
+collision_mask = 2
 
 [node name="CollisionShape" type="CollisionShape" parent="Rock2/StaticBody"]
 shape = SubResource( 4 )
@@ -235,6 +260,8 @@ mesh = ExtResource( 30 )
 material/0 = ExtResource( 27 )
 
 [node name="StaticBody" type="StaticBody" parent="Rock3"]
+collision_layer = 2
+collision_mask = 2
 
 [node name="CollisionShape" type="CollisionShape" parent="Rock3/StaticBody"]
 shape = SubResource( 4 )
@@ -245,6 +272,8 @@ mesh = ExtResource( 28 )
 material/0 = ExtResource( 27 )
 
 [node name="StaticBody" type="StaticBody" parent="RockTypeB"]
+collision_layer = 2
+collision_mask = 2
 
 [node name="CollisionShape" type="CollisionShape" parent="RockTypeB/StaticBody"]
 shape = SubResource( 5 )
@@ -255,6 +284,8 @@ mesh = ExtResource( 28 )
 material/0 = ExtResource( 27 )
 
 [node name="StaticBody" type="StaticBody" parent="RockTypeB2"]
+collision_layer = 2
+collision_mask = 2
 
 [node name="CollisionShape" type="CollisionShape" parent="RockTypeB2/StaticBody"]
 shape = SubResource( 5 )
@@ -265,6 +296,8 @@ mesh = ExtResource( 29 )
 material/0 = ExtResource( 27 )
 
 [node name="StaticBody" type="StaticBody" parent="RockTypeC"]
+collision_layer = 2
+collision_mask = 2
 
 [node name="CollisionShape" type="CollisionShape" parent="RockTypeC/StaticBody"]
 shape = SubResource( 6 )
@@ -275,6 +308,8 @@ mesh = ExtResource( 29 )
 material/0 = ExtResource( 27 )
 
 [node name="StaticBody" type="StaticBody" parent="RockTypeC3"]
+collision_layer = 2
+collision_mask = 2
 
 [node name="CollisionShape" type="CollisionShape" parent="RockTypeC3/StaticBody"]
 shape = SubResource( 7 )
@@ -286,6 +321,8 @@ mesh = ExtResource( 29 )
 material/0 = ExtResource( 27 )
 
 [node name="StaticBody" type="StaticBody" parent="RockTypeC2"]
+collision_layer = 2
+collision_mask = 2
 
 [node name="CollisionShape" type="CollisionShape" parent="RockTypeC2/StaticBody"]
 shape = SubResource( 8 )
@@ -317,6 +354,24 @@ grab_distance = 0.15
 
 [node name="OverlayHelper" parent="." instance=ExtResource( 24 )]
 
+[node name="XRToolsPhysicsHands" parent="." instance=ExtResource( 32 )]
+
+[node name="LHFollowBone3D" parent="XRToolsPhysicsHands" index="0"]
+transform = Transform( -0.0316173, 0.0127275, -0.000628471, -0.000167084, -0.00209511, -0.0340238, -0.0127419, -0.0315541, 0.0020056, -0.529683, 0.984693, -0.505956 )
+selected_bone = 7
+
+[node name="RHFollowBone3D" parent="XRToolsPhysicsHands" index="1"]
+transform = Transform( 0.0316173, -0.0127275, 0.000628471, -0.000167084, -0.00209511, -0.0340238, -0.0127419, -0.0315541, 0.0020056, 0.529683, 0.984693, -0.505956 )
+selected_bone = 7
+
+[node name="LPalmFollowBone3D" parent="XRToolsPhysicsHands" index="2"]
+transform = Transform( -0.0339721, -0.00281232, -0.000149438, -0.000176133, 0.00392693, -0.0338613, 0.00281077, -0.0337447, -0.00392804, -0.53, 0.949478, -0.360575 )
+selected_bone = 8
+
+[node name="RPalmFollowBone3D" parent="XRToolsPhysicsHands" index="3"]
+transform = Transform( 0.0339721, 0.00281231, 0.000149437, -0.000176133, 0.00392693, -0.0338613, 0.00281077, -0.0337447, -0.00392804, 0.53, 0.949478, -0.360575 )
+selected_bone = 8
+
 [connection signal="finished" from="Voiceover" to="Voiceover" method="_on_Voiceover_finished"]
 
 [editable path="FPController"]
@@ -329,5 +384,7 @@ grab_distance = 0.15
 [editable path="FPController/RightHandController/Function_Max_Payne_Dive_movement"]
 [editable path="FPController/RightHandController/Function_Grapple_movement"]
 [editable path="FPController/PlayerBody"]
+[editable path="QuitLeverTextMesh"]
 [editable path="TitleTable"]
 [editable path="OverlayHelper"]
+[editable path="XRToolsPhysicsHands"]
