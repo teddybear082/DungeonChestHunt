@@ -1,4 +1,4 @@
-extends MeshInstance
+extends Spatial
 
 
 # Declare member variables here. Examples:
@@ -8,7 +8,7 @@ extends MeshInstance
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass
+	$BackgroundMusic.play(PlayerMasterControls.backgroundmusictimestamp)
 	#mesh.text = "Dungeon Chest Hunt"
 	#yield(get_tree().create_timer(6), "timeout")# Replace with function body.
 	#mesh.text = "Dungeon Chest Hunt \nPress A to Start..."

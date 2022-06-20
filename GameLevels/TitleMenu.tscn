@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=2]
+[gd_scene load_steps=33 format=2]
 
 [ext_resource path="res://addons/godot-xr-tools/misc/VR_Common_Shader_Cache.tscn" type="PackedScene" id=1]
 [ext_resource path="res://addons/godot-xr-tools/assets/LeftHand.tscn" type="PackedScene" id=2]
@@ -22,8 +22,7 @@
 [ext_resource path="res://GameLevels/BackgroundMusic.gd" type="Script" id=20]
 [ext_resource path="res://sounds/Dungeon_Chest_Hunt_730.mp3" type="AudioStream" id=21]
 [ext_resource path="res://GameLevels/TitleMenuVoiceover.gd" type="Script" id=22]
-[ext_resource path="res://scenes/PushButtonTest1.tscn" type="PackedScene" id=23]
-[ext_resource path="res://scenes/PickableHandGun.tscn" type="PackedScene" id=24]
+[ext_resource path="res://GameLevels/TitleMenu.gd" type="Script" id=23]
 
 [sub_resource type="BoxShape" id=1]
 extents = Vector3( 10, 0.125, 10 )
@@ -67,6 +66,7 @@ pixel_size = 0.001
 depth = 0.01
 
 [node name="TitleMenu" type="Spatial"]
+script = ExtResource( 23 )
 
 [node name="FPController" parent="." instance=ExtResource( 4 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.903239 )
@@ -118,7 +118,6 @@ transform = Transform( -0.799452, -0.0295941, -2.18851e-07, 0, -5.91607e-06, 0.8
 
 [node name="BackgroundMusic" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 8 )
-autoplay = true
 script = ExtResource( 20 )
 
 [node name="TitleStaticBody" type="StaticBody" parent="."]
@@ -194,12 +193,6 @@ selected_bone = 8
 transform = Transform( 0.0339721, 0.00281231, 0.000149437, -0.000176133, 0.00392693, -0.0338613, 0.00281077, -0.0337447, -0.00392804, 0.53, 0.949478, 0.542664 )
 selected_bone = 8
 
-[node name="PickableHandGun" parent="." instance=ExtResource( 24 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.693201, 0.997276, -0.460804 )
-
-[node name="PushButtonTest1" parent="." instance=ExtResource( 23 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.773, 0.95, -0.155 )
-
 [editable path="FPController"]
 [editable path="FPController/LeftHandController/LeftHand"]
 [editable path="FPController/LeftHandController/LeftHand/LeftHand"]
@@ -207,4 +200,3 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.773, 0.95, -0.155 )
 [editable path="FPController/RightHandController/RightHand/RightHand"]
 [editable path="FPController/PlayerBody"]
 [editable path="XRToolsPhysicsHands"]
-[editable path="PushButtonTest1"]

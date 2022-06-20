@@ -16,6 +16,7 @@ onready var _right_controller = null
 var left_haptic = false
 var right_haptic = false
 var backgroundmusiclaststate = true
+var backgroundmusictimestamp = 0.0
 
 signal background_music_state(state)
 # Called when the node enters the scene tree for the first time.

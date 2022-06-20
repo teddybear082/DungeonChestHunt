@@ -8,6 +8,8 @@ var last_rung_transform = null
 var distance_from_last_rung = null
 var rung_rotation_degrees = null
 var new_rung_origin = null
+
+signal victory_platform_generated(transformy)
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	last_rung_transform = $FirstClimbingRung.global_transform
@@ -39,9 +41,9 @@ func generate_climbing_rungs():
 
 	platform_instance = platform_scene.instance()
 	add_child(platform_instance)
-	platform_instance.global_transform = last_rung_transform
-	platform_instance.global_transform.origin += Vector3(0,min_rung_distance, -min_rung_distance)
-
+	platform_instance.global_transform = global_transform
+	platform_instance.global_transform.origin = last_rung_transform.origin + Vector3(0,min_rung_distance, -2)
+	emit_signal("victory_platform_generated", platform_instance.global_transform.origin.y)
 
 func create_new_rung_origin():
 	var random = RandomNumberGenerator.new()

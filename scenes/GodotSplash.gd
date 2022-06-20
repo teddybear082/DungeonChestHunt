@@ -17,7 +17,8 @@ func _ready():
 	preload("res://GameLevels/TitleMenu.tscn")
 	yield(get_tree().create_timer(4), "timeout")
 	$Voiceover.play()
-	yield(get_tree().create_timer(4), "timeout") # Replace with function body.
+	yield(get_tree().create_timer(4), "timeout")
+	PlayerMasterControls.backgroundmusictimestamp = $BackgroundMusic.get_playback_position()
 	get_tree().change_scene("res://GameLevels/TitleMenu.tscn")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

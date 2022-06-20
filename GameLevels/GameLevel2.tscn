@@ -173,6 +173,8 @@ transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -5.1, 1
 [node name="Water" parent="." instance=ExtResource( 25 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2, 5.728 )
 
+[connection signal="victory_platform_generated" from="ClimbingNodeGenerator" to="." method="_on_ClimbingNodeGenerator_victory_platform_generated"]
+
 [editable path="FPController"]
 [editable path="FPController/LeftHandController/LeftHand"]
 [editable path="FPController/LeftHandController/LeftHand/LeftHand"]

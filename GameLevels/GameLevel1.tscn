@@ -165,7 +165,6 @@ autoplay = true
 script = ExtResource( 7 )
 
 [node name="EnemySpawner" parent="." instance=ExtResource( 20 )]
-num_zombies = 10
 
 [node name="Voiceover" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 21 )
@@ -372,6 +371,7 @@ selected_bone = 8
 transform = Transform( 0.0339721, 0.00281231, 0.000149437, -0.000176133, 0.00392693, -0.0338613, 0.00281077, -0.0337447, -0.00392804, 0.53, 0.949478, -0.360575 )
 selected_bone = 8
 
+[connection signal="maxnumberofzombies" from="EnemySpawner" to="." method="_on_EnemySpawner_maxnumberofzombies"]
 [connection signal="finished" from="Voiceover" to="Voiceover" method="_on_Voiceover_finished"]
 
 [editable path="FPController"]

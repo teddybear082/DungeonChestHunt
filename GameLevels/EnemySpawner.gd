@@ -7,22 +7,25 @@ var random_z_coord = 0
 var y_coord = 1
 var list_of_coords = []
 var curr_origin = Vector3(0,0,0)
-
+var current_wave = 0
+var total_waves = 0
 var active_zombie = null
+
+signal maxnumberofzombies(number)
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	call_deferred("spawn_enemies")
-	
+	emit_signal("maxnumberofzombies", num_zombies)
+	call_deferred("spawn_enemies", 10)
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	
 
-func spawn_enemies():
+func spawn_enemies(num_to_spawn):
 	var zombie1 = load("res://scenes/EnemyType1.tscn")
 	var zombie2 = load("res://scenes/EnemyType2.tscn")
 	var random = RandomNumberGenerator.new()
 	random.randomize()
-	for i in num_zombies:
+	for i in num_to_spawn:
 		curr_origin = set_random_coords()
 		while list_of_coords.has(curr_origin):
 		#while curr_origin in (list_of_coords):
