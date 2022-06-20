@@ -195,7 +195,7 @@ transform = Transform( 0.0339721, 0.00281231, 0.000149437, -0.000176133, 0.00392
 selected_bone = 8
 
 [node name="PickableHandGun" parent="." instance=ExtResource( 24 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.693201, 0.952796, -0.460804 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.693201, 0.997276, -0.460804 )
 
 [node name="PushButtonTest1" parent="." instance=ExtResource( 23 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.773, 0.95, -0.155 )

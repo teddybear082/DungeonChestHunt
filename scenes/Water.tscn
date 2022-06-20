@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://materials/water_glse2.material" type="Material" id=1]
+
+[sub_resource type="PlaneMesh" id=1]
+material = ExtResource( 1 )
+size = Vector2( 10, 20 )
+subdivide_width = 20
+subdivide_depth = 20
+
+[node name="Water" type="MeshInstance"]
+cast_shadow = 0
+mesh = SubResource( 1 )

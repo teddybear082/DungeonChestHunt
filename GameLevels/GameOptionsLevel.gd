@@ -11,7 +11,7 @@ var level_chosen = 0
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	preload("res://GameLevels/GameLevel1.tscn")
-
+	preload("res://GameLevels/GameLevel2.tscn")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
@@ -24,3 +24,5 @@ func _on_LevelSelectSnapZone_has_picked_up(what):
 		level_chosen = level_select_slider.level# Replace with function body.
 	if level_chosen == 1:
 		get_tree().change_scene("res://GameLevels/GameLevel1.tscn")
+	if level_chosen == 2:
+		get_tree().change_scene("res://GameLevels/GameLevel2.tscn")

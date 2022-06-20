@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=31 format=2]
 
 [ext_resource path="res://addons/godot-xr-tools/functions/Function_Direct_movement.tscn" type="PackedScene" id=1]
 [ext_resource path="res://addons/godot-xr-tools/functions/Function_Grapple_movement.tscn" type="PackedScene" id=2]
@@ -9,7 +9,7 @@
 [ext_resource path="res://addons/godot-openxr/scenes/first_person_controller_vr.tscn" type="PackedScene" id=7]
 [ext_resource path="res://addons/godot-xr-tools/assets/PlayerBody.tscn" type="PackedScene" id=8]
 [ext_resource path="res://materials/ropematerial.tres" type="Material" id=9]
-[ext_resource path="res://addons/godot-xr-tools/assets/PlayerBody.gd" type="Script" id=10]
+[ext_resource path="res://scenes/ClimbingRung.tscn" type="PackedScene" id=10]
 [ext_resource path="res://addons/godot-xr-tools/functions/Function_Climb_movement.tscn" type="PackedScene" id=11]
 [ext_resource path="res://addons/follow_bone_3d/XRToolsPhysicsHands.tscn" type="PackedScene" id=12]
 [ext_resource path="res://scenes/Floor.tscn" type="PackedScene" id=13]
@@ -21,6 +21,13 @@
 [ext_resource path="res://GameLevels/BackgroundMusic.gd" type="Script" id=19]
 [ext_resource path="res://GameLevels/GameLevel2.gd" type="Script" id=20]
 [ext_resource path="res://sounds/janus-turning.mp3" type="AudioStream" id=21]
+[ext_resource path="res://GameLevels/ClimbingNodeGenerator.gd" type="Script" id=22]
+[ext_resource path="res://sounds/You_can_pick_up_obje_927.mp3" type="AudioStream" id=23]
+[ext_resource path="res://materials/leverhandlematerial.tres" type="Material" id=24]
+[ext_resource path="res://scenes/Water.tscn" type="PackedScene" id=25]
+[ext_resource path="res://materials/brightoutdoorworldenv.tres" type="Environment" id=26]
+[ext_resource path="res://scenes/PoolWall1.tscn" type="PackedScene" id=27]
+[ext_resource path="res://scenes/PoolWallB.tscn" type="PackedScene" id=28]
 
 [sub_resource type="CubeMesh" id=1]
 resource_local_to_scene = true
@@ -36,7 +43,7 @@ subdivide_depth = 20
 script = ExtResource( 20 )
 
 [node name="FPController" parent="." instance=ExtResource( 7 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 23 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 23.1168 )
 
 [node name="ARVRCamera" parent="FPController" index="1"]
 far = 1000.0
@@ -48,6 +55,7 @@ strafe = true
 
 [node name="Function_Grapple_movement" parent="FPController/LeftHandController" index="2" instance=ExtResource( 2 )]
 grapple_collision_mask = 10
+grapple_button_id = 7
 
 [node name="Grapple_RayCast" parent="FPController/LeftHandController/Function_Grapple_movement" index="0"]
 collision_mask = 10
@@ -69,6 +77,7 @@ smooth_rotation = true
 
 [node name="Function_Grapple_movement" parent="FPController/RightHandController" index="2" instance=ExtResource( 2 )]
 grapple_collision_mask = 10
+grapple_button_id = 7
 
 [node name="Grapple_RayCast" parent="FPController/RightHandController/Function_Grapple_movement" index="0"]
 collision_mask = 10
@@ -83,8 +92,7 @@ material = ExtResource( 9 )
 grab_collision_mask = 2
 ranged_collision_mask = 2
 
-[node name="PlayerBody" type="Node" parent="FPController" instance=ExtResource( 8 )]
-script = ExtResource( 10 )
+[node name="PlayerBody" parent="FPController" instance=ExtResource( 8 )]
 
 [node name="Function_Climb_movement" parent="FPController" instance=ExtResource( 11 )]
 left_pickup = NodePath("../LeftHandController/Function_Pickup")
@@ -93,19 +101,19 @@ right_pickup = NodePath("../RightHandController/Function_Pickup")
 [node name="XRToolsPhysicsHands" parent="." instance=ExtResource( 12 )]
 
 [node name="LHFollowBone3D" parent="XRToolsPhysicsHands" index="0"]
-transform = Transform( -0.0316173, 0.0127275, -0.000628471, -0.000167084, -0.00209511, -0.0340238, -0.0127419, -0.0315541, 0.0020056, -0.499683, 1.03469, 22.344 )
+transform = Transform( -0.0316173, 0.0127275, -0.000628471, -0.000167084, -0.00209511, -0.0340238, -0.0127419, -0.0315541, 0.0020056, -0.499683, 1.03469, 22.4608 )
 selected_bone = 7
 
 [node name="RHFollowBone3D" parent="XRToolsPhysicsHands" index="1"]
-transform = Transform( 0.0316173, -0.0127275, 0.000628471, -0.000167084, -0.00209511, -0.0340238, -0.0127419, -0.0315541, 0.0020056, 0.499683, 1.03469, 22.344 )
+transform = Transform( 0.0316173, -0.0127275, 0.000628471, -0.000167084, -0.00209511, -0.0340238, -0.0127419, -0.0315541, 0.0020056, 0.499683, 1.03469, 22.4608 )
 selected_bone = 7
 
 [node name="LPalmFollowBone3D" parent="XRToolsPhysicsHands" index="2"]
-transform = Transform( -0.0339721, -0.00281232, -0.000149438, -0.000176133, 0.00392693, -0.0338613, 0.00281077, -0.0337447, -0.00392804, -0.5, 0.999478, 22.4894 )
+transform = Transform( -0.0339721, -0.00281232, -0.000149438, -0.000176133, 0.00392693, -0.0338613, 0.00281077, -0.0337447, -0.00392804, -0.5, 0.999478, 22.6062 )
 selected_bone = 8
 
 [node name="RPalmFollowBone3D" parent="XRToolsPhysicsHands" index="3"]
-transform = Transform( 0.0339721, 0.00281231, 0.000149437, -0.000176133, 0.00392693, -0.0338613, 0.00281077, -0.0337447, -0.00392804, 0.5, 0.999478, 22.4894 )
+transform = Transform( 0.0339721, 0.00281231, 0.000149437, -0.000176133, 0.00392693, -0.0338613, 0.00281077, -0.0337447, -0.00392804, 0.5, 0.999478, 22.6062 )
 selected_bone = 8
 
 [node name="Floor" parent="." instance=ExtResource( 13 )]
@@ -130,6 +138,40 @@ autoplay = true
 script = ExtResource( 19 )
 
 [node name="Voiceovers" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 23 )
+
+[node name="ClimbingNodeGenerator" type="Spatial" parent="."]
+script = ExtResource( 22 )
+
+[node name="FirstClimbingRung" parent="ClimbingNodeGenerator" instance=ExtResource( 10 )]
+transform = Transform( -1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 1.25, 17 )
+
+[node name="Handle" parent="ClimbingNodeGenerator/FirstClimbingRung" index="1"]
+material/0 = ExtResource( 24 )
+
+[node name="HandleBar1" parent="ClimbingNodeGenerator/FirstClimbingRung" index="2"]
+material/0 = ExtResource( 24 )
+
+[node name="HandleBar2" parent="ClimbingNodeGenerator/FirstClimbingRung" index="3"]
+material/0 = ExtResource( 24 )
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = ExtResource( 26 )
+
+[node name="PoolWall1" parent="." instance=ExtResource( 27 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.125, 15.7703 )
+
+[node name="PoolWall2" parent="." instance=ExtResource( 27 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.125, -4.16668 )
+
+[node name="PoolWallB" parent="." instance=ExtResource( 28 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 5.1, 1.125, 5.85 )
+
+[node name="PoolWallB2" parent="." instance=ExtResource( 28 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -5.1, 1.125, 5.85 )
+
+[node name="Water" parent="." instance=ExtResource( 25 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2, 5.728 )
 
 [editable path="FPController"]
 [editable path="FPController/LeftHandController/LeftHand"]
@@ -142,3 +184,4 @@ script = ExtResource( 19 )
 [editable path="TitleTable"]
 [editable path="QuitLeverTextMesh"]
 [editable path="OverlayHelper"]
+[editable path="ClimbingNodeGenerator/FirstClimbingRung"]
