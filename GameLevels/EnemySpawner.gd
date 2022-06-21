@@ -35,12 +35,12 @@ func spawn_enemies(num_to_spawn):
 		if zombiechoice == 0:
 			var zombie_instance = zombie1.instance()
 			add_child(zombie_instance)
-			zombie_instance.enemy_alert_range = 30
+			zombie_instance.enemy_alert_range = 50
 			zombie_instance.global_transform.origin = curr_origin
 		if zombiechoice == 1:
 			var zombie_instance = zombie2.instance()
 			add_child(zombie_instance)
-			zombie_instance.enemy_alert_range = 30
+			zombie_instance.enemy_alert_range = 50
 			zombie_instance.global_transform.origin = curr_origin
 		
 		

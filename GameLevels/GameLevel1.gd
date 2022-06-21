@@ -40,15 +40,16 @@ func _process(delta):
 	enemy_count = enemies.size()
 	if ok_to_display_enemy_count == true:
 		refresh_count +=1
-		if refresh_count >= 60:
+		if refresh_count >= 30:
 			if enemy_count >= 1:
 				$OverlayHelper/OverlayLabel3D.text = "Rock Monsters Left This Wave: " + str(enemy_count)
 			else:
 				if waves_remaining > 0:
 					waves_remaining -=1
 					$OverlayHelper/OverlayLabel3D.text = "Wave Completed! You have " + str(waves_remaining) + " waves left!"
+					yield(get_tree().create_timer(5), "timeout")
 					$EnemySpawner.spawn_enemies(10)
-			if waves_remaining == 0:
+			if waves_remaining == 0 and enemy_count == 0:
 				$OverlayHelper/OverlayLabel3D.text = "You defeated all the Rock Monsters!"
 			refresh_count = 0
 		
