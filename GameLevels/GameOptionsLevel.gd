@@ -26,3 +26,5 @@ func _on_LevelSelectSnapZone_has_picked_up(what):
 		get_tree().change_scene("res://GameLevels/GameLevel1.tscn")
 	if level_chosen == 2:
 		get_tree().change_scene("res://GameLevels/GameLevel2.tscn")
+	if level_chosen == 3:
+		get_tree().change_scene("res://GameLevels/GameLevel3.tscn")

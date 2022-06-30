@@ -1,0 +1,186 @@
+[gd_scene load_steps=23 format=2]
+
+[ext_resource path="res://addons/godot-xr-tools/assets/PlayerBody.gd" type="Script" id=1]
+[ext_resource path="res://materials/ropematerial.tres" type="Material" id=2]
+[ext_resource path="res://addons/godot-xr-tools/assets/PlayerBody.tscn" type="PackedScene" id=3]
+[ext_resource path="res://addons/godot-xr-tools/functions/Function_Direct_movement.tscn" type="PackedScene" id=4]
+[ext_resource path="res://addons/godot-openxr/scenes/first_person_controller_vr.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scenes/Floor.tscn" type="PackedScene" id=6]
+[ext_resource path="res://addons/godot-xr-tools/assets/RightHand.tscn" type="PackedScene" id=7]
+[ext_resource path="res://addons/godot-xr-tools/assets/LeftHand.tscn" type="PackedScene" id=8]
+[ext_resource path="res://addons/godot-xr-tools/functions/Function_Grapple_movement.tscn" type="PackedScene" id=9]
+[ext_resource path="res://addons/godot-xr-tools/functions/Function_Turn_movement.tscn" type="PackedScene" id=10]
+[ext_resource path="res://addons/godot-xr-tools/functions/Function_Pickup.tscn" type="PackedScene" id=11]
+[ext_resource path="res://addons/godot-xr-tools/functions/Function_Climb_movement.tscn" type="PackedScene" id=12]
+[ext_resource path="res://addons/godot-xr-tools/functions/Locomotion_WalkInPlace.tscn" type="PackedScene" id=13]
+[ext_resource path="res://addons/godot-xr-tools/functions/Function_JumpDetect_movement.tscn" type="PackedScene" id=14]
+[ext_resource path="res://addons/godot-xr-tools/functions/Function_Glide_movement.tscn" type="PackedScene" id=15]
+[ext_resource path="res://addons/follow_bone_3d/XRToolsPhysicsHands.tscn" type="PackedScene" id=16]
+[ext_resource path="res://scenes/GrappleSpawner.gd" type="Script" id=17]
+[ext_resource path="res://scenes/EnemyType1.tscn" type="PackedScene" id=18]
+[ext_resource path="res://sounds/Victory.mp3" type="AudioStream" id=19]
+[ext_resource path="res://GameLevels/BackgroundMusic.gd" type="Script" id=20]
+
+[sub_resource type="CubeMesh" id=1]
+resource_local_to_scene = true
+size = Vector3( 0.05, 0.05, 0.05 )
+subdivide_depth = 20
+
+[sub_resource type="CubeMesh" id=2]
+resource_local_to_scene = true
+size = Vector3( 0.05, 0.05, 0.05 )
+subdivide_depth = 20
+
+[node name="GameLevel3" type="Spatial"]
+
+[node name="Floor" parent="." instance=ExtResource( 6 )]
+
+[node name="FPController" parent="." instance=ExtResource( 5 )]
+
+[node name="ARVRCamera" parent="FPController" index="1"]
+far = 1000.0
+
+[node name="LeftHand" parent="FPController/LeftHandController" index="0" instance=ExtResource( 8 )]
+
+[node name="Function_Direct_movement" parent="FPController/LeftHandController" index="1" instance=ExtResource( 4 )]
+
+[node name="Function_Pickup" parent="FPController/LeftHandController" index="2" instance=ExtResource( 11 )]
+grab_collision_mask = 2
+ranged_collision_mask = 2
+
+[node name="Function_Grapple_movement" parent="FPController/LeftHandController" index="3" instance=ExtResource( 9 )]
+grapple_collision_mask = 2
+grapple_button_id = 7
+
+[node name="Grapple_RayCast" parent="FPController/LeftHandController/Function_Grapple_movement" index="0"]
+collision_mask = 2
+
+[node name="Grapple_Target" parent="FPController/LeftHandController/Function_Grapple_movement" index="1"]
+mesh = SubResource( 1 )
+
+[node name="Line" parent="FPController/LeftHandController/Function_Grapple_movement/LineHelper" index="0"]
+material = ExtResource( 2 )
+
+[node name="RightHand" parent="FPController/RightHandController" index="0" instance=ExtResource( 7 )]
+
+[node name="Function_Turn_movement" parent="FPController/RightHandController" index="1" instance=ExtResource( 10 )]
+
+[node name="Function_Pickup" parent="FPController/RightHandController" index="2" instance=ExtResource( 11 )]
+grab_collision_mask = 2
+ranged_collision_mask = 2
+
+[node name="Function_Grapple_movement" parent="FPController/RightHandController" index="3" instance=ExtResource( 9 )]
+grapple_collision_mask = 2
+grapple_button_id = 7
+
+[node name="Grapple_RayCast" parent="FPController/RightHandController/Function_Grapple_movement" index="0"]
+collision_mask = 2
+
+[node name="Grapple_Target" parent="FPController/RightHandController/Function_Grapple_movement" index="1"]
+mesh = SubResource( 2 )
+
+[node name="Line" parent="FPController/RightHandController/Function_Grapple_movement/LineHelper" index="0"]
+material = ExtResource( 2 )
+
+[node name="PlayerBody" type="Node" parent="FPController" instance=ExtResource( 3 )]
+script = ExtResource( 1 )
+
+[node name="Function_Climb_movement" parent="FPController" instance=ExtResource( 12 )]
+left_pickup = NodePath("../LeftHandController/Function_Pickup")
+right_pickup = NodePath("../RightHandController/Function_Pickup")
+
+[node name="Function_Glide_movement" parent="FPController" instance=ExtResource( 15 )]
+
+[node name="Locomotion_WalkInPlace" parent="FPController" instance=ExtResource( 13 )]
+fpcontroller_path = NodePath("..")
+arvrcamera_path = NodePath("../ARVRCamera")
+l_controller_path = NodePath("../LeftHandController")
+r_controller_path = NodePath("../RightHandController")
+
+[node name="Function_JumpDetect_Movement" parent="FPController" instance=ExtResource( 14 )]
+
+[node name="XRToolsPhysicsHands" parent="." instance=ExtResource( 16 )]
+
+[node name="LHFollowBone3D" parent="XRToolsPhysicsHands" index="0"]
+transform = Transform( -0.0316173, 0.0127275, -0.000628471, -0.000167084, -0.00209511, -0.0340238, -0.0127419, -0.0315541, 0.0020056, -0.499683, 1.03469, -0.655956 )
+selected_bone = 7
+
+[node name="RHFollowBone3D" parent="XRToolsPhysicsHands" index="1"]
+transform = Transform( 0.0316173, -0.0127275, 0.000628471, -0.000167084, -0.00209511, -0.0340238, -0.0127419, -0.0315541, 0.0020056, 0.499683, 1.03469, -0.655956 )
+selected_bone = 7
+
+[node name="LPalmFollowBone3D" parent="XRToolsPhysicsHands" index="2"]
+transform = Transform( -0.0339721, -0.00281232, -0.000149438, -0.000176133, 0.00392693, -0.0338613, 0.00281077, -0.0337447, -0.00392804, -0.5, 0.999478, -0.510575 )
+selected_bone = 8
+
+[node name="RPalmFollowBone3D" parent="XRToolsPhysicsHands" index="3"]
+transform = Transform( 0.0340549, 0.00151675, -2.29086e-05, 0.000268751, -0.00653943, -0.0334545, 0.00149293, -0.0334212, 0.00654491, 0.5, 0.999478, -0.510575 )
+selected_bone = 12
+
+[node name="GrappleSpawner" type="Spatial" parent="."]
+script = ExtResource( 17 )
+
+[node name="Enemy1KinematicBody" parent="." instance=ExtResource( 18 )]
+transform = Transform( 4, 0, 0, 0, 4, 0, 0, 0, 4, -4.438, 3.67946, 0 )
+collision_layer = 131078
+input_ray_pickable = true
+
+[node name="BoneAttachment" parent="Enemy1KinematicBody/EnemyMesh1/Node2/Skeleton" index="0"]
+transform = Transform( -0.995243, -0.0957259, -0.0181192, -0.0173523, -0.00883734, 0.99981, -0.0958679, 0.995368, 0.00713438, -16.3137, 0.753551, 10.2391 )
+
+[node name="BoneAttachment2" parent="Enemy1KinematicBody/EnemyMesh1/Node2/Skeleton" index="1"]
+transform = Transform( 1, 0, 0, 0, 1, -7.45058e-09, 0, 7.45058e-09, 1, -2.28882e-05, 155.061, -0.921187 )
+
+[node name="BoneAttachment3" parent="Enemy1KinematicBody/EnemyMesh1/Node2/Skeleton" index="2"]
+transform = Transform( 0.578607, 0.722656, -0.37813, 0.0584391, -0.49916, -0.864537, -0.81351, 0.47813, -0.331049, 76.5147, 137.239, 3.70686 )
+
+[node name="BoneAttachment4" parent="Enemy1KinematicBody/EnemyMesh1/Node2/Skeleton" index="3"]
+transform = Transform( 0.208093, 0.942386, -0.261929, 0.0990295, -0.286714, -0.952884, -0.973083, 0.17235, -0.152987, 85.0112, 139.779, 2.10958 )
+
+[node name="BoneAttachment5" parent="Enemy1KinematicBody/EnemyMesh1/Node2/Skeleton" index="4"]
+transform = Transform( 0.0896399, 0.975749, -0.199694, 0.108108, -0.208849, -0.971954, -0.99009, 0.0655376, -0.124207, 86.1193, 140.178, -0.9748 )
+
+[node name="BoneAttachment6" parent="Enemy1KinematicBody/EnemyMesh1/Node2/Skeleton" index="5"]
+transform = Transform( 0.0453271, 0.973432, -0.224446, 0.111082, -0.228195, -0.967258, -0.992777, 0.0189111, -0.118475, 85.2084, 140.315, -3.59245 )
+
+[node name="BoneAttachment7" parent="Enemy1KinematicBody/EnemyMesh1/Node2/Skeleton" index="6"]
+transform = Transform( -0.0128688, 0.936814, -0.349592, 0.114647, -0.345933, -0.931228, -0.993323, -0.0520635, -0.102951, 83.5657, 140.528, -5.99331 )
+
+[node name="BoneAttachment8" parent="Enemy1KinematicBody/EnemyMesh1/Node2/Skeleton" index="7"]
+transform = Transform( 0.574626, -0.757332, 0.310249, -0.0537491, -0.413187, -0.909059, 0.81665, 0.505693, -0.278134, -76.6081, 137.217, 3.74 )
+
+[node name="BoneAttachment9" parent="Enemy1KinematicBody/EnemyMesh1/Node2/Skeleton" index="8"]
+transform = Transform( 0.163314, -0.960085, 0.227081, -0.09726, -0.244718, -0.964704, 0.981768, 0.135464, -0.133344, -85.1695, 139.739, 2.02513 )
+
+[node name="BoneAttachment10" parent="Enemy1KinematicBody/EnemyMesh1/Node2/Skeleton" index="9"]
+transform = Transform( 0.0996362, -0.975412, 0.196579, -0.102076, -0.20654, -0.973099, 0.989774, 0.07689, -0.120145, -86.0567, 140.21, -0.939237 )
+
+[node name="BoneAttachment11" parent="Enemy1KinematicBody/EnemyMesh1/Node2/Skeleton" index="10"]
+transform = Transform( 0.0129512, -0.981151, 0.192808, -0.107911, -0.193069, -0.975233, 0.994076, -0.00817546, -0.108378, -85.1654, 140.262, -3.65283 )
+
+[node name="BoneAttachment12" parent="Enemy1KinematicBody/EnemyMesh1/Node2/Skeleton" index="11"]
+transform = Transform( -0.0134012, -0.951166, 0.308389, -0.109522, -0.305165, -0.945981, 0.993894, -0.0464524, -0.100084, -83.5483, 140.546, -5.97934 )
+
+[node name="BoneAttachment13" parent="Enemy1KinematicBody/EnemyMesh1/Node2/Skeleton" index="12"]
+transform = Transform( -0.995309, 0.0953247, 0.016514, 0.015749, -0.00877246, 0.999837, 0.0954541, 0.995408, 0.00723004, 16.3136, 0.75387, 10.2162 )
+
+[node name="LHFollowBone3D" parent="Enemy1KinematicBody" index="4"]
+transform = Transform( -0.00208093, -0.00973327, 0.000966004, 0.000990295, -0.0011922, -0.00987917, 0.00973083, -0.00196012, 0.00121197, -0.78857, 0.522418, 0.0179126 )
+
+[node name="RHFollowBone3D" parent="Enemy1KinematicBody" index="5"]
+transform = Transform( -0.00163314, 0.00975284, -0.00148826, -0.0009726, -0.00166032, -0.00981313, -0.00981769, -0.00145787, 0.00121972, 0.793883, 0.523004, 0.0152603 )
+
+[node name="BackgroundMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 19 )
+script = ExtResource( 20 )
+
+[editable path="FPController"]
+[editable path="FPController/LeftHandController/LeftHand"]
+[editable path="FPController/LeftHandController/LeftHand/LeftHand"]
+[editable path="FPController/LeftHandController/Function_Grapple_movement"]
+[editable path="FPController/RightHandController/RightHand"]
+[editable path="FPController/RightHandController/RightHand/RightHand"]
+[editable path="FPController/RightHandController/Function_Grapple_movement"]
+[editable path="XRToolsPhysicsHands"]
+[editable path="Enemy1KinematicBody"]
+[editable path="Enemy1KinematicBody/EnemyMesh1"]
