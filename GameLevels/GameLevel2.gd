@@ -22,8 +22,8 @@ func _process(delta):
 			PlayerMasterControls.chests_collected +=1
 			yield(get_tree().create_timer(10), "timeout")
 			get_tree().change_scene("res://GameLevels/GameOptionsLevel.tscn")
-	if $FPController/PlayerBody/KinematicBody.global_transform.origin.y < -2:
-		$FPController.global_transform.origin = Vector3(0,0,22)		
+	if $FPController.transform.origin.y < -2:
+		$FPController.transform.origin = Vector3(0,0,22)		
 
 
 func _on_ClimbingNodeGenerator_victory_platform_generated(transformy):
