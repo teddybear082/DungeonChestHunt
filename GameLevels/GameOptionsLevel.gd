@@ -6,13 +6,20 @@ extends Spatial
 # var b = "text"
 onready var level_select_snap = $LevelSelectSnapZone
 onready var level_select_slider = $LevelSelectSliderSnap
-
+onready var chest_area = $ChestArea
 var level_chosen = 0
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	$BackgroundMusic.play(PlayerMasterControls.backgroundmusictimestamp)
 	preload("res://GameLevels/GameLevel1.tscn")
 	preload("res://GameLevels/GameLevel2.tscn")
-
+	preload("res://GameLevels/GameLevel3.tscn")
+	for i in PlayerMasterControls.chests_collected:
+		var new_chest = load("res://scenes/PickableChest.tscn").instance()
+		chest_area.add_child(new_chest)
+		new_chest.global_transform = chest_area.global_transform
+		
+		
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	if level_select

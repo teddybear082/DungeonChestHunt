@@ -42,8 +42,9 @@ func _on_Bullet_body_entered(body):
 		#Approach with raycast and planemesh
 		if $BulletRayCast.is_colliding():
 			var new_bullet_hole = load("res://scenes/BulletHolePlaneMesh.tscn").instance()
-			get_tree().current_scene.add_child(new_bullet_hole)
+	#		get_tree().current_scene.add_child(new_bullet_hole)
 			var normal_scale = new_bullet_hole.get_scale() #new line
+			$BulletRayCast.get_collider().add_child(new_bullet_hole)
 			new_bullet_hole.global_transform = $BulletRayCast.get_collider().global_transform
 			new_bullet_hole.set_scale(normal_scale) #new line
 			new_bullet_hole.global_transform.origin = $BulletRayCast.get_collision_point()

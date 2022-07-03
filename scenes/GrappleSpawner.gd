@@ -7,7 +7,7 @@ var list_of_grapple_positions = []
 var last_grapple_transform = null
 var distance_from_last_grapple = null
 var new_grapple_origin = null
-
+signal victory_platform_generated(yorigin)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -22,8 +22,10 @@ func _ready():
 func generate_grapples():
 	var grapple_sphere_scene = load("res://scenes/Level3GrappleSphere.tscn")
 	var platform_scene = load("res://scenes/Level3Platform.tscn")
+	var victory_platform_scene = load("res://scenes/VictoryPlatformLevel2.tscn")
 	var grapple_sphere_instance = null
 	var platform_instance = null
+	var victory_platform_instance = null
 	var random = RandomNumberGenerator.new()
 	random.randomize()
 	for i in num_grapples-1:
@@ -49,12 +51,17 @@ func generate_grapples():
 			grapple_sphere_instance.global_transform.origin = origin_to_test
 			list_of_grapple_positions.append(new_grapple_origin)
 			last_grapple_transform = grapple_sphere_instance.global_transform
-
+	
+	victory_platform_instance = victory_platform_scene.instance()
+	add_child(victory_platform_instance)
+	victory_platform_instance.global_transform = global_transform
+	victory_platform_instance.global_transform.origin = last_grapple_transform.origin + Vector3(0,min_grapple_distance, -2)
+	emit_signal("victory_platform_generated", victory_platform_instance.global_transform.origin.y)
 
 func create_new_grapple_origin():
 	var random = RandomNumberGenerator.new()
 	random.randomize()
-	distance_from_last_grapple = Vector3(random.randf_range(-max_grapple_distance,max_grapple_distance), random.randf_range(0.0,max_grapple_distance), random.randf_range(-max_grapple_distance,0))
+	distance_from_last_grapple = Vector3(random.randf_range(-.3*max_grapple_distance,.3*max_grapple_distance), random.randf_range(0.0,.5*max_grapple_distance), random.randf_range(-1.5*max_grapple_distance,0))
 	new_grapple_origin = last_grapple_transform.origin + distance_from_last_grapple
 	return new_grapple_origin
 	

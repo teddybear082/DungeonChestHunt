@@ -24,4 +24,5 @@ func _ready():
 
 func _on_InteractableHinge_hinge_moved(angle):
 	if angle == -45:
+		PlayerMasterControls.backgroundmusictimestamp = get_owner().get_node("BackgroundMusic").get_playback_position()
 		get_tree().change_scene("res://GameLevels/GameOptionsLevel.tscn")# Replace with function body.

@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://addons/godot-xr-tools/objects/Object_pickable.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scenes/ChestMesh.tscn" type="PackedScene" id=2]
+
+[sub_resource type="ConvexPolygonShape" id=1]
+points = PoolVector3Array( -1.9004, -1.19869, -1.60316, -0.103056, -1.37428, -0.248166, -0.270104, -1.39382, 0.0453324, -1.9004, -1.19869, 0.404845, -1.9004, 1.19847, -1.60316, 1.9004, -1.19869, -1.60316, 0.103056, -1.37428, -0.248166, 0.270104, -1.39382, 0.0453324, -0.200531, -1.39382, 0.345029, -1.87436, -1.1213, 0.805887, -1.87436, -0.86704, 1.20383, -1.87436, -0.469416, 1.46943, -1.87436, -0.0002352, 1.56272, -1.9004, 1.19847, 0.404845, 1.9004, 1.19847, -1.60316, 1.9004, -1.19869, 0.404845, 0.200531, -1.39382, 0.345029, 1.87398, -1.1213, 0.805887, 1.87398, -0.86704, 1.20383, -0.711719, -0.0002352, 1.56303, 1.87398, -0.469416, 1.46943, -1.87436, 0.4692, 1.46943, -1.87436, 0.866823, 1.20383, -1.87436, 1.12108, 0.805887, 1.9004, 1.19847, 0.404845, 1.87398, -0.0002352, 1.56272, 0.711347, -0.0002352, 1.56303, 1.87398, 0.4692, 1.46943, 1.87398, 0.866823, 1.20383, 1.87398, 1.12108, 0.805887 )
+
+[node name="PickableChest" instance=ExtResource( 1 )]
+collision_layer = 131074
+collision_mask = 2
+input_ray_pickable = false
+mass = 20.0
+
+[node name="PickupCenter" parent="." index="0"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.029284, 0.0969129, 0.00682274 )
+
+[node name="CollisionShape" parent="." index="1"]
+transform = Transform( 0.18, 0, 0, 0, -7.86805e-09, 0.18, 0, -0.18, -7.86805e-09, 0, 0.294782, 0.0016473 )
+shape = SubResource( 1 )
+
+[node name="ChestMesh" parent="." index="2" instance=ExtResource( 2 )]
+transform = Transform( 0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0 )
+
+[editable path="ChestMesh"]

@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://materials/PoolWallMaterial.tres" type="Material" id=1]
 [ext_resource path="res://addons/godot-xr-tools/objects/Object_climbable.tscn" type="PackedScene" id=2]
 [ext_resource path="res://materials/leverhandlematerial.tres" type="Material" id=3]
 [ext_resource path="res://fonts/overlayfont.tres" type="DynamicFont" id=4]
+[ext_resource path="res://scenes/PickableChest.tscn" type="PackedScene" id=5]
 
 [sub_resource type="BoxShape" id=1]
 extents = Vector3( 1, 0.125, 1 )
@@ -40,3 +41,6 @@ emission_box_extents = Vector3( 1, 1, 1 )
 flatness = 0.5
 gravity = Vector3( 0, 1, 0 )
 initial_velocity_random = 0.1
+
+[node name="PickableChest" parent="." index="3" instance=ExtResource( 5 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.131132, 0 )

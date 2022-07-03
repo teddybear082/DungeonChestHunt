@@ -391,6 +391,9 @@ selected_bone = 8
 transform = Transform( 0.0340549, 0.00151675, -2.29086e-05, 0.000268751, -0.00653943, -0.0334545, 0.00149293, -0.0334212, 0.00654491, 0.53, 0.949478, 2.04596 )
 selected_bone = 12
 
+[node name="ChestArea" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4.4789, 1.58529, 4.95037 )
+
 [connection signal="level_chosen" from="LevelSelectSliderSnap" to="LevelSelectTextMeshLn2" method="_on_LevelSelectSliderSnap_level_chosen"]
 [connection signal="has_picked_up" from="LevelSelectSnapZone" to="." method="_on_LevelSelectSnapZone_has_picked_up"]
 

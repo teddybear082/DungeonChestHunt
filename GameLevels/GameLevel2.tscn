@@ -1,14 +1,12 @@
-[gd_scene load_steps=33 format=2]
+[gd_scene load_steps=30 format=2]
 
 [ext_resource path="res://addons/godot-xr-tools/functions/Function_Direct_movement.tscn" type="PackedScene" id=1]
-[ext_resource path="res://addons/godot-xr-tools/functions/Function_Grapple_movement.tscn" type="PackedScene" id=2]
 [ext_resource path="res://addons/godot-xr-tools/functions/Function_Pickup.tscn" type="PackedScene" id=3]
 [ext_resource path="res://addons/godot-xr-tools/assets/LeftHand.tscn" type="PackedScene" id=4]
 [ext_resource path="res://addons/godot-xr-tools/assets/RightHand.tscn" type="PackedScene" id=5]
 [ext_resource path="res://addons/godot-xr-tools/functions/Function_Turn_movement.tscn" type="PackedScene" id=6]
 [ext_resource path="res://addons/godot-openxr/scenes/first_person_controller_vr.tscn" type="PackedScene" id=7]
 [ext_resource path="res://addons/godot-xr-tools/assets/PlayerBody.tscn" type="PackedScene" id=8]
-[ext_resource path="res://materials/ropematerial.tres" type="Material" id=9]
 [ext_resource path="res://scenes/ClimbingRung.tscn" type="PackedScene" id=10]
 [ext_resource path="res://addons/godot-xr-tools/functions/Function_Climb_movement.tscn" type="PackedScene" id=11]
 [ext_resource path="res://addons/follow_bone_3d/XRToolsPhysicsHands.tscn" type="PackedScene" id=12]
@@ -30,67 +28,34 @@
 [ext_resource path="res://scenes/PoolWallB.tscn" type="PackedScene" id=28]
 [ext_resource path="res://addons/godot-xr-tools/functions/Function_Glide_movement.tscn" type="PackedScene" id=29]
 [ext_resource path="res://scenes/Level2RockSurround.tscn" type="PackedScene" id=30]
-
-[sub_resource type="CubeMesh" id=1]
-resource_local_to_scene = true
-size = Vector3( 0.05, 0.05, 0.05 )
-subdivide_depth = 20
-
-[sub_resource type="CubeMesh" id=2]
-resource_local_to_scene = true
-size = Vector3( 0.05, 0.05, 0.05 )
-subdivide_depth = 20
+[ext_resource path="res://scenes/TreesBillboard.tscn" type="PackedScene" id=31]
 
 [node name="GameLevel2" type="Spatial"]
 script = ExtResource( 20 )
 
 [node name="FPController" parent="." instance=ExtResource( 7 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 22.4715 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 22 )
 
 [node name="ARVRCamera" parent="FPController" index="1"]
 far = 1000.0
 
 [node name="LeftHand" parent="FPController/LeftHandController" index="0" instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.03, -0.05, 0.15 )
 
 [node name="Function_Direct_movement" parent="FPController/LeftHandController" index="1" instance=ExtResource( 1 )]
 strafe = true
 
-[node name="Function_Grapple_movement" parent="FPController/LeftHandController" index="2" instance=ExtResource( 2 )]
-grapple_collision_mask = 10
-grapple_button_id = 7
-
-[node name="Grapple_RayCast" parent="FPController/LeftHandController/Function_Grapple_movement" index="0"]
-collision_mask = 10
-
-[node name="Grapple_Target" parent="FPController/LeftHandController/Function_Grapple_movement" index="1"]
-mesh = SubResource( 1 )
-
-[node name="Line" parent="FPController/LeftHandController/Function_Grapple_movement/LineHelper" index="0"]
-material = ExtResource( 9 )
-
-[node name="Function_Pickup" parent="FPController/LeftHandController" index="3" instance=ExtResource( 3 )]
+[node name="Function_Pickup" parent="FPController/LeftHandController" index="2" instance=ExtResource( 3 )]
 grab_collision_mask = 2
 ranged_collision_mask = 2
 
 [node name="RightHand" parent="FPController/RightHandController" index="0" instance=ExtResource( 5 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.03, -0.05, 0.15 )
 
 [node name="Function_Turn_movement" parent="FPController/RightHandController" index="1" instance=ExtResource( 6 )]
 smooth_rotation = true
 
-[node name="Function_Grapple_movement" parent="FPController/RightHandController" index="2" instance=ExtResource( 2 )]
-grapple_collision_mask = 10
-grapple_button_id = 7
-
-[node name="Grapple_RayCast" parent="FPController/RightHandController/Function_Grapple_movement" index="0"]
-collision_mask = 10
-
-[node name="Grapple_Target" parent="FPController/RightHandController/Function_Grapple_movement" index="1"]
-mesh = SubResource( 2 )
-
-[node name="Line" parent="FPController/RightHandController/Function_Grapple_movement/LineHelper" index="0"]
-material = ExtResource( 9 )
-
-[node name="Function_Pickup" parent="FPController/RightHandController" index="3" instance=ExtResource( 3 )]
+[node name="Function_Pickup" parent="FPController/RightHandController" index="2" instance=ExtResource( 3 )]
 grab_collision_mask = 2
 ranged_collision_mask = 2
 
@@ -105,34 +70,34 @@ right_pickup = NodePath("../RightHandController/Function_Pickup")
 [node name="XRToolsPhysicsHands" parent="." instance=ExtResource( 12 )]
 
 [node name="LHFollowBone3D" parent="XRToolsPhysicsHands" index="0"]
-transform = Transform( -0.0316173, 0.0127275, -0.000628471, -0.000167084, -0.00209511, -0.0340238, -0.0127419, -0.0315541, 0.0020056, -0.499683, 1.03469, 21.8155 )
+transform = Transform( -0.0316173, 0.0127275, -0.000628471, -0.000167084, -0.00209511, -0.0340238, -0.0127419, -0.0315541, 0.0020056, -0.529683, 0.984693, 21.494 )
 selected_bone = 7
 
 [node name="RHFollowBone3D" parent="XRToolsPhysicsHands" index="1"]
-transform = Transform( 0.0316173, -0.0127275, 0.000628471, -0.000167084, -0.00209511, -0.0340238, -0.0127419, -0.0315541, 0.0020056, 0.499683, 1.03469, 21.8155 )
+transform = Transform( 0.0316173, -0.0127275, 0.000628471, -0.000167084, -0.00209511, -0.0340238, -0.0127419, -0.0315541, 0.0020056, 0.529683, 0.984693, 21.494 )
 selected_bone = 7
 
 [node name="LPalmFollowBone3D" parent="XRToolsPhysicsHands" index="2"]
-transform = Transform( -0.0339721, -0.00281232, -0.000149438, -0.000176133, 0.00392693, -0.0338613, 0.00281077, -0.0337447, -0.00392804, -0.5, 0.999478, 21.9609 )
+transform = Transform( -0.0339721, -0.00281232, -0.000149438, -0.000176133, 0.00392693, -0.0338613, 0.00281077, -0.0337447, -0.00392804, -0.53, 0.949478, 21.6394 )
 selected_bone = 8
 
 [node name="RPalmFollowBone3D" parent="XRToolsPhysicsHands" index="3"]
-transform = Transform( 0.0339721, 0.00281231, 0.000149437, -0.000176133, 0.00392693, -0.0338613, 0.00281077, -0.0337447, -0.00392804, 0.5, 0.999478, 21.9609 )
+transform = Transform( 0.0339721, 0.00281231, 0.000149437, -0.000176133, 0.00392693, -0.0338613, 0.00281077, -0.0337447, -0.00392804, 0.53, 0.949478, 21.6394 )
 selected_bone = 8
 
 [node name="Floor" parent="." instance=ExtResource( 13 )]
 
 [node name="TitleTable" parent="." instance=ExtResource( 14 )]
-transform = Transform( 0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 20 )
+transform = Transform( 0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 19.3502 )
 
 [node name="OptionsLeverSnap" parent="." instance=ExtResource( 16 )]
-transform = Transform( 0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0.57066, 1.11218, 20.6218 )
+transform = Transform( 0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0.57066, 1.11218, 19.8918 )
 
 [node name="OptionsLeverTextMesh" parent="." instance=ExtResource( 15 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.589645, 1.39605, 20.6735 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.589645, 1.39605, 19.9305 )
 
 [node name="QuitLeverTextMesh" parent="." instance=ExtResource( 17 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.876758, 1.38369, 20.6012 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.876758, 1.38369, 19.9031 )
 
 [node name="OverlayHelper" parent="." instance=ExtResource( 18 )]
 
@@ -191,15 +156,19 @@ transform = Transform( -2.18557e-07, 5, -2.18557e-07, 0, -2.18557e-07, -5, -5, -
 [node name="Level2RockSurround2" parent="." instance=ExtResource( 30 )]
 transform = Transform( 5, 0, 0, 0, -2.18557e-07, -5, 0, 5, -2.18557e-07, -22.3912, 3.64995, 0 )
 
+[node name="TreesBillboard" parent="." instance=ExtResource( 31 )]
+transform = Transform( 5, 0, 0, 0, -2.18557e-07, -5, 0, 5, -2.18557e-07, 62.097, 6.35, -100 )
+
+[node name="TreesBillboard2" parent="." instance=ExtResource( 31 )]
+transform = Transform( 5, 0, 0, 0, -2.18557e-07, -5, 0, 5, -2.18557e-07, -37.56, 6.35, -100 )
+
 [connection signal="victory_platform_generated" from="ClimbingNodeGenerator" to="." method="_on_ClimbingNodeGenerator_victory_platform_generated"]
 
 [editable path="FPController"]
 [editable path="FPController/LeftHandController/LeftHand"]
 [editable path="FPController/LeftHandController/LeftHand/LeftHand"]
-[editable path="FPController/LeftHandController/Function_Grapple_movement"]
 [editable path="FPController/RightHandController/RightHand"]
 [editable path="FPController/RightHandController/RightHand/RightHand"]
-[editable path="FPController/RightHandController/Function_Grapple_movement"]
 [editable path="XRToolsPhysicsHands"]
 [editable path="TitleTable"]
 [editable path="QuitLeverTextMesh"]
