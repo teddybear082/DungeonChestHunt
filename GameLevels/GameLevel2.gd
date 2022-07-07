@@ -20,11 +20,12 @@ func _process(delta):
 			$OverlayHelper/OverlayLabel3D.text = "You won and made it to the top! Returning to options menu..."
 			already_won = true
 			PlayerMasterControls.chests_collected +=1
-			yield(get_tree().create_timer(10), "timeout")
+			yield(get_tree().create_timer(15), "timeout")
 			get_tree().change_scene("res://GameLevels/GameOptionsLevel.tscn")
-	if $FPController.transform.origin.y < -2:
+	if $FPController.transform.origin.y < -5:
 		$FPController.transform.origin = Vector3(0,0,22)		
 
-
+	
 func _on_ClimbingNodeGenerator_victory_platform_generated(transformy):
 	victoryheight = transformy # Replace with function body.
+

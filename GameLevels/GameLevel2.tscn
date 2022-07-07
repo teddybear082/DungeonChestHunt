@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=2]
+[gd_scene load_steps=29 format=2]
 
 [ext_resource path="res://addons/godot-xr-tools/functions/Function_Direct_movement.tscn" type="PackedScene" id=1]
 [ext_resource path="res://addons/godot-xr-tools/functions/Function_Pickup.tscn" type="PackedScene" id=3]
@@ -28,7 +28,6 @@
 [ext_resource path="res://scenes/PoolWallB.tscn" type="PackedScene" id=28]
 [ext_resource path="res://addons/godot-xr-tools/functions/Function_Glide_movement.tscn" type="PackedScene" id=29]
 [ext_resource path="res://scenes/Level2RockSurround.tscn" type="PackedScene" id=30]
-[ext_resource path="res://scenes/TreesBillboard.tscn" type="PackedScene" id=31]
 
 [node name="GameLevel2" type="Spatial"]
 script = ExtResource( 20 )
@@ -86,6 +85,30 @@ transform = Transform( 0.0339721, 0.00281231, 0.000149437, -0.000176133, 0.00392
 selected_bone = 8
 
 [node name="Floor" parent="." instance=ExtResource( 13 )]
+
+[node name="Floor9" parent="." instance=ExtResource( 13 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 49.9125, 0, 49.2783 )
+
+[node name="Floor8" parent="." instance=ExtResource( 13 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -50.0375, 0, 49.599 )
+
+[node name="Floor7" parent="." instance=ExtResource( 13 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -50.0463, 0, -49.4745 )
+
+[node name="Floor6" parent="." instance=ExtResource( 13 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 49.636 )
+
+[node name="Floor5" parent="." instance=ExtResource( 13 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 50.0974, 0, -49.7215 )
+
+[node name="Floor4" parent="." instance=ExtResource( 13 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -50.0555, 0, 0 )
+
+[node name="Floor3" parent="." instance=ExtResource( 13 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 49.9157, 0, 0 )
+
+[node name="Floor2" parent="." instance=ExtResource( 13 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -49.7076 )
 
 [node name="TitleTable" parent="." instance=ExtResource( 14 )]
 transform = Transform( 0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 19.3502 )
@@ -145,22 +168,22 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.11671, 5.728 )
 environment = ExtResource( 26 )
 
 [node name="Level2RockSurround" parent="." instance=ExtResource( 30 )]
-transform = Transform( 5, 0, 0, 0, -2.18557e-07, -5, 0, 5, -2.18557e-07, 26.7599, 3.64995, 0 )
+transform = Transform( 4.14694, 2.79336, -1.22102e-07, 0, -2.18557e-07, -5, -2.79336, 4.14694, -1.81269e-07, 32.8927, 3.36578, -5.81957 )
 
 [node name="Level2RockSurround3" parent="." instance=ExtResource( 30 )]
-transform = Transform( -2.18557e-07, 5, -2.18557e-07, 0, -2.18557e-07, -5, -5, -2.18557e-07, 9.55343e-15, 1.53611, 3.64995, -16.0485 )
+transform = Transform( -2.18557e-07, 5, -2.18557e-07, 0, -2.18557e-07, -5, -5, -2.18557e-07, 9.55343e-15, 1.536, 3, -16.049 )
 
 [node name="Level2RockSurround4" parent="." instance=ExtResource( 30 )]
-transform = Transform( -2.18557e-07, 5, -2.18557e-07, 0, -2.18557e-07, -5, -5, -2.18557e-07, 9.55343e-15, 0.539787, 3.64995, 27.4999 )
+transform = Transform( -2.18557e-07, 5, -2.18557e-07, 0, -2.18557e-07, -5, -5, -2.18557e-07, 9.55343e-15, 0.54, 3, 27.5 )
+
+[node name="Level2RockSurround5" parent="." instance=ExtResource( 30 )]
+transform = Transform( 4.5724, 2.02315, -8.84349e-08, 0, -2.18557e-07, -5, -2.02315, 4.5724, -1.99866e-07, -26.1974, 3, 8.07263 )
+
+[node name="Level2RockSurround6" parent="." instance=ExtResource( 30 )]
+transform = Transform( 3.41822, -3.64908, 1.59506e-07, 0, -2.18557e-07, -5, 3.64908, 3.41822, -1.49415e-07, 39.0083, 4.3313, 23.1679 )
 
 [node name="Level2RockSurround2" parent="." instance=ExtResource( 30 )]
-transform = Transform( 5, 0, 0, 0, -2.18557e-07, -5, 0, 5, -2.18557e-07, -22.3912, 3.64995, 0 )
-
-[node name="TreesBillboard" parent="." instance=ExtResource( 31 )]
-transform = Transform( 5, 0, 0, 0, -2.18557e-07, -5, 0, 5, -2.18557e-07, 62.097, 6.35, -100 )
-
-[node name="TreesBillboard2" parent="." instance=ExtResource( 31 )]
-transform = Transform( 5, 0, 0, 0, -2.18557e-07, -5, 0, 5, -2.18557e-07, -37.56, 6.35, -100 )
+transform = Transform( -2.90231, 4.07144, -1.77968e-07, 0, -2.18557e-07, -5, -4.07144, -2.90231, 1.26864e-07, -30.8969, 2.98474, -18.4522 )
 
 [connection signal="victory_platform_generated" from="ClimbingNodeGenerator" to="." method="_on_ClimbingNodeGenerator_victory_platform_generated"]
 
