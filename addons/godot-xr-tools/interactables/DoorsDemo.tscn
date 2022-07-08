@@ -1,25 +1,7 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://addons/godot-xr-tools/interactables/door/hinged_door.tscn" type="PackedScene" id=2]
 [ext_resource path="res://addons/godot-xr-tools/interactables/door/sliding_door.tscn" type="PackedScene" id=3]
-
-[sub_resource type="BoxShape" id=1]
-extents = Vector3( 20, 0.5, 10 )
-
-[sub_resource type="PlaneMesh" id=2]
-size = Vector2( 40, 20 )
-
-[sub_resource type="SpatialMaterial" id=3]
-albedo_color = Color( 0, 0.501961, 0, 1 )
-
-[sub_resource type="BoxShape" id=7]
-extents = Vector3( 0.25, 0.25, 0.25 )
-
-[sub_resource type="CubeMesh" id=8]
-size = Vector3( 0.5, 0.5, 0.5 )
-
-[sub_resource type="SpatialMaterial" id=9]
-albedo_color = Color( 0.501961, 0.501961, 0.501961, 1 )
 
 [sub_resource type="ViewportTexture" id=21]
 viewport_path = NodePath("HingedDoors/Locked/Sprite3D/Viewport")
@@ -55,30 +37,6 @@ viewport_path = NodePath("SlidingDoors/NoLatch/Sprite3D5/Viewport")
 viewport_path = NodePath("SlidingDoors/SelfClosing/Sprite3D6/Viewport")
 
 [node name="DoorsDemo" type="Spatial"]
-
-[node name="Ground" type="StaticBody" parent="."]
-
-[node name="CollisionShape" type="CollisionShape" parent="Ground"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0 )
-shape = SubResource( 1 )
-
-[node name="MeshInstance" type="MeshInstance" parent="Ground"]
-mesh = SubResource( 2 )
-material/0 = SubResource( 3 )
-
-[node name="GrabCube" type="RigidBody" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.30881, 0.25, -1 )
-can_sleep = false
-script = ExtResource( 3 )
-
-[node name="PickupCenter" type="Spatial" parent="GrabCube"]
-
-[node name="CollisionShape" type="CollisionShape" parent="GrabCube"]
-shape = SubResource( 7 )
-
-[node name="MeshInstance" type="MeshInstance" parent="GrabCube"]
-mesh = SubResource( 8 )
-material/0 = SubResource( 9 )
 
 [node name="HingedDoors" type="Spatial" parent="."]
 
@@ -360,5 +318,3 @@ render_target_v_flip = true
 margin_right = 40.0
 margin_bottom = 14.0
 text = "Self Closing"
-
-[editable path="HingedDoors/Locked/LeftDoor"]
