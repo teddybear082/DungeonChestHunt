@@ -111,7 +111,7 @@ func _ready():
 func _process(delta: float) -> void:
 	# If not performing a ranged grab then shut down processing
 	if _state != PickableState.GRABBING_RANGED:
-		set_process(false)
+#		set_process(false)
 		return
 
 	# Lerp to holder
@@ -286,7 +286,7 @@ func _do_snap_grab() -> void:
 func _do_precise_grab() -> void:
 	# Set state to held
 	_state = PickableState.HELD
-	set_process(false)
+#	set_process(false)
 
 	# Reparent to the holder
 	match hold_method:

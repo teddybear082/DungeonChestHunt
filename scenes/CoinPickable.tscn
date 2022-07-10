@@ -12,6 +12,7 @@ points = PoolVector3Array( 0, -0.105812, -1, -0.707126, -0.105812, -0.707126, 0,
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.035706, 0, 0.0127465 )
 collision_layer = 131074
 collision_mask = 2
+ranged_grab_method = 2
 
 [node name="PickupCenter" parent="." index="0"]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, -0.03, 0.07 )
