@@ -1,4 +1,4 @@
-[gd_scene load_steps=59 format=2]
+[gd_scene load_steps=61 format=2]
 
 [ext_resource path="res://addons/godot-xr-tools/functions/Function_Direct_movement.tscn" type="PackedScene" id=1]
 [ext_resource path="res://addons/godot-xr-tools/functions/Function_pointer.tscn" type="PackedScene" id=2]
@@ -22,6 +22,7 @@
 [ext_resource path="res://sounds/sfx100v2_thunder_01.ogg" type="AudioStream" id=20]
 [ext_resource path="res://sounds/Very__Warm_840.mp3" type="AudioStream" id=21]
 [ext_resource path="res://scenes/Target.tscn" type="PackedScene" id=22]
+[ext_resource path="res://addons/godot-xr-tools/objects/FullPhysicalKeyboard.tscn" type="PackedScene" id=23]
 [ext_resource path="res://GameLevels/LevelSelectTextMeshLn2.gd" type="Script" id=25]
 [ext_resource path="res://GameLevels/Level1Voiceovers.gd" type="Script" id=26]
 [ext_resource path="res://addons/godot-xr-tools/functions/Function_Max_Payne_Dive_movement.tscn" type="PackedScene" id=28]
@@ -32,7 +33,6 @@
 [ext_resource path="res://scenes/TutorialVideosViewport.tscn" type="PackedScene" id=33]
 [ext_resource path="res://addons/godot-xr-tools/functions/Function_Glide_movement.tscn" type="PackedScene" id=35]
 [ext_resource path="res://addons/godot-xr-tools/functions/Function_Climb_movement.tscn" type="PackedScene" id=36]
-[ext_resource path="res://addons/godot-xr-tools/objects/Virtual_Keyboard.tscn" type="PackedScene" id=37]
 [ext_resource path="res://addons/godot-xr-tools/functions/Function_Jump_movement.tscn" type="PackedScene" id=38]
 [ext_resource path="res://addons/godot-xr-tools/functions/Locomotion_WalkInPlace.tscn" type="PackedScene" id=39]
 [ext_resource path="res://scenes/GameLevel1BorderWall.tscn" type="PackedScene" id=40]
@@ -130,6 +130,14 @@ text = "Place Coin to Start"
 font = ExtResource( 12 )
 pixel_size = 0.001
 depth = 0.01
+
+[sub_resource type="SphereShape" id=21]
+margin = 0.01
+radius = 0.8
+
+[sub_resource type="SphereShape" id=22]
+margin = 0.01
+radius = 0.8
 
 [node name="GameOptionsLevel" type="Spatial"]
 script = ExtResource( 50 )
@@ -324,15 +332,12 @@ transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -6, 1.2
 [node name="GameLevel1BorderWall4" parent="." instance=ExtResource( 40 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25, -4.5 )
 
-[node name="Virtual_Keyboard" parent="." instance=ExtResource( 37 )]
-transform = Transform( -4.37114e-08, 0.422619, -0.906308, 0, 0.906308, 0.422619, 1, 1.84733e-08, -3.9616e-08, 2.09529, 0.774927, 2.51871 )
-
 [node name="NameTextMesh" type="MeshInstance" parent="."]
-transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 2.39876, 1.42577, 2.54675 )
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 2.76855, 1.42577, 2.54675 )
 mesh = SubResource( 20 )
 
 [node name="NameEditViewport" parent="." instance=ExtResource( 41 )]
-transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 2.52475, 1.15937, 2.55065 )
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 2.76592, 1.15937, 2.55065 )
 viewport_size = Vector2( 300, 300 )
 
 [node name="LevelSelectTextMesh" type="MeshInstance" parent="."]
@@ -380,9 +385,21 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.226356, 1.08492, 4.54166 )
 transform = Transform( -0.0316173, 0.0127275, -0.000628471, -0.000167084, -0.00209511, -0.0340238, -0.0127419, -0.0315541, 0.0020056, -0.529683, 0.984693, 1.90058 )
 selected_bone = 7
 
+[node name="KinematicBody" parent="XRToolsPhysicsHands/LHFollowBone3D" index="0"]
+collision_layer = 393216
+
+[node name="KCollisionShape" parent="XRToolsPhysicsHands/LHFollowBone3D/KinematicBody" index="1"]
+shape = SubResource( 21 )
+
 [node name="RHFollowBone3D" parent="XRToolsPhysicsHands" index="1"]
 transform = Transform( 0.0316173, -0.0127275, 0.000628471, -0.000167084, -0.00209511, -0.0340238, -0.0127419, -0.0315541, 0.0020056, 0.529683, 0.984693, 1.90058 )
 selected_bone = 7
+
+[node name="KinematicBody" parent="XRToolsPhysicsHands/RHFollowBone3D" index="0"]
+collision_layer = 393216
+
+[node name="KCollisionShape" parent="XRToolsPhysicsHands/RHFollowBone3D/KinematicBody" index="0"]
+shape = SubResource( 22 )
 
 [node name="LPalmFollowBone3D" parent="XRToolsPhysicsHands" index="2"]
 transform = Transform( -0.0339721, -0.00281232, -0.000149438, -0.000176133, 0.00392693, -0.0338613, 0.00281077, -0.0337447, -0.00392804, -0.53, 0.949478, 2.04596 )
@@ -397,6 +414,9 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4.4789, 1.58529, 4.95037 )
 
 [node name="Target" parent="." instance=ExtResource( 22 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.47872, 6.72776 )
+
+[node name="FullPhysicalKeyboard" parent="." instance=ExtResource( 23 )]
+transform = Transform( 0.0378122, 0, -0.999285, 0, 1, 0, 0.999285, 0, 0.0378122, 2.42608, 0.924464, 2.57037 )
 
 [connection signal="level_chosen" from="LevelSelectSliderSnap" to="LevelSelectTextMeshLn2" method="_on_LevelSelectSliderSnap_level_chosen"]
 [connection signal="has_picked_up" from="LevelSelectSnapZone" to="." method="_on_LevelSelectSnapZone_has_picked_up"]
