@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=2]
+[gd_scene load_steps=34 format=2]
 
 [ext_resource path="res://addons/godot-xr-tools/assets/PlayerBody.tscn" type="PackedScene" id=1]
 [ext_resource path="res://addons/godot-xr-tools/assets/LeftHand.tscn" type="PackedScene" id=2]
@@ -27,6 +27,7 @@
 [ext_resource path="res://sounds/Welcome_to_the_final_317.mp3" type="AudioStream" id=25]
 [ext_resource path="res://scenes/TitleTable.tscn" type="PackedScene" id=26]
 [ext_resource path="res://scenes/PickableHandGun.tscn" type="PackedScene" id=27]
+[ext_resource path="res://characters/PlayerIKBody2.tscn" type="PackedScene" id=28]
 
 [sub_resource type="Environment" id=1]
 background_mode = 1
@@ -56,6 +57,12 @@ far = 1000.0
 [node name="LeftHand" parent="FPController/LeftHandController" index="0" instance=ExtResource( 2 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.03, -0.05, 0.15 )
 
+[node name="Hand_Left" parent="FPController/LeftHandController/LeftHand/LeftHand/Armature_Left/Skeleton" index="0"]
+visible = false
+
+[node name="LeftHandIKTarget" type="Spatial" parent="FPController/LeftHandController/LeftHand"]
+transform = Transform( -4.37114e-08, -1, 0, -4.37114e-08, 1.91069e-15, 1, -1, 4.37114e-08, -4.37114e-08, 0, 0, 0 )
+
 [node name="Function_Direct_movement" parent="FPController/LeftHandController" index="1" instance=ExtResource( 6 )]
 strafe = true
 
@@ -69,12 +76,18 @@ grapple_button_id = 7
 stream = ExtResource( 22 )
 
 [node name="Function_Pickup" parent="FPController/LeftHandController" index="4" instance=ExtResource( 14 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.03, -0.05, 0.15 )
 grab_distance = 0.1
-grab_collision_mask = 15
+grab_collision_mask = 10
+ranged_collision_mask = 2
 
 [node name="RightHand" parent="FPController/RightHandController" index="0" instance=ExtResource( 4 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.03, -0.05, 0.15 )
+
+[node name="Hand_Left" parent="FPController/RightHandController/RightHand/RightHand/Armature_Left/Skeleton" index="0"]
+visible = false
+
+[node name="RightHandIKTarget" type="Spatial" parent="FPController/RightHandController/RightHand"]
+transform = Transform( -4.37114e-08, 1, 0, 4.37114e-08, 1.91069e-15, 1, 1, 4.37114e-08, -4.37114e-08, 0, 0, 0 )
 
 [node name="Function_Turn_movement" parent="FPController/RightHandController" index="1" instance=ExtResource( 5 )]
 smooth_rotation = true
@@ -89,9 +102,9 @@ grapple_button_id = 7
 stream = ExtResource( 21 )
 
 [node name="Function_Pickup" parent="FPController/RightHandController" index="4" instance=ExtResource( 14 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.03, -0.05, 0.15 )
 grab_distance = 0.1
-grab_collision_mask = 15
+grab_collision_mask = 10
+ranged_collision_mask = 2
 
 [node name="PlayerBody" parent="FPController" instance=ExtResource( 1 )]
 
@@ -195,6 +208,74 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.770061, 1.01704, 10.0706 )
 [node name="PickableHandGun2" parent="." instance=ExtResource( 27 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.82701, 1.00481, 10.0848 )
 
+[node name="PlayerIKBody2" parent="." instance=ExtResource( 28 )]
+transform = Transform( 0.009, 0, 0, 0, 0.009, 0, 0, 0, 0.009, 0, 0.9, 0 )
+
+[node name="BoneAttachment" parent="PlayerIKBody2/Node2/Skeleton" index="0"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 93.6292, 143.446, -5.92443 )
+
+[node name="BoneAttachment2" parent="PlayerIKBody2/Node2/Skeleton" index="1"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 84.6386, 137.197, 1.16046 )
+
+[node name="BoneAttachment3" parent="PlayerIKBody2/Node2/Skeleton" index="2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 92.8355, 143.456, -8.14104 )
+
+[node name="BoneAttachment4" parent="PlayerIKBody2/Node2/Skeleton" index="3"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 93.3537, 143.214, -3.10234 )
+
+[node name="BoneAttachment5" parent="PlayerIKBody2/Node2/Skeleton" index="4"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 91.4196, 143.219, -10.6503 )
+
+[node name="BoneAttachment6" parent="PlayerIKBody2/Node2/Skeleton" index="5"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.92868e-05, 159.955, -0.09375 )
+
+[node name="BoneAttachment7" parent="PlayerIKBody2/Node2/Skeleton" index="6"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.92868e-05, 159.955, -0.09375 )
+
+[node name="BoneAttachment8" parent="PlayerIKBody2/Node2/Skeleton" index="7"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.92868e-05, 159.955, -0.09375 )
+
+[node name="BoneAttachment9" parent="PlayerIKBody2/Node2/Skeleton" index="8"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -93.6292, 143.446, -5.9244 )
+
+[node name="BoneAttachment10" parent="PlayerIKBody2/Node2/Skeleton" index="9"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -84.6385, 137.197, 1.1605 )
+
+[node name="BoneAttachment11" parent="PlayerIKBody2/Node2/Skeleton" index="10"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -93.3537, 143.214, -3.10231 )
+
+[node name="BoneAttachment12" parent="PlayerIKBody2/Node2/Skeleton" index="11"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -92.8354, 143.456, -8.14101 )
+
+[node name="BoneAttachment13" parent="PlayerIKBody2/Node2/Skeleton" index="12"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -91.4196, 143.219, -10.6502 )
+
+[node name="BoneAttachment14" parent="PlayerIKBody2/Node2/Skeleton" index="13"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -9.49782, -0.11983, 10.2576 )
+
+[node name="BoneAttachment15" parent="PlayerIKBody2/Node2/Skeleton" index="14"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 9.49782, -0.119936, 10.2577 )
+
+[node name="LeftHandIK" type="SkeletonIK" parent="PlayerIKBody2/Node2/Skeleton" index="17"]
+process_priority = 1
+root_bone = "mixamorigLeftArm"
+tip_bone = "mixamorigLeftHand"
+target_node = NodePath("../../../../FPController/LeftHandController/LeftHand/LeftHandIKTarget")
+
+[node name="RightHandIK" type="SkeletonIK" parent="PlayerIKBody2/Node2/Skeleton" index="18"]
+process_priority = 1
+root_bone = "mixamorigRightArm"
+tip_bone = "mixamorigRightHand"
+target_node = NodePath("../../../../FPController/RightHandController/RightHand/RightHandIKTarget")
+
+[node name="HeadIK" type="SkeletonIK" parent="PlayerIKBody2/Node2/Skeleton" index="19"]
+process_priority = 1
+root_bone = "mixamorigNeck"
+tip_bone = "mixamorigHead"
+target_node = NodePath("../../../../FPController/ARVRCamera")
+
+[connection signal="player_jumped" from="FPController/PlayerBody" to="PlayerIKBody2" method="_on_PlayerBody_player_jumped"]
+
 [editable path="FPController"]
 [editable path="FPController/LeftHandController/LeftHand"]
 [editable path="FPController/LeftHandController/LeftHand/LeftHand"]
@@ -203,3 +284,4 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.82701, 1.00481, 10.0848 )
 [editable path="FPController/RightHandController/RightHand/RightHand"]
 [editable path="FPController/RightHandController/Function_Max_Payne_Dive_movement"]
 [editable path="XRToolsPhysicsHands"]
+[editable path="PlayerIKBody2"]

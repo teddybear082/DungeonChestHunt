@@ -161,6 +161,7 @@ cast_shadow = 0
 strafe = true
 
 [node name="Function_Pickup" parent="FPController/LeftHandController" index="2" instance=ExtResource( 5 )]
+grab_distance = 0.1
 grab_collision_mask = 2
 ranged_collision_mask = 2
 
@@ -207,6 +208,7 @@ cast_shadow = 0
 [node name="Function_Turn_movement" parent="FPController/RightHandController" index="1" instance=ExtResource( 10 )]
 
 [node name="Function_Pickup" parent="FPController/RightHandController" index="2" instance=ExtResource( 5 )]
+grab_distance = 0.1
 grab_collision_mask = 2
 ranged_collision_mask = 2
 
